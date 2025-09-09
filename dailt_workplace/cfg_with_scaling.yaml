@@ -1,14 +1,23 @@
-Frontend:
-  impl: SimpleO3
-  clock_ratio: 8
-  num_expected_insts: 500000
-  traces: 
-    - example_inst.trace
+# Frontend:
+#   impl: SimpleO3
+#   clock_ratio: 8
+#   num_expected_insts: 500000
+#   traces: 
+#     - example_inst.trace
 
-  Translation:
-    impl: RandomTranslation
-    max_addr: 2147483648
+#   Translation:
+#     impl: RandomTranslation
+#     max_addr: 2147483648
               
+
+Frontend:
+  impl: LoadStoreTrace
+  path: ./with_scaling.ldst.trace
+  clock_ratio: 1
+
+Translation:
+  impl: NoTranslation
+
 
 MemorySystem:
   impl: GenericDRAM
@@ -30,7 +39,7 @@ MemorySystem:
     RefreshManager:
       impl: AllBank
     RowPolicy:
-      impl: ClosedRowPolicy
+      impl: OpenRowPolicy
       cap: 4
     plugins:
 

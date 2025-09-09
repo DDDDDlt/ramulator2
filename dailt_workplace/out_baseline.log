@@ -1,0 +1,54 @@
+[Ramulator::LoadStoreTrace] [info] Loading trace file ./baseline.ldst.trace ...
+[Ramulator::LoadStoreTrace] [info] Loaded 8192 lines.
+Frontend:
+  impl: LoadStoreTrace
+
+MemorySystem:
+  impl: GenericDRAM
+  total_num_other_requests: 0
+  total_num_write_requests: 0
+  total_num_read_requests: 8192
+  memory_system_cycles: 51339
+  DRAM:
+    impl: DDR4
+  AddrMapper:
+    impl: RoBaRaCoCh
+
+
+  Controller:
+    impl: Generic
+    id: Channel 0
+    avg_read_latency_0: 107.637077
+    read_queue_len_avg_0: 35.9357224
+    write_queue_len_0: 0
+    queue_len_0: 1845241
+    num_other_reqs_0: 0
+    num_write_reqs_0: 0
+    read_latency_0: 1842101
+    priority_queue_len_avg_0: 0.00656421063
+    row_hits_0: 8088
+    priority_queue_len_0: 337
+    row_misses_0: 71
+    row_conflicts_0: 0
+    read_row_misses_0: 71
+    queue_len_avg_0: 35.9422874
+    read_row_conflicts_core_0: 0
+    read_row_hits_0: 8088
+    write_queue_len_avg_0: 0
+    read_row_conflicts_0: 0
+    write_row_misses_0: 0
+    write_row_conflicts_0: 0
+    read_queue_len_0: 1844904
+    write_row_hits_0: 0
+    read_row_hits_core_0: 0
+    read_row_misses_core_0: 0
+    num_read_reqs_0: 17114
+    Scheduler:
+      impl: FRFCFS
+    RefreshManager:
+      impl: AllBank
+    RowPolicy:
+      impl: OpenRowPolicy
+
+
+
