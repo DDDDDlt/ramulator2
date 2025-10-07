@@ -190,8 +190,8 @@ Translation:
 ## 4) 运行模拟
 
 ```bash
-./ramulator2 -f cfg_baseline.yaml      | tee out_baseline.log
-./ramulator2 -f cfg_with_scaling.yaml  | tee out_with_scaling.log
+../ramulator2 -f cfg_baseline.yaml      | tee out_baseline.log
+../ramulator2 -f cfg_with_scaling.yaml  | tee out_with_scaling.log
 ```
 
 ---

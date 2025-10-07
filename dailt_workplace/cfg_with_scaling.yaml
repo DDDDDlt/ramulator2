@@ -15,20 +15,22 @@ Frontend:
   path: ./with_scaling.ldst.trace
   clock_ratio: 1
 
+# Translation:
+#   impl: NoTranslation
 Translation:
-  impl: NoTranslation
-
+  impl: RandomTranslation
+  max_addr: 1000000000 
 
 MemorySystem:
   impl: GenericDRAM
-  clock_ratio: 3
+  clock_ratio: 1
 
   DRAM:
     impl: DDR4
     org:
       preset: DDR4_8Gb_x8
-      channel: 1
-      rank: 2
+      channel: 2
+      rank: 1
     timing:
       preset: DDR4_2400R 
 

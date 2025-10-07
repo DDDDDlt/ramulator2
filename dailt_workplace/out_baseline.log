@@ -1,5 +1,5 @@
 [Ramulator::LoadStoreTrace] [info] Loading trace file ./baseline.ldst.trace ...
-[Ramulator::LoadStoreTrace] [info] Loaded 8192 lines.
+[Ramulator::LoadStoreTrace] [info] Loaded 100352 lines.
 Frontend:
   impl: LoadStoreTrace
 
@@ -7,8 +7,8 @@ MemorySystem:
   impl: GenericDRAM
   total_num_other_requests: 0
   total_num_write_requests: 0
-  total_num_read_requests: 8192
-  memory_system_cycles: 51339
+  total_num_read_requests: 100352
+  memory_system_cycles: 266723
   DRAM:
     impl: DDR4
   AddrMapper:
@@ -18,31 +18,68 @@ MemorySystem:
   Controller:
     impl: Generic
     id: Channel 0
-    avg_read_latency_0: 107.637077
-    read_queue_len_avg_0: 35.9357224
+    avg_read_latency_0: 48.1511497
+    read_queue_len_avg_0: 36.7523041
     write_queue_len_0: 0
-    queue_len_0: 1845241
+    queue_len_0: 9803335
     num_other_reqs_0: 0
     num_write_reqs_0: 0
-    read_latency_0: 1842101
-    priority_queue_len_avg_0: 0.00656421063
-    row_hits_0: 8088
-    priority_queue_len_0: 337
-    row_misses_0: 71
+    read_latency_0: 9805548
+    priority_queue_len_avg_0: 0.00243698526
+    row_hits_0: 49712
+    priority_queue_len_0: 650
+    row_misses_0: 431
     row_conflicts_0: 0
-    read_row_misses_0: 71
-    queue_len_avg_0: 35.9422874
+    read_row_misses_0: 431
+    queue_len_avg_0: 36.7547417
     read_row_conflicts_core_0: 0
-    read_row_hits_0: 8088
+    read_row_hits_0: 49712
     write_queue_len_avg_0: 0
     read_row_conflicts_0: 0
     write_row_misses_0: 0
     write_row_conflicts_0: 0
-    read_queue_len_0: 1844904
+    read_queue_len_0: 9802685
     write_row_hits_0: 0
     read_row_hits_core_0: 0
     read_row_misses_core_0: 0
-    num_read_reqs_0: 17114
+    num_read_reqs_0: 203641
+    Scheduler:
+      impl: FRFCFS
+    RefreshManager:
+      impl: AllBank
+    RowPolicy:
+      impl: OpenRowPolicy
+
+
+
+  Controller:
+    impl: Generic
+    id: Channel 1
+    read_queue_len_avg_1: 36.7529373
+    priority_queue_len_1: 662
+    write_queue_len_1: 0
+    num_write_reqs_1: 0
+    row_hits_1: 49712
+    row_misses_1: 431
+    avg_read_latency_1: 155.442093
+    queue_len_avg_1: 36.7554207
+    read_queue_len_1: 9802854
+    read_row_misses_1: 431
+    priority_queue_len_avg_1: 0.00248197559
+    read_row_hits_1: 49712
+    queue_len_1: 9803516
+    read_row_conflicts_1: 0
+    num_read_reqs_1: 63083
+    num_other_reqs_1: 0
+    row_conflicts_1: 0
+    write_row_hits_1: 0
+    write_queue_len_avg_1: 0
+    write_row_misses_1: 0
+    write_row_conflicts_1: 0
+    read_row_hits_core_0: 0
+    read_row_misses_core_0: 0
+    read_latency_1: 9805754
+    read_row_conflicts_core_0: 0
     Scheduler:
       impl: FRFCFS
     RefreshManager:
