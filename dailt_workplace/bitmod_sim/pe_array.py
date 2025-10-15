@@ -48,20 +48,23 @@ class PE_Array:
         self.pe_dp_size = pe_dp_size
         self.total_pe_count = np.prod(pe_array_dim)
         self.pe_energy      = pe_energy * self.PR_SCALING
-        print(f"pe_area_wo_scaling: {pe_area}")
+        # print(f"pe_area_wo_scaling: {pe_area}")
         self.pe_area        = pe_area * self.PR_SCALING
-        print(f"pe_area_with_scaling: {pe_area}")
-        print(f"PR_SCALING: {self.PR_SCALING}")
+        # print(f"pe_area_with_scaling: {pe_area}")
+        # print(f"PR_SCALING: {self.PR_SCALING}")
         self.pe_array_area  = pe_area * self.total_pe_count
-        print(f"total_pe_count: {self.total_pe_count}")
-        print(f"pe_array_area: {self.pe_array_area}")
+        # print(f"total_pe_count: {self.total_pe_count}")
+        # print(f"pe_array_area: {self.pe_array_area}")
         self.pe_array_dim   = {'h': pe_array_dim[0], 'w': pe_array_dim[1]}
         
         self._init_model_profiler(model_name, context_length, is_generation)
     
     def _init_model_profiler(self, model_name, context_length: int=256, is_generation: bool=False):
         model_name_dict = {
+            "gpt2-large": "gpt2_large",
+            "gpt2-xl": "gpt2_xl", 
             "facebook/opt-1.3b": "opt_1_point_3", 
+            "facebook/opt-2.7b": "opt_2_point_7",
             "facebook/opt-6.7b": "opt_6_point_7", 
             "microsoft/phi-2": "phi_2",
             "01-ai/Yi-6B": "yi_6",
@@ -87,9 +90,30 @@ class PE_Array:
                 output_dim[name] = [context_length, shape[0]]
 
         ########## Attention Dimension ##########
-        num_hidden_layers   = model_config['num_hidden_layers']
-        hidden_size         = model_config['hidden_size']
-        num_attention_heads = model_config['num_attention_heads']
+        # 兼容不同模型的配置键名
+        # GPT-2 使用: n_layer, n_embd, n_head
+        # OPT/Llama/Phi 使用: num_hidden_layers, hidden_size, num_attention_heads
+        if 'num_hidden_layers' in model_config:
+            num_hidden_layers = model_config['num_hidden_layers']
+        elif 'n_layer' in model_config:
+            num_hidden_layers = model_config['n_layer']
+        else:
+            raise KeyError("Cannot find 'num_hidden_layers' or 'n_layer' in model config")
+
+        if 'hidden_size' in model_config:
+            hidden_size = model_config['hidden_size']
+        elif 'n_embd' in model_config:
+            hidden_size = model_config['n_embd']
+        else:
+            raise KeyError("Cannot find 'hidden_size' or 'n_embd' in model config")
+
+        if 'num_attention_heads' in model_config:
+            num_attention_heads = model_config['num_attention_heads']
+        elif 'n_head' in model_config:
+            num_attention_heads = model_config['n_head']
+        else:
+            raise KeyError("Cannot find 'num_attention_heads' or 'n_head' in model config")
+
         if 'num_key_value_heads' in model_config.keys():
             num_key_value_heads = model_config['num_key_value_heads']
         else:

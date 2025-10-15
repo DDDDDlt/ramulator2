@@ -8,13 +8,37 @@ import textwrap
 # Configuration constants
 # =========================
 ELEM_SIZE_B   = 1           # Size of one element in bytes (keep 1 if weights are byte-packed)
-SCALE_SIZE_B  = 4           # Typical scale size (e.g., FP32). If you really use 1B scales, set to 1.
+SCALE_SIZE_B  = 1          # Typical scale size (e.g., FP32). If you really use 1B scales, set to 1.
 LINE_SIZE_B   = 64          # Access granularity / cache line (64B is natural for DDR4 BL8 at system level)
 SCALE_BASE    = 0x1000_0000 # Base address for scales
 DATA_BASE     = 0x2000_0000 # Base address for weights
 INPUT_BASE    = 0x2100_0000 # Base address for inputs (separate from weights to avoid accidental co-location)
 OUTPUT_BASE   = 0x3000_0000 # Base address for outputs
 ROW_SPREAD_EXTRA = 0x0      # Optional extra offset to emulate row/bank spreading for scales
+
+# =========================
+# Caching mechanism
+# =========================
+ENABLE_RAMULATOR_CACHE = True  # Set to False to disable caching (for debugging)
+_ramulator_cache = {}
+_cache_stats = {'hits': 0, 'misses': 0}
+
+def get_cache_stats():
+    """Return cache hit/miss statistics."""
+    total = _cache_stats['hits'] + _cache_stats['misses']
+    hit_rate = _cache_stats['hits'] / total * 100 if total > 0 else 0
+    return {
+        'hits': _cache_stats['hits'],
+        'misses': _cache_stats['misses'],
+        'total': total,
+        'hit_rate': hit_rate
+    }
+
+def clear_cache():
+    """Clear the Ramulator result cache."""
+    global _ramulator_cache, _cache_stats
+    _ramulator_cache = {}
+    _cache_stats = {'hits': 0, 'misses': 0}
 
 # =========================
 # Utilities
@@ -34,6 +58,15 @@ def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128,
       2) Read 'col' scale factors (one per column).
     Returns TOTAL cycles of this trace (not average latency).
     """
+    # Check cache first
+    if ENABLE_RAMULATOR_CACHE:
+        cache_key = ('weight_group_wise', workload_bytes, group_size, col)
+        if cache_key in _ramulator_cache:
+            _cache_stats['hits'] += 1
+            return _ramulator_cache[cache_key]
+        _cache_stats['misses'] += 1
+    
+    # Original implementation
     total_elems = ceil_div(workload_bytes, ELEM_SIZE_B)
     elems_per_big_group = group_size * col
     num_big_groups = ceil_div(total_elems, elems_per_big_group)
@@ -56,31 +89,82 @@ def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128,
                 scale_addr = SCALE_BASE + g * col * SCALE_SIZE_B + c * SCALE_SIZE_B + ROW_SPREAD_EXTRA
                 yield f"R 0x{scale_addr:x}"
 
-    return run_ramulator_with_trace(gen_lines())
+    result = run_ramulator_with_trace(gen_lines())
+    
+    # Store in cache
+    if ENABLE_RAMULATOR_CACHE:
+        _ramulator_cache[cache_key] = result
+    
+    return result
 
 def ramulator_weight_read_not_group_wise(workload_bytes: int) -> int:
     """
     Non-group-wise weight read (no scales). Reads are contiguous.
     Returns TOTAL cycles of this trace.
     """
+    # Check cache first
+    if ENABLE_RAMULATOR_CACHE:
+        cache_key = ('weight_not_group_wise', workload_bytes)
+        if cache_key in _ramulator_cache:
+            _cache_stats['hits'] += 1
+            return _ramulator_cache[cache_key]
+        _cache_stats['misses'] += 1
+    
+    # Original implementation
     n_lines = ceil_div(workload_bytes, LINE_SIZE_B)
-    return run_ramulator_with_trace(f"R 0x{DATA_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    result = run_ramulator_with_trace(f"R 0x{DATA_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    
+    # Store in cache
+    if ENABLE_RAMULATOR_CACHE:
+        _ramulator_cache[cache_key] = result
+    
+    return result
 
 def ramulator_input_read(workload_bytes: int, group_size: int = 128) -> int:
     """
     Input read (contiguous). 'group_size' kept for signature compatibility (unused).
     Returns TOTAL cycles of this trace.
     """
+    # Check cache first
+    if ENABLE_RAMULATOR_CACHE:
+        cache_key = ('input_read', workload_bytes)
+        if cache_key in _ramulator_cache:
+            _cache_stats['hits'] += 1
+            return _ramulator_cache[cache_key]
+        _cache_stats['misses'] += 1
+    
+    # Original implementation
     n_lines = ceil_div(workload_bytes, LINE_SIZE_B)
-    return run_ramulator_with_trace(f"R 0x{INPUT_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    result = run_ramulator_with_trace(f"R 0x{INPUT_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    
+    # Store in cache
+    if ENABLE_RAMULATOR_CACHE:
+        _ramulator_cache[cache_key] = result
+    
+    return result
 
 def ramulator_output_write(workload_bytes: int, group_size: int = 128) -> int:
     """
     Output write (contiguous). 'group_size' kept for signature compatibility (unused).
     Returns TOTAL cycles of this trace.
     """
+    # Check cache first
+    if ENABLE_RAMULATOR_CACHE:
+        cache_key = ('output_write', workload_bytes)
+        if cache_key in _ramulator_cache:
+            _cache_stats['hits'] += 1
+            return _ramulator_cache[cache_key]
+        _cache_stats['misses'] += 1
+    
+    # Original implementation
     n_lines = ceil_div(workload_bytes, LINE_SIZE_B)
-    return run_ramulator_with_trace(f"W 0x{OUTPUT_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    result = run_ramulator_with_trace(f"W 0x{OUTPUT_BASE + i * LINE_SIZE_B:x}" for i in range(n_lines))
+    
+    # Store in cache
+    if ENABLE_RAMULATOR_CACHE:
+        _ramulator_cache[cache_key] = result
+    
+    return result
 
 # Backward compatibility alias
 def ramulator_weight_read(workload_bytes: int, group_size: int = 128) -> int:
@@ -263,7 +347,7 @@ MemorySystem:
             [ramulator_path, '-f', temp_config_file],
             capture_output=True,
             text=True,
-            timeout=60
+            timeout=300
         )
         if result.returncode != 0:
             raise RuntimeError(f"Ramulator execution failed: {result.stderr}")

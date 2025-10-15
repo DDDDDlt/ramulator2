@@ -16,7 +16,8 @@ model_str = args.model
 
 torch.set_grad_enabled(False)
 
-model = AutoModelForCausalLM.from_pretrained(model_str, torch_dtype=torch.float16, low_cpu_mem_usage=True, device_map='auto')
+# model = AutoModelForCausalLM.from_pretrained(model_str, dtype=torch.float16, low_cpu_mem_usage=True, device_map='auto')
+model = AutoModelForCausalLM.from_pretrained(model_str, dtype=torch.float16, low_cpu_mem_usage=True, device_map='auto', use_safetensors=True)
 model_config = AutoConfig.from_pretrained(model_str).to_dict()
 
 layer_config = {}
@@ -29,7 +30,10 @@ for n, m in model.named_modules():
 print('\n\n')
 
 model_name_dict = {
+    "gpt2-large": "gpt2_large",
+    "gpt2-xl": "gpt2_xl", 
     "facebook/opt-1.3b": "opt_1_point_3", 
+    "facebook/opt-2.7b": "opt_2_point_7",
     "facebook/opt-6.7b": "opt_6_point_7", 
     "microsoft/phi-2": "phi_2",
     "01-ai/Yi-6B": "yi_6",

@@ -56,16 +56,16 @@ class Accelerator(PE_Array):
             cycle_layer_dram    = self._layer_cycle_dram[name]
             total_cycle_compute += cycle_layer_compute
             total_cycle += max(cycle_layer_compute, cycle_layer_dram)
-            if (cycle_layer_compute>cycle_layer_dram):
-                print("layer name ", name)
-                print("cycle_layer_compute")
-                print(cycle_layer_compute)
-                print("--------------------------------")
-            else:
-                print("layer name ", name)
-                print("cycle_layer_dram")
-                print(cycle_layer_dram)
-                print("--------------------------------")
+            # if (cycle_layer_compute>cycle_layer_dram):
+            #     print("layer name ", name)
+            #     print("cycle_layer_compute")
+            #     print(cycle_layer_compute)
+            #     print("--------------------------------")
+            # else:
+            #     print("layer name ", name)
+            #     print("cycle_layer_dram")
+            #     print(cycle_layer_dram)
+            #     print("--------------------------------")
         self.cycle_compute = total_cycle_compute
         return total_cycle_compute, total_cycle
     
@@ -110,21 +110,22 @@ class Accelerator(PE_Array):
 
     def _calc_dram_cycle(self):
         self._layer_cycle_dram = {}
+        self._layer_cycle_dram_detail = {}  # 保存详细的周期信息（用于能量计算）
         group_size = self.GROUP_SIZE
         is_group_wise = self.USE_SCALE_OVERHEAD_LAT
         for name in self.layer_name_list:
-            print(name)
+            # print(name)
             w_dim = self.weight_dim[name]
             o_dim = self.output_dim[name]
             num_dram_fetch_w, num_dram_fetch_i = self._layer_mem_refetch[name]
             w_workload = self._w_mem_required[name] * num_dram_fetch_w
-            print("w_workload", w_workload)
+            # print("w_workload", w_workload)
             i_workload = self._i_mem_required[name] * num_dram_fetch_i
-            print("i_workload", i_workload)
+            # print("i_workload", i_workload)
             o_workload = self._o_mem_required[name]  # 输出数据不需要重复读取
-            print("o_workload", o_workload)
+            # print("o_workload", o_workload)
             col = self.pe_array_dim['w']
-            print("col", col)
+            # print("col", col)
             if name in ['attn_qk', 'attn_v']:
                 cycle_dram_load_w = ramulator_input_read(w_workload)
             elif is_group_wise:
@@ -135,11 +136,18 @@ class Accelerator(PE_Array):
             cycle_dram_write_o = ramulator_output_write(o_workload)
             cycle_layer_dram = cycle_dram_load_w + cycle_dram_load_i + cycle_dram_write_o
             self._layer_cycle_dram[name] = cycle_layer_dram
-            print("cycle_dram_load_w", cycle_dram_load_w)
-            print("cycle_dram_load_i", cycle_dram_load_i)
-            print("cycle_dram_write_o", cycle_dram_write_o)
-            print("cycle_layer_dram", cycle_layer_dram)
-            print("--------------------------------")
+            
+            # 保存详细周期信息供能量计算使用
+            self._layer_cycle_dram_detail[name] = {
+                'weight_cycles': cycle_dram_load_w,
+                'input_cycles': cycle_dram_load_i,
+                'output_cycles': cycle_dram_write_o
+            }
+            # print("cycle_dram_load_w", cycle_dram_load_w)
+            # print("cycle_dram_load_i", cycle_dram_load_i)
+            # print("cycle_dram_write_o", cycle_dram_write_o)
+            # print("cycle_layer_dram", cycle_layer_dram)
+            # print("--------------------------------")
 
 
     # def _calc_dram_cycle(self):
@@ -235,24 +243,31 @@ class Accelerator(PE_Array):
         return energy
     
     def _calc_dram_energy_fc(self, layer_name):
-        size_sram_i = self.i_sram.size / 8
-        bus_width = self.dram.rw_bw
-        rd_cost = self.dram.r_cost
-        wr_cost = self.dram.w_cost
-        num_fetch_w, num_fetch_i = self._layer_mem_refetch[layer_name]
-
-        # energy_weight: energy to read weight from DRAM
-        w_mem_required = self._w_mem_required[layer_name]
-        energy_weight = w_mem_required * 8 / bus_width * rd_cost
-        # energy_input:  energy to read input feature from DRAM
-        i_mem_required = self._i_mem_required[layer_name]
-        energy_input  = i_mem_required * 8 / bus_width * rd_cost
-        # energy_output: energy to write output feature to DRAM
-        o_mem_required = self._o_mem_required[layer_name]
-        energy_output = o_mem_required * 8 / bus_width * wr_cost
-
-        energy_weight *= num_fetch_w
-        energy_input  *= num_fetch_i
+        # # 基于Ramulator仿真周期计算DRAM能量
+        # # DDR4-2400 平均功率参数（基于典型workload的功耗特性）
+        # # 参考：JEDEC DDR4 spec + Micron power calculator
+        
+        # # DDR4-2400, 2通道, 典型读写混合workload的平均功率
+        # # 这是在活跃传输期间的平均功率（不包括idle/standby）
+        # POWER_READ_MW = 800   # mW，读取操作期间的平均功率
+        # POWER_WRITE_MW = 700  # mW，写入操作期间的平均功率
+        
+        # # DDR4-2400频率: 1 GHz
+        # DRAM_FREQ_MHZ = 1
+        
+        # # 每周期的能量 (pJ) = 功率(mW) / 频率(MHz) = 功率(pJ/ns) 
+        ENERGY_PER_CYCLE_READ = 1000   # pJ/cycle
+        ENERGY_PER_CYCLE_WRITE = 900 # pJ/cycle
+        
+        # 获取该层的Ramulator仿真周期（包含所有实际开销）
+        cycle_detail = self._layer_cycle_dram_detail[layer_name]
+        
+        # 基于实际周期计算能量
+        # 这里的周期数已经包含了row buffer miss、bank conflict、refresh等所有开销
+        energy_weight = cycle_detail['weight_cycles'] * ENERGY_PER_CYCLE_READ
+        energy_input  = cycle_detail['input_cycles'] * ENERGY_PER_CYCLE_READ
+        energy_output = cycle_detail['output_cycles'] * ENERGY_PER_CYCLE_WRITE
+        
         total_energy = energy_weight + energy_input + energy_output
         return total_energy
     
@@ -307,12 +322,12 @@ class Accelerator(PE_Array):
                         #print(f'Refetch weight for {num_refetch_weight} times ...')
                         # refetch all weight for every input tile
                         self._layer_mem_refetch[name] = (num_refetch_weight, 1)
-                        print(f'Refetch weight for {num_refetch_weight} times ...')
+                        # print(f'Refetch weight for {num_refetch_weight} times ...')
                     else:
                         #print(f'Refetch input for {num_refetch_input} times ...\n\n')
                         # refetch all input for every weight tile
                         self._layer_mem_refetch[name] = (1, num_refetch_input)
-                        print(f'Refetch input for {num_refetch_input} times ...')
+                        # print(f'Refetch input for {num_refetch_input} times ...')
                 else:
                     # no need refetch
                     self._layer_mem_refetch[name] = (1, 1)
@@ -361,29 +376,54 @@ class Accelerator(PE_Array):
             min_r_granularity=64, min_w_granularity=64, 
             get_cost_from_cacti=True
         )
-        
-        dram_rw_bw = 128
-        dram_config = {
-            'technology': 0.028,
-            'mem_type': 'dram', 
-            'size': 1e9 * 8, 
-            'bank_count': 1, 
-            'rw_bw': dram_rw_bw,
-            'r_port': 0, 
-            'w_port': 0, 
-            'rw_port': 1,
-        }
-        wr_cost = dram_rw_bw / 64 * 1200
-        self.dram = MemoryInstance(
-            dram_config, r_cost=wr_cost, w_cost=wr_cost, latency=1, 
-            min_r_granularity=dram_rw_bw, min_w_granularity=dram_rw_bw, 
-            get_cost_from_cacti=False
-        )
 
 
-# layer name  model.decoder.layers.0.fc1
-# cycle_layer_dram
-# 201344
+        # # ========== DRAM配置 ==========
+        # # 有效带宽（考虑Ramulator仿真的实际开销）
+        # dram_rw_bw = 64  # bits/cycle，约为理论带宽的50%
 
-# name  model.decoder.layers.0.fc1
-# _w_mem_required 6422528
+        # dram_config = {
+        #     'technology': 0.028,
+        #     'mem_type': 'dram', 
+        #     'size': 1e9 * 8, 
+        #     'bank_count': 1, 
+        #     'rw_bw': dram_rw_bw,
+        #     'r_port': 0, 
+        #     'w_port': 0, 
+        #     'rw_port': 1,
+        # }
+
+        # # DDR4-2400 每次64B访问的实际能量（基于Micron datasheet）
+        # # 注意：这个能量是物理特性，不随带宽变化
+        # dram_rd_cost = 1200/2  # pJ per 64-byte read
+        # dram_wr_cost = 1000/2  # pJ per 64-byte write
+
+        # self.dram = MemoryInstance(
+        #     dram_config, 
+        #     r_cost=dram_rd_cost,  # ← 固定值
+        #     w_cost=dram_wr_cost,  # ← 固定值
+        #     latency=1, 
+        #     min_r_granularity=dram_rw_bw, 
+        #     min_w_granularity=dram_rw_bw, 
+        #     get_cost_from_cacti=False
+        # )
+                
+        # dram_rw_bw = 64
+        # dram_config = {
+        #     'technology': 0.028,
+        #     'mem_type': 'dram', 
+        #     'size': 1e9 * 8, 
+        #     'bank_count': 1, 
+        #     'rw_bw': dram_rw_bw,
+        #     'r_port': 0, 
+        #     'w_port': 0, 
+        #     'rw_port': 1,
+        # }
+        # wr_cost = dram_rw_bw / 64 * 1200
+        # # rd_cost = 2400  # pJ (更准确的 DDR4-2400 读能量)
+        # # wr_cost = 2400  # pJ (更准确的 DDR4-2400 写能量)
+        # self.dram = MemoryInstance(
+        #     dram_config, r_cost=wr_cost, w_cost=wr_cost, latency=1, 
+        #     min_r_granularity=dram_rw_bw, min_w_granularity=dram_rw_bw, 
+        #     get_cost_from_cacti=False
+        # )
