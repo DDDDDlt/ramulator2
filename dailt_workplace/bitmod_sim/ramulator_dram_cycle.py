@@ -89,6 +89,13 @@ def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128,
                 scale_addr = SCALE_BASE + g * col * SCALE_SIZE_B + c * SCALE_SIZE_B + ROW_SPREAD_EXTRA
                 yield f"R 0x{scale_addr:x}"
 
+            # #### Worse Group-wise
+            # SCALE_ROW_STRIDE = 0x2000  # 8KB = 典型的 DRAM row size
+            # for c in range(col):
+            #     scale_addr = SCALE_BASE + g * col * SCALE_ROW_STRIDE + c * SCALE_ROW_STRIDE
+            #     yield f"R 0x{scale_addr:x}"
+            # ####
+
     result = run_ramulator_with_trace(gen_lines())
     
     # Store in cache
@@ -320,7 +327,7 @@ MemorySystem:
     RefreshManager:
       impl: AllBank
     RowPolicy:
-      impl: ClosedRowPolicy
+      impl: OpenRowPolicy
       cap: 4
     plugins:
 

@@ -30,7 +30,8 @@ if __name__ == "__main__":
     }
     
     if is_generation:
-        pe_array_dim = [64, 16]
+        # pe_array_dim = [64, 16]
+        pe_array_dim = [32, 16]
     else:
         pe_array_dim = [32, 32]
     
@@ -44,6 +45,9 @@ if __name__ == "__main__":
     print(f"PE DP Size: 4, Is MixPosit: True")
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Models to test: {len(model_list)}")
+    print(f"pe_energy: {0.3027171938}")
+    print(f"pe_area: {1458.048025}")
+    print(f"pe_dp_size: 4")
     print()
 
     for idx, model_name in enumerate(model_list):
@@ -54,17 +58,17 @@ if __name__ == "__main__":
             i_prec=16,
             w_prec=w_prec,
             is_bit_serial=True,
-            pe_dp_size=4, #TBD
-            pe_energy=0.27, #TBD
-            pe_area=1539.08, # 384.77 * 4
+            pe_dp_size=4,
+            pe_energy=0.3027171938,
+            pe_area=1458.048025,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
             is_mixposit=True,
             use_scale_overhead_lat=False,
-            scale_bits=8,
-            meta_bits=2,
-            group_size=128,
+            # scale_bits=8,
+            # meta_bits=2,
+            # group_size=128,
         )
 
         total_cycle    = acc.calc_cycle()

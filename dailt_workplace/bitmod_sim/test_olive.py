@@ -1,3 +1,4 @@
+# python test_olive.py --is_generation > ./log/test_olive.log
 import argparse
 from accelerator import Accelerator
 from ramulator_dram_cycle import get_cache_stats 
@@ -14,19 +15,20 @@ if __name__ == "__main__":
     is_generation = args.is_generation
 
     w_prec_list = {
-        'gpt2-large': 4.0,
-        'gpt2-xl': 4.0,
-        'facebook/opt-1.3b': 3.875,
-        'facebook/opt-2.7b': 3.875,
-        'microsoft/phi-2': 4, 
-        '01-ai/Yi-6B': 4.25, 
-        'meta-llama/Llama-2-7b-hf': 3.75, 
-        'meta-llama/Llama-2-13b-hf': 3.75, 
-        'meta-llama/Meta-Llama-3-8B': 3.5, 
+        'gpt2-large': 8,
+        'gpt2-xl': 8,
+        'facebook/opt-1.3b': 8,
+        'facebook/opt-2.7b': 8,
+        'microsoft/phi-2': 8, 
+        '01-ai/Yi-6B': 8, 
+        'meta-llama/Llama-2-7b-hf': 8, 
+        'meta-llama/Llama-2-13b-hf': 8, 
+        'meta-llama/Meta-Llama-3-8B': 8, 
     }
 
     if is_generation:
-        pe_array_dim = [72, 16]
+        # pe_array_dim = [72, 16]
+        pe_array_dim = [32, 30]
     else:
         pe_array_dim = [36, 32]
     
@@ -36,9 +38,12 @@ if __name__ == "__main__":
     # 打印加速器配置信息
     print("Accelerator: OLIVE (Non-uniform Quantization)")
     print(f"PE Array Dimension: {pe_array_dim}")
-    print(f"Input Precision: 16-bit, Weight Precision: Variable (per-model)")
+    print(f"Input Precision: 8-bit, Weight Precision: Variable (per-model)")
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Models to test: {len(model_list)}")
+    print(f"pe_energy: {0.179497375}")
+    print(f"pe_area: {767.41875}")
+    print(f"pe_dp_size: 4")
     print()
 
     for idx, model_name in enumerate(model_list):
@@ -49,19 +54,19 @@ if __name__ == "__main__":
 
         acc = Accelerator(
             model_name=model_name, 
-            i_prec=16,
+            i_prec=8,
             w_prec=w_prec,
             is_bit_serial=False,
-            pe_dp_size=1,
-            pe_energy=0.613,
-            pe_area=1318.6,
+            pe_dp_size=4,
+            pe_energy=0.179497375,
+            pe_area=767.41875,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
             use_scale_overhead_lat=False,
-            scale_bits=8,
-            meta_bits=2,
-            group_size=128,
+            # scale_bits=8,
+            # meta_bits=2,
+            # group_size=128,
         )
 
         total_cycle    = acc.calc_cycle()
@@ -92,9 +97,9 @@ if __name__ == "__main__":
     print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
     
     # Print cache statistics
-    cache_stats = get_cache_stats()
-    print("\nRamulator Cache Statistics:")
-    print(f"  Cache Hits:   {cache_stats['hits']}")
-    print(f"  Cache Misses: {cache_stats['misses']}")
-    print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
+    # cache_stats = get_cache_stats()
+    # print("\nRamulator Cache Statistics:")
+    # print(f"  Cache Hits:   {cache_stats['hits']}")
+    # print(f"  Cache Misses: {cache_stats['misses']}")
+    # print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
     

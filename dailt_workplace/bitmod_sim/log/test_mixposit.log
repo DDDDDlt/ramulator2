@@ -1,77 +1,80 @@
 Accelerator: MixPosit (Bit-Serial + Mixed-Precision)
-PE Array Dimension: [64, 16]
+PE Array Dimension: [32, 16]
 Input Precision: 16-bit, Weight Precision: Variable (per-model)
 PE DP Size: 4, Is MixPosit: True
 Context Length: 256, Generation Mode: True
 Models to test: 7
+pe_energy: 0.3027171938
+pe_area: 1458.048025
+pe_dp_size: 4
 
 [1/7] Model: gpt2-large (W_prec: 4.1000-bit)
-  Total Cycle:        3,316,113
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        2,167,640.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        2651.48 mJ
-  On-chip Energy:     577.80 mJ
-  Total Energy:       3229.29 mJ
+  DRAM Energy:        1457.47 mJ
+  On-chip Energy:     647.11 mJ
+  Total Energy:       2104.58 mJ
 
 [2/7] Model: gpt2-xl (W_prec: 4.1000-bit)
-  Total Cycle:        4,296,853
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        2,756,152.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        3436.07 mJ
-  On-chip Energy:     743.50 mJ
-  Total Energy:       4179.57 mJ
+  DRAM Energy:        1888.80 mJ
+  On-chip Energy:     822.39 mJ
+  Total Energy:       2711.19 mJ
 
 [3/7] Model: microsoft/phi-2 (W_prec: 4.4000-bit)
-  Total Cycle:        138,155,796
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        91,241,824.00000001
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        110513.60 mJ
-  On-chip Energy:     23139.50 mJ
-  Total Energy:       133653.09 mJ
+  DRAM Energy:        60740.82 mJ
+  On-chip Energy:     26958.05 mJ
+  Total Energy:       87698.87 mJ
 
 [4/7] Model: facebook/opt-2.7b (W_prec: 4.8000-bit)
-  Total Cycle:        150,506,181
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        99,426,656.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        120393.92 mJ
-  On-chip Energy:     25002.12 mJ
-  Total Energy:       145396.05 mJ
+  DRAM Energy:        66222.20 mJ
+  On-chip Energy:     29032.05 mJ
+  Total Energy:       95254.25 mJ
 
 [5/7] Model: 01-ai/Yi-6B (W_prec: 5.0000-bit)
-  Total Cycle:        343,029,049.0
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        226,855,616.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        274221.13 mJ
-  On-chip Energy:     56789.62 mJ
-  Total Energy:       331010.75 mJ
+  DRAM Energy:        150805.28 mJ
+  On-chip Energy:     65886.82 mJ
+  Total Energy:       216692.10 mJ
 
 [6/7] Model: meta-llama/Llama-2-7b-hf (W_prec: 5.0000-bit)
-  Total Cycle:        391,239,623
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        258,464,480.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        312964.22 mJ
-  On-chip Energy:     64694.88 mJ
-  Total Energy:       377659.09 mJ
+  DRAM Energy:        172139.35 mJ
+  On-chip Energy:     75069.43 mJ
+  Total Energy:       247208.78 mJ
 
 [7/7] Model: meta-llama/Meta-Llama-3-8B (W_prec: 5.0000-bit)
-  Total Cycle:        443,862,568.0
-  PE Array Area:      1.58 mm²
-  Weight Buffer:      1.57 mm²
+  Total Cycle:        293,498,048.0
+  PE Array Area:      0.75 mm²
+  Weight Buffer:      1.60 mm²
   Input Buffer:       1.60 mm²
-  DRAM Energy:        354955.33 mJ
-  On-chip Energy:     73452.26 mJ
-  Total Energy:       428407.59 mJ
+  DRAM Energy:        195173.05 mJ
+  On-chip Energy:     85244.99 mJ
+  Total Energy:       280418.04 mJ
 
 
 Summary:
-Latency (cycles): [3316113, 4296853, 138155796, 150506181, 343029049.0, 391239623, 443862568.0]
-Energy [On-chip, Total] (mJ): [[578, 3229], [743, 4180], [23139, 133653], [25002, 145396], [56790, 331011], [64695, 377659], [73452, 428408]]
+Latency (cycles): [2167640.0, 2756152.0, 91241824.00000001, 99426656.0, 226855616.0, 258464480.0, 293498048.0]
+Energy [On-chip, Total] (mJ): [[647, 2105], [822, 2711], [26958, 87699], [29032, 95254], [65887, 216692], [75069, 247209], [85245, 280418]]
 
 Ramulator Cache Statistics:
   Cache Hits:   4599

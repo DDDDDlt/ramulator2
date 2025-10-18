@@ -1,0 +1,76 @@
+Accelerator: OLIVE (Non-uniform Quantization)
+PE Array Dimension: [32, 30]
+Input Precision: 8-bit, Weight Precision: Variable (per-model)
+Context Length: 256, Generation Mode: True
+Models to test: 7
+pe_energy: 0.179497375
+pe_area: 767.41875
+pe_dp_size: 4
+
+[1/7] Model: gpt2-large (W_prec: 8-bit)
+  Total Cycle:        2,712,394
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        2712.19 mJ
+  On-chip Energy:     354.37 mJ
+  Total Energy:       3066.57 mJ
+
+[2/7] Model: gpt2-xl (W_prec: 8-bit)
+  Total Cycle:        3,422,495
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        3422.29 mJ
+  On-chip Energy:     446.72 mJ
+  Total Energy:       3869.01 mJ
+
+[3/7] Model: microsoft/phi-2 (W_prec: 8-bit)
+  Total Cycle:        110,190,655
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        110188.89 mJ
+  On-chip Energy:     14243.41 mJ
+  Total Energy:       124432.30 mJ
+
+[4/7] Model: facebook/opt-2.7b (W_prec: 8-bit)
+  Total Cycle:        110,092,100
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        110090.34 mJ
+  On-chip Energy:     14230.66 mJ
+  Total Energy:       124321.00 mJ
+
+[5/7] Model: 01-ai/Yi-6B (W_prec: 8-bit)
+  Total Cycle:        241,149,471
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        241101.59 mJ
+  On-chip Energy:     31171.81 mJ
+  Total Energy:       272273.40 mJ
+
+[6/7] Model: meta-llama/Llama-2-7b-hf (W_prec: 8-bit)
+  Total Cycle:        274,858,373
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        274855.13 mJ
+  On-chip Energy:     35517.29 mJ
+  Total Energy:       310372.41 mJ
+
+[7/7] Model: meta-llama/Meta-Llama-3-8B (W_prec: 8-bit)
+  Total Cycle:        312,062,623
+  PE Array Area:      0.74 mm²
+  Weight Buffer:      1.57 mm²
+  Input Buffer:       1.56 mm²
+  DRAM Energy:        312034.15 mJ
+  On-chip Energy:     40332.41 mJ
+  Total Energy:       352366.55 mJ
+
+
+Summary:
+Latency (cycles): [2712394, 3422495, 110190655, 110092100, 241149471, 274858373, 312062623]
+Energy [On-chip, Total] (mJ): [[354, 3067], [447, 3869], [14243, 124432], [14231, 124321], [31172, 272273], [35517, 310372], [40332, 352367]]

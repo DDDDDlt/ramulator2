@@ -1,3 +1,4 @@
+# python test_ant.py --is_generation > ./log/test_ant.log
 import argparse
 from accelerator import Accelerator
 from ramulator_dram_cycle import get_cache_stats 
@@ -18,10 +19,10 @@ if __name__ == "__main__":
         'facebook/opt-1.3b': 5, 
         'facebook/opt-2.7b': 5,
         'microsoft/phi-2': 5, 
-        '01-ai/Yi-6B': 5.25, 
+        '01-ai/Yi-6B': 5, 
         'meta-llama/Llama-2-7b-hf': 5, 
         'meta-llama/Llama-2-13b-hf': 5, 
-        'meta-llama/Meta-Llama-3-8B': 4.5, 
+        'meta-llama/Meta-Llama-3-8B': 5, 
     }
 
     if is_generation:
@@ -58,9 +59,9 @@ if __name__ == "__main__":
             context_length=256,
             is_generation=is_generation,
             use_scale_overhead_lat=False,
-            scale_bits=8,
-            meta_bits=2,
-            group_size=128,
+            # scale_bits=8,
+            # meta_bits=2,
+            # group_size=128,
         )
 
         total_cycle    = acc.calc_cycle()

@@ -63,7 +63,6 @@ if __name__ == "__main__":
             scale_bits=8,
             meta_bits=2,
             group_size=128,
-            # worst_case=True,
         )
 
         total_cycle    = acc.calc_cycle()

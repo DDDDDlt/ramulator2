@@ -1,3 +1,4 @@
+# python test_baseline.py --is_generation > ./log/test_baseline.log
 import argparse
 from accelerator import Accelerator
 from ramulator_dram_cycle import get_cache_stats 
@@ -42,9 +43,9 @@ if __name__ == "__main__":
             context_length=256,
             is_generation=is_generation,
             use_scale_overhead_lat=False,
-            scale_bits=8,
-            meta_bits=2,
-            group_size=128,
+            # scale_bits=8,
+            # meta_bits=2,
+            # group_size=128,
         )
 
         total_cycle    = acc.calc_cycle()
