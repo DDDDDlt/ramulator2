@@ -6,7 +6,7 @@ import numpy as np
 from typing import List
 from mem.mem_instance import MemoryInstance
 from pe_array import PE_Array
-from ramulator_dram_cycle import ramulator_weight_read_group_wise, ramulator_weight_read_not_group_wise, ramulator_input_read, ramulator_output_write
+from ramulator_dram_sim import ramulator_weight_read_group_wise, ramulator_weight_read_not_group_wise, ramulator_input_read, ramulator_output_write
 
 # Stripes accelerator
 class Accelerator(PE_Array):
@@ -69,6 +69,77 @@ class Accelerator(PE_Array):
         self.cycle_compute = total_cycle_compute
         return total_cycle_compute, total_cycle
     
+    def analyze_bottleneck(self):
+        """
+        分析每层是 memory-bound 还是 compute-bound
+        返回统计信息和详细的层级信息
+        """
+        if not hasattr(self, '_layer_cycle_compute') or not hasattr(self, '_layer_cycle_dram'):
+            self.calc_cycle()
+        
+        memory_bound_layers = []
+        compute_bound_layers = []
+        layer_details = []
+        
+        for name in self.layer_name_list:
+            cycle_compute = self._layer_cycle_compute[name]
+            cycle_dram = self._layer_cycle_dram[name]
+            
+            # 判断瓶颈类型
+            if cycle_dram > cycle_compute:
+                bottleneck = 'Memory'
+                memory_bound_layers.append(name)
+            else:
+                bottleneck = 'Compute'
+                compute_bound_layers.append(name)
+            
+            # 计算比例
+            ratio = cycle_dram / cycle_compute if cycle_compute > 0 else float('inf')
+            
+            layer_details.append({
+                'name': name,
+                'compute_cycles': cycle_compute,
+                'dram_cycles': cycle_dram,
+                'bottleneck': bottleneck,
+                'dram_to_compute_ratio': ratio
+            })
+        
+        stats = {
+            'total_layers': len(self.layer_name_list),
+            'memory_bound_count': len(memory_bound_layers),
+            'compute_bound_count': len(compute_bound_layers),
+            'memory_bound_layers': memory_bound_layers,
+            'compute_bound_layers': compute_bound_layers,
+            'layer_details': layer_details
+        }
+        
+        return stats
+
+    def print_bottleneck_analysis(self, show_details=False):
+        """
+        打印瓶颈分析结果
+        
+        Args:
+            show_details: 是否显示每层的详细信息
+        """
+        stats = self.analyze_bottleneck()
+        
+        print(f"  Bottleneck Analysis:")
+        print(f"    Total Layers:         {stats['total_layers']}")
+        print(f"    Memory-bound Layers:  {stats['memory_bound_count']} ({stats['memory_bound_count']/stats['total_layers']*100:.1f}%)")
+        print(f"    Compute-bound Layers: {stats['compute_bound_count']} ({stats['compute_bound_count']/stats['total_layers']*100:.1f}%)")
+        
+        if show_details:
+            print("  Detailed Layer Analysis:")
+            for detail in stats['layer_details']:
+                print(f"    Layer: {detail['name']}")
+                print(f"      Compute Cycles: {detail['compute_cycles']:,}")
+                print(f"      DRAM Cycles:    {detail['dram_cycles']:,}")
+                print(f"      Bottleneck:     {detail['bottleneck']}")
+                print(f"      DRAM/Compute:   {detail['dram_to_compute_ratio']:.2f}x")
+        
+        return stats
+    
     def _calc_compute_cycle(self):
         self._layer_cycle_compute = {}
         for name in self.layer_name_list:
@@ -126,22 +197,28 @@ class Accelerator(PE_Array):
             # print("o_workload", o_workload)
             col = self.pe_array_dim['w']
             # print("col", col)
+            # Ramulator函数现在返回 (cycles, energy_pJ) 元组
             if name in ['attn_qk', 'attn_v']:
-                cycle_dram_load_w = ramulator_input_read(w_workload)
+                cycle_dram_load_w, energy_dram_load_w = ramulator_input_read(w_workload)
             elif is_group_wise:
-                cycle_dram_load_w = ramulator_weight_read_group_wise(w_workload, group_size, col)
+                cycle_dram_load_w, energy_dram_load_w = ramulator_weight_read_group_wise(w_workload, group_size, col)
             else:
-                cycle_dram_load_w = ramulator_weight_read_not_group_wise(w_workload)
-            cycle_dram_load_i = ramulator_input_read(i_workload)
-            cycle_dram_write_o = ramulator_output_write(o_workload)
+                cycle_dram_load_w, energy_dram_load_w = ramulator_weight_read_not_group_wise(w_workload)
+            cycle_dram_load_i, energy_dram_load_i = ramulator_input_read(i_workload)
+            cycle_dram_write_o, energy_dram_write_o = ramulator_output_write(o_workload)
+            
             cycle_layer_dram = cycle_dram_load_w + cycle_dram_load_i + cycle_dram_write_o
             self._layer_cycle_dram[name] = cycle_layer_dram
             
-            # 保存详细周期信息供能量计算使用
+            # 保存详细周期信息和能量信息供能量计算使用
             self._layer_cycle_dram_detail[name] = {
                 'weight_cycles': cycle_dram_load_w,
                 'input_cycles': cycle_dram_load_i,
-                'output_cycles': cycle_dram_write_o
+                'output_cycles': cycle_dram_write_o,
+                # 保存Ramulator2计算的实际能量（单位：pJ）
+                'weight_energy_pJ': energy_dram_load_w,
+                'input_energy_pJ': energy_dram_load_i,
+                'output_energy_pJ': energy_dram_write_o
             }
             # print("cycle_dram_load_w", cycle_dram_load_w)
             # print("cycle_dram_load_i", cycle_dram_load_i)
@@ -243,32 +320,52 @@ class Accelerator(PE_Array):
         return energy
     
     def _calc_dram_energy_fc(self, layer_name):
-        # # 基于Ramulator仿真周期计算DRAM能量
-        # # DDR4-2400 平均功率参数（基于典型workload的功耗特性）
-        # # 参考：JEDEC DDR4 spec + Micron power calculator
-        
-        # # DDR4-2400, 2通道, 典型读写混合workload的平均功率
-        # # 这是在活跃传输期间的平均功率（不包括idle/standby）
-        # POWER_READ_MW = 800   # mW，读取操作期间的平均功率
-        # POWER_WRITE_MW = 700  # mW，写入操作期间的平均功率
-        
-        # # DDR4-2400频率: 1 GHz
-        # DRAM_FREQ_MHZ = 1
-        
-        # # 每周期的能量 (pJ) = 功率(mW) / 频率(MHz) = 功率(pJ/ns) 
-        ENERGY_PER_CYCLE_READ = 1000   # pJ/cycle
-        ENERGY_PER_CYCLE_WRITE = 900 # pJ/cycle
-        
-        # 获取该层的Ramulator仿真周期（包含所有实际开销）
+        # ==========================================
+        # 使用Ramulator2计算的实际DRAM能量
+        # ==========================================
         cycle_detail = self._layer_cycle_dram_detail[layer_name]
         
-        # 基于实际周期计算能量
-        # 这里的周期数已经包含了row buffer miss、bank conflict、refresh等所有开销
-        energy_weight = cycle_detail['weight_cycles'] * ENERGY_PER_CYCLE_READ
-        energy_input  = cycle_detail['input_cycles'] * ENERGY_PER_CYCLE_READ
-        energy_output = cycle_detail['output_cycles'] * ENERGY_PER_CYCLE_WRITE
+        # 直接使用Ramulator2计算的实际能量（单位：pJ）
+        # 这包含了所有实际的DRAM操作能耗：
+        # - Background energy (active/precharge state)
+        # - Command energy (ACT, PRE, RD, WR, REF等)
+        # - 考虑了row buffer miss、bank conflict、refresh等所有开销
+        energy_weight = cycle_detail['weight_energy_pJ']
+        energy_input  = cycle_detail['input_energy_pJ']
+        energy_output = cycle_detail['output_energy_pJ']
         
         total_energy = energy_weight + energy_input + energy_output
+        
+        # ==========================================
+        # 旧的简化能量计算方法（已废弃，保留作为参考）
+        # ==========================================
+        # # 基于Ramulator仿真周期计算DRAM能量（简化模型）
+        # # DDR4-2400 平均功率参数（基于典型workload的功耗特性）
+        # # 参考：JEDEC DDR4 spec + Micron power calculator
+        # 
+        # # DDR4-2400, 2通道, 典型读写混合workload的平均功率
+        # # 这是在活跃传输期间的平均功率（不包括idle/standby）
+        # # POWER_READ_MW = 800   # mW，读取操作期间的平均功率
+        # # POWER_WRITE_MW = 700  # mW，写入操作期间的平均功率
+        # 
+        # # DDR4-2400频率: 1 GHz
+        # # DRAM_FREQ_MHZ = 1
+        # 
+        # # 每周期的能量 (pJ) = 功率(mW) / 频率(MHz) = 功率(pJ/ns) 
+        # ENERGY_PER_CYCLE_READ = 1000   # pJ/cycle
+        # ENERGY_PER_CYCLE_WRITE = 900 # pJ/cycle
+        # 
+        # # 获取该层的Ramulator仿真周期（包含所有实际开销）
+        # cycle_detail = self._layer_cycle_dram_detail[layer_name]
+        # 
+        # # 基于实际周期计算能量
+        # # 这里的周期数已经包含了row buffer miss、bank conflict、refresh等所有开销
+        # energy_weight = cycle_detail['weight_cycles'] * ENERGY_PER_CYCLE_READ
+        # energy_input  = cycle_detail['input_cycles'] * ENERGY_PER_CYCLE_READ
+        # energy_output = cycle_detail['output_cycles'] * ENERGY_PER_CYCLE_WRITE
+        # 
+        # total_energy = energy_weight + energy_input + energy_output
+        
         return total_energy
     
     def _check_layer_mem_size(self):

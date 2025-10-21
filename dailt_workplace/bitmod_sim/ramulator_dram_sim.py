@@ -50,13 +50,15 @@ def ceil_div(a: int, b: int) -> int:
 # ===========================================================
 # Trace generators + runners (produce total cycles, not avg)
 # ===========================================================
-def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128, col: int = 1) -> int:
+def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128, col: int = 1) -> tuple[int, float]:
     """
     Group-wise weight read with per-column scale factors.
     For each 'big group' (col * group_size elements):
       1) Read contiguous weights of that group.
       2) Read 'col' scale factors (one per column).
-    Returns TOTAL cycles of this trace (not average latency).
+    Returns: (total_cycles, total_energy_pJ)
+    - total_cycles: TOTAL cycles of this trace (not average latency)
+    - total_energy_pJ: Total energy in picojoules (pJ)
     """
     # Check cache first
     if ENABLE_RAMULATOR_CACHE:
@@ -104,10 +106,12 @@ def ramulator_weight_read_group_wise(workload_bytes: int, group_size: int = 128,
     
     return result
 
-def ramulator_weight_read_not_group_wise(workload_bytes: int) -> int:
+def ramulator_weight_read_not_group_wise(workload_bytes: int) -> tuple[int, float]:
     """
     Non-group-wise weight read (no scales). Reads are contiguous.
-    Returns TOTAL cycles of this trace.
+    Returns: (total_cycles, total_energy_pJ)
+    - total_cycles: TOTAL cycles of this trace
+    - total_energy_pJ: Total energy in picojoules (pJ)
     """
     # Check cache first
     if ENABLE_RAMULATOR_CACHE:
@@ -127,10 +131,12 @@ def ramulator_weight_read_not_group_wise(workload_bytes: int) -> int:
     
     return result
 
-def ramulator_input_read(workload_bytes: int, group_size: int = 128) -> int:
+def ramulator_input_read(workload_bytes: int, group_size: int = 128) -> tuple[int, float]:
     """
     Input read (contiguous). 'group_size' kept for signature compatibility (unused).
-    Returns TOTAL cycles of this trace.
+    Returns: (total_cycles, total_energy_pJ)
+    - total_cycles: TOTAL cycles of this trace
+    - total_energy_pJ: Total energy in picojoules (pJ)
     """
     # Check cache first
     if ENABLE_RAMULATOR_CACHE:
@@ -150,10 +156,12 @@ def ramulator_input_read(workload_bytes: int, group_size: int = 128) -> int:
     
     return result
 
-def ramulator_output_write(workload_bytes: int, group_size: int = 128) -> int:
+def ramulator_output_write(workload_bytes: int, group_size: int = 128) -> tuple[int, float]:
     """
     Output write (contiguous). 'group_size' kept for signature compatibility (unused).
-    Returns TOTAL cycles of this trace.
+    Returns: (total_cycles, total_energy_pJ)
+    - total_cycles: TOTAL cycles of this trace
+    - total_energy_pJ: Total energy in picojoules (pJ)
     """
     # Check cache first
     if ENABLE_RAMULATOR_CACHE:
@@ -174,19 +182,21 @@ def ramulator_output_write(workload_bytes: int, group_size: int = 128) -> int:
     return result
 
 # Backward compatibility alias
-def ramulator_weight_read(workload_bytes: int, group_size: int = 128) -> int:
-    """Backward-compatible wrapper: defaults to group-wise reading."""
+def ramulator_weight_read(workload_bytes: int, group_size: int = 128) -> tuple[int, float]:
+    """Backward-compatible wrapper: defaults to group-wise reading.
+    Returns: (total_cycles, total_energy_pJ)"""
     return ramulator_weight_read_group_wise(workload_bytes, group_size)
 
 # ===========================================
 # File I/O + LD/ST conversion + Ramulator run
 # ===========================================
-def run_ramulator_with_trace(rw_trace_lines) -> int:
+def run_ramulator_with_trace(rw_trace_lines) -> tuple[int, float]:
     """
     Accepts an iterator/generator (or list) of 'R 0x...' / 'W 0x...' lines (no trailing newline).
     Writes an RW trace file, converts to LD/ST, and runs Ramulator.
-    Returns TOTAL cycles of the whole trace (prefers `memory_system_cycles`).
-    Falls back to (avg_latency * request_count) if necessary.
+    Returns: (total_cycles, total_energy_pJ)
+    - total_cycles: TOTAL cycles of the whole trace (prefers `memory_system_cycles`)
+    - total_energy_pJ: Total energy in picojoules (pJ) from Ramulator, 0 if not available
     """
     total_reqs = 0
     with tempfile.NamedTemporaryFile(mode='w', suffix='.trace', delete=False) as f:
@@ -252,52 +262,19 @@ def convert_rw_to_ldst(rw_trace_file: str) -> str:
                 fout.write(out)
     return ldst_trace_file
 
-def run_ramulator_simulation(ldst_trace_file: str, total_requests_hint: int | None = None) -> int:
+def run_ramulator_simulation(ldst_trace_file: str, total_requests_hint: int | None = None) -> tuple[int, float]:
     """
     Run Ramulator with a temporary YAML config pointing to the LD/ST trace.
-    Priority of return value:
+    Returns: (total_cycles, total_energy_pJ)
+    
+    Priority of cycle return value:
       1) memory_system_cycles (TOTAL cycles for the entire trace)
       2) (average latency) * (number of requests)  [uses Ramulator counters if present, else falls back to total_requests_hint]
       3) 1 (hard fallback)
+    
+    Energy is returned in picojoules (pJ). If energy data is not available from Ramulator, returns 0.
     """
     
-#     config_content = f"""Frontend:
-#   impl: LoadStoreTrace
-#   path: {ldst_trace_file}
-#   clock_ratio: 1
-
-# Translation:
-#   impl: IdentityTranslation
-#   max_addr: 1000000000
-
-# MemorySystem:
-#   impl: GenericDRAM
-#   clock_ratio: 1
-
-#   DRAM:
-#     impl: DDR5
-#     org:
-#       preset: DDR5_8Gb_x8
-#       channel: 2
-#       rank: 1
-#     timing:
-#       preset: DDR5_3200AN
-
-#   Controller:
-#     impl: Generic
-#     Scheduler:
-#       impl: FRFCFS
-#     RefreshManager:
-#       impl: AllBank
-#     RowPolicy:
-#       impl: ClosedRowPolicy
-#       cap: 4
-#     plugins:
-
-#   AddrMapper:
-#     impl: RoBaRaCoCh
-# """
-
     config_content = f"""Frontend:
   impl: LoadStoreTrace
   path: {ldst_trace_file}
@@ -319,6 +296,11 @@ MemorySystem:
       rank: 1
     timing:
       preset: DDR4_2400R
+    drampower_enable: true
+    voltage:
+      preset: Default
+    current:
+      preset: Default
 
   Controller:
     impl: Generic
@@ -365,6 +347,7 @@ MemorySystem:
         avg_wr_lat = None
         rd_reqs = None
         wr_reqs = None
+        total_energy = None  # 添加能量数据解析
 
         for line in result.stdout.splitlines():
             if 'memory_system_cycles' in line and ':' in line:
@@ -396,32 +379,47 @@ MemorySystem:
                     wr_reqs = int(line.split(':', 1)[1].strip())
                 except:
                     pass
+            # 解析Ramulator2的能量统计数据
+            elif 'total_energy' in line and ':' in line and 'rank' not in line:
+                try:
+                    # Ramulator输出的能量单位是 nJ (纳焦耳)
+                    # 公式: (V×mA) × cycles × tCK_ns / 1000 = mW×μs = nJ
+                    energy_nJ = float(line.split(':', 1)[1].strip())
+                    total_energy = energy_nJ * 1e3  # 转换为pJ (1 nJ = 1000 pJ)
+                except:
+                    pass
 
         # 1) Prefer total cycles (this is the total completion time for the trace)
+        final_cycles = None
         if isinstance(total_cycles, int) and total_cycles > 0:
-            return total_cycles
+            final_cycles = total_cycles
+        else:
+            # 2) Fallback: (average latency) * (#requests)
+            total_reqs = None
+            if (rd_reqs is not None) or (wr_reqs is not None):
+                total_reqs = (rd_reqs or 0) + (wr_reqs or 0)
+            elif total_requests_hint:
+                total_reqs = total_requests_hint
 
-        # 2) Fallback: (average latency) * (#requests)
-        total_reqs = None
-        if (rd_reqs is not None) or (wr_reqs is not None):
-            total_reqs = (rd_reqs or 0) + (wr_reqs or 0)
-        elif total_requests_hint:
-            total_reqs = total_requests_hint
+            avg_lat = None
+            # If both read+write averages exist but not their separate counts, use simple mean.
+            if (avg_rd_lat is not None) and (avg_wr_lat is not None):
+                avg_lat = 0.5 * (avg_rd_lat + avg_wr_lat)
+            elif avg_rd_lat is not None:
+                avg_lat = avg_rd_lat
+            elif avg_wr_lat is not None:
+                avg_lat = avg_wr_lat
 
-        avg_lat = None
-        # If both read+write averages exist but not their separate counts, use simple mean.
-        if (avg_rd_lat is not None) and (avg_wr_lat is not None):
-            avg_lat = 0.5 * (avg_rd_lat + avg_wr_lat)
-        elif avg_rd_lat is not None:
-            avg_lat = avg_rd_lat
-        elif avg_wr_lat is not None:
-            avg_lat = avg_wr_lat
-
-        if (avg_lat is not None) and total_reqs:
-            return max(1, math.ceil(avg_lat * total_reqs))
-
-        # 3) Last resort
-        return 1
+            if (avg_lat is not None) and total_reqs:
+                final_cycles = max(1, math.ceil(avg_lat * total_reqs))
+            else:
+                # 3) Last resort
+                final_cycles = 1
+        
+        # 返回 (cycles, energy_pJ)
+        # 如果没有能量数据，返回0
+        final_energy = total_energy if total_energy is not None else 0.0
+        return (final_cycles, final_energy)
 
     except subprocess.TimeoutExpired:
         raise RuntimeError("Ramulator execution timeout")

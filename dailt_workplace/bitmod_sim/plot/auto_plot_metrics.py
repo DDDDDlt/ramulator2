@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patheffects
 from matplotlib import gridspec
+from matplotlib.patches import Patch
 
 # ==============================
 #  高级样式设置 - 与硬件框图统一风格
@@ -99,8 +100,7 @@ def load_all_logs(log_dir):
     """
     log_files = {
         'Baseline': 'test_baseline.log',
-        'MixPosit': 'test_mixposit.log',
-        'ANT': 'test_ant.log',
+        'FlexPosit': 'test_mixposit.log',
         'BitMod': 'test_bitmod.log',
         'Olive': 'test_olive.log'
     }
@@ -145,7 +145,7 @@ def normalize_data(data, baseline_key='Baseline'):
     print("🔄 开始归一化数据（相对于Baseline，逐模型独立归一化）")
     print("="*70)
     
-    model_names = ["GPT2-L", "GPT2-XL", "Phi-2", "OPT-2.7B", "Yi-6B", "Llama2-7B", "Llama3-8B"]
+    model_names = ["GPT2-L", "GPT2-XL", "Phi-2", "OPT-2.7B", "Llama2-7B"]
     
     for acc_key, acc_data in data.items():
         acc_on_chip = np.array(acc_data['on_chip_energy'])
@@ -186,22 +186,20 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     """
     绘制latency和energy对比图
     """
-    # 模型名称（从log中可以看到有7个模型）+ 平均值
+    # 模型名称（5个模型）+ 平均值
     models = [
         "GPT2-L", "GPT2-XL", "Phi-2",
-        "OPT-2.7B", "Yi-6B",
-        "Llama2-7B", "Llama3-8B", "Average"
+        "OPT-2.7B", "Llama2-7B", "Average"
     ]
     
     # 加速器顺序（可以根据需要调整）
-    accelerator_order = ['MixPosit', 'BitMod', 'ANT', 'Olive', 'Baseline']
+    accelerator_order = ['FlexPosit', 'BitMod', 'Olive', 'Baseline']
     accelerators = [acc for acc in accelerator_order if acc in normalized_data]
     
     # 与硬件框图统一的配色方案（青绿主调 + 橙色强调 + 灰色基线）
     acc_colors = {
-        'MixPosit': '#4FB0A9',   # 青绿主色（与硬件图核心模块一致）
+        'FlexPosit': '#4FB0A9',   # 青绿主色（与硬件图核心模块一致）
         'BitMod': '#F4A261',     # 暖橙色（与Bit-serial路径呼应）
-        'ANT': '#A8DADC',        # 浅青蓝（中间层次、冷色协调）
         'Olive': '#457B9D',      # 深青蓝（稳重对比）
         'Baseline': '#BDBDBD'    # 浅灰（代表参考基线）
     }
@@ -230,8 +228,8 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     #  绘图部分
     # ==============================
     energy_names = ["On-Chip Energy", "Off-Chip Energy"]
-    # 与硬件图统一的能量配色（青绿 + 暖橙）
-    energy_colors = ["#4FB0A9", "#F4A261"]  # 青绿（On-chip）+ 暖橙（Off-chip）
+    # 使用斜线图案区分On-chip和Off-chip（而不是颜色）
+    energy_hatches = ['///', '\\\\\\']  # On-chip用斜线，Off-chip用反斜线
     bar_width = 0.18  # 柱子宽度（再增加一点）
     bar_spacing = 1.3  # 组内柱子间距系数（增加组内间距）
     x_base = np.arange(len(models)) * 1.3  # 增加模型之间的间距
@@ -241,12 +239,12 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     axes = [plt.subplot(gs[i]) for i in range(2)]
     
     # -------------------------------------------------------
-    # (1) Latency 图 - 与硬件图统一配色
+    # (1) Latency 图 - 与硬件图统一配色（无边框）
     for j, acc in enumerate(accelerators):
         x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing  # 使用bar_spacing增加组内间距
         bars = axes[0].bar(x, norm_cycle[:, j], bar_width, label=acc, 
                            color=acc_colors.get(acc, '#999999'), 
-                           edgecolor='white', linewidth=2.0,
+                           edgecolor='none', linewidth=0,
                            alpha=0.90, zorder=3)
         
         # 添加数值标签（竖向显示避免重叠）
@@ -273,20 +271,24 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
                    framealpha=0.9, edgecolor='#CCCCCC')
     
     # -------------------------------------------------------
-    # (2) Energy 图（堆叠柱状图）
+    # (2) Energy 图（堆叠柱状图）- 颜色统一为加速器颜色，用图案区分On-chip/Off-chip
     for j, acc in enumerate(accelerators):
         x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing  # 使用bar_spacing增加组内间距
         
-        # On-chip部分（底部）- 与硬件图统一配色
+        # On-chip部分（底部）- 使用加速器颜色 + 黑色斜线图案（无边框）
         bars_on = axes[1].bar(x, norm_energy_on[:, j], bar_width,
-                              color=energy_colors[0], edgecolor='white', 
-                              linewidth=2.0, alpha=0.90, zorder=3)
+                              color=acc_colors.get(acc, '#999999'), 
+                              edgecolor='black', 
+                              linewidth=0, alpha=0.75, 
+                              hatch=energy_hatches[0], zorder=3)
         
-        # Off-chip部分（堆叠在上面）- 与硬件图统一配色
+        # Off-chip部分（堆叠在上面）- 使用加速器颜色 + 黑色反斜线图案（无边框）
         bars_off = axes[1].bar(x, norm_energy_off[:, j], bar_width,
                                bottom=norm_energy_on[:, j],
-                               color=energy_colors[1], edgecolor='white', 
-                               linewidth=2.0, alpha=0.90, zorder=3)
+                               color=acc_colors.get(acc, '#999999'), 
+                               edgecolor='black', 
+                               linewidth=0, alpha=0.45,
+                               hatch=energy_hatches[1], zorder=3)
         
         # 添加标签 - 只在柱子顶部显示total energy
         for i, (bar_on, bar_off, val_on, val_off) in enumerate(zip(
@@ -316,8 +318,14 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     # 添加标题在图下方
     axes[1].set_xlabel("(b) Energy Consumption Breakdown", fontweight='bold', fontsize=12, labelpad=10)
     
-    # 图例：透明背景、无阴影、小字体
-    axes[1].legend(energy_names, ncol=2, bbox_to_anchor=(0.5, 1.15),
+    # 创建自定义图例 - 显示黑色斜线图案
+    legend_elements = [
+        Patch(facecolor='gray', edgecolor='black', hatch=energy_hatches[0], 
+              alpha=0.75, label='On-Chip Energy'),
+        Patch(facecolor='gray', edgecolor='black', hatch=energy_hatches[1], 
+              alpha=0.45, label='Off-Chip Energy')
+    ]
+    axes[1].legend(handles=legend_elements, ncol=2, bbox_to_anchor=(0.5, 1.15),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
                    framealpha=0.9, edgecolor='#CCCCCC')
     

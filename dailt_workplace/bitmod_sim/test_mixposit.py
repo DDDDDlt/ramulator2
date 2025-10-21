@@ -1,9 +1,9 @@
 # python test_mixposit.py --is_generation > ./log/test_mixposit.log
 import argparse
 from accelerator import Accelerator
-from ramulator_dram_cycle import get_cache_stats 
+from ramulator_dram_sim import get_cache_stats 
 
-model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "01-ai/Yi-6B", "meta-llama/Llama-2-7b-hf", "meta-llama/Meta-Llama-3-8B"]
+model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "meta-llama/Llama-2-7b-hf"]
 # model_list = ["facebook/opt-1.3b"]
 # model_list = ["microsoft/phi-2"]
 
@@ -17,21 +17,35 @@ if __name__ == "__main__":
     is_lossless = args.is_lossless
 
     # 每个模型的精度配置 (MixPosit)
+    # w_prec_list = {
+    #     'gpt2-large': 4.1,
+    #     'gpt2-xl': 4.1,
+    #     'facebook/opt-1.3b': 4.4,
+    #     'facebook/opt-2.7b': 4.8,
+    #     'microsoft/phi-2': 4.4, 
+    #     '01-ai/Yi-6B': 5.0, 
+    #     'meta-llama/Llama-2-7b-hf': 5.0, 
+    #     'meta-llama/Llama-2-13b-hf': 5.0, 
+    #     'meta-llama/Meta-Llama-3-8B': 5.0, 
+    # }
+    
     w_prec_list = {
-        'gpt2-large': 4.1,
-        'gpt2-xl': 4.1,
-        'facebook/opt-1.3b': 4.4,
-        'facebook/opt-2.7b': 4.8,
-        'microsoft/phi-2': 4.4, 
-        '01-ai/Yi-6B': 5.0, 
-        'meta-llama/Llama-2-7b-hf': 5.0, 
-        'meta-llama/Llama-2-13b-hf': 5.0, 
-        'meta-llama/Meta-Llama-3-8B': 5.0, 
+        'gpt2-large': 4.5,
+        'gpt2-xl': 4.5,
+        'facebook/opt-1.3b': 4.5,
+        'facebook/opt-2.7b': 4.5,
+        'microsoft/phi-2': 4.5, 
+        '01-ai/Yi-6B': 4.5, 
+        'meta-llama/Llama-2-7b-hf': 4.5, 
+        'meta-llama/Llama-2-13b-hf': 4.5, 
+        'meta-llama/Meta-Llama-3-8B': 4.5, 
     }
     
+    print(f"w_prec_list: {w_prec_list}")
+    
     if is_generation:
-        # pe_array_dim = [64, 16]
-        pe_array_dim = [32, 16]
+        pe_array_dim = [64, 16]
+        # pe_array_dim = [32, 16]
     else:
         pe_array_dim = [32, 32]
     
@@ -88,6 +102,17 @@ if __name__ == "__main__":
         print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
         print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
         print(f'  Total Energy:       {total_energy:.2f} mJ')
+
+
+        print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
+        
+        print(f'  --- Energy Breakdown ---')
+        print(f'  PE Compute Energy:  {compute_energy:.2f} mJ')
+        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} mJ')
+        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} mJ')
+
+        # Bottleneck analysis
+        acc.print_bottleneck_analysis(show_details=False)
         
         total_latency_list[idx] = total_cycle[1]
         total_energy_list[idx][0] = round(onchip_energy)
@@ -99,9 +124,9 @@ if __name__ == "__main__":
     print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
     
     # Print cache statistics
-    cache_stats = get_cache_stats()
-    print("\nRamulator Cache Statistics:")
-    print(f"  Cache Hits:   {cache_stats['hits']}")
-    print(f"  Cache Misses: {cache_stats['misses']}")
-    print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
+    # cache_stats = get_cache_stats()
+    # print("\nRamulator Cache Statistics:")
+    # print(f"  Cache Hits:   {cache_stats['hits']}")
+    # print(f"  Cache Misses: {cache_stats['misses']}")
+    # print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
     

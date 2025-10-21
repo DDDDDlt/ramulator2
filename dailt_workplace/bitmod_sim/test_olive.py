@@ -1,11 +1,11 @@
 # python test_olive.py --is_generation > ./log/test_olive.log
 import argparse
 from accelerator import Accelerator
-from ramulator_dram_cycle import get_cache_stats 
+from ramulator_dram_sim import get_cache_stats 
 
-model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "01-ai/Yi-6B", "meta-llama/Llama-2-7b-hf", "meta-llama/Meta-Llama-3-8B"]
-# model_list = ["facebook/opt-1.3b"]
-# model_list = ["microsoft/phi-2"]
+model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b",  "meta-llama/Llama-2-7b-hf"]
+# model_list = ["microsoft/phi-2"]"01-ai/Yi-6B",
+# model_list = ["facebook/opt-1.3b" ]  "meta-llama/Meta-Llama-3-8B"
 
 
 if __name__ == "__main__":
@@ -27,8 +27,9 @@ if __name__ == "__main__":
     }
 
     if is_generation:
-        # pe_array_dim = [72, 16]
-        pe_array_dim = [32, 30]
+        pe_array_dim = [72, 16]
+        # pe_array_dim = [32, 23]
+        # pe_array_dim = [32, 30]
     else:
         pe_array_dim = [36, 32]
     
@@ -43,7 +44,7 @@ if __name__ == "__main__":
     print(f"Models to test: {len(model_list)}")
     print(f"pe_energy: {0.179497375}")
     print(f"pe_area: {767.41875}")
-    print(f"pe_dp_size: 4")
+    print(f"pe_dp_size: 1")
     print()
 
     for idx, model_name in enumerate(model_list):
@@ -57,9 +58,11 @@ if __name__ == "__main__":
             i_prec=8,
             w_prec=w_prec,
             is_bit_serial=False,
-            pe_dp_size=4,
-            pe_energy=0.179497375,
-            pe_area=767.41875,
+            pe_dp_size=1,
+            # pe_energy=0.179497375,
+            pe_energy=0.613,
+            # pe_area=767.41875,
+            pe_area=1318.6,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
@@ -86,6 +89,17 @@ if __name__ == "__main__":
         print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
         print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
         print(f'  Total Energy:       {total_energy:.2f} mJ')
+
+
+        print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
+
+        print(f'  --- Energy Breakdown ---')
+        print(f'  PE Compute Energy:  {compute_energy:.2f} mJ')
+        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} mJ')
+        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} mJ')
+        
+        # Bottleneck analysis
+        # acc.print_bottleneck_analysis(show_details=False)
         
         total_latency_list[idx] = total_cycle[1]
         total_energy_list[idx][0] = round(onchip_energy)

@@ -82,6 +82,9 @@ if __name__ == "__main__":
         print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
         print(f'  Total Energy:       {total_energy:.2f} mJ')
         
+        # Bottleneck analysis
+        acc.print_bottleneck_analysis(show_details=False)
+        
         total_latency_list[idx] = total_cycle[1]
         total_energy_list[idx][0] = round(onchip_energy)
         total_energy_list[idx][1] = round(total_energy)
@@ -91,10 +94,10 @@ if __name__ == "__main__":
     print(f'Latency (cycles): {total_latency_list}')
     print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
     
-    # Print cache statistics
-    cache_stats = get_cache_stats()
-    print("\nRamulator Cache Statistics:")
-    print(f"  Cache Hits:   {cache_stats['hits']}")
-    print(f"  Cache Misses: {cache_stats['misses']}")
-    print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
+    # # Print cache statistics
+    # cache_stats = get_cache_stats()
+    # print("\nRamulator Cache Statistics:")
+    # print(f"  Cache Hits:   {cache_stats['hits']}")
+    # print(f"  Cache Misses: {cache_stats['misses']}")
+    # print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
     

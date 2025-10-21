@@ -1,9 +1,9 @@
 # python test_baseline.py --is_generation > ./log/test_baseline.log
 import argparse
 from accelerator import Accelerator
-from ramulator_dram_cycle import get_cache_stats 
+from ramulator_dram_sim import get_cache_stats 
 
-model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "01-ai/Yi-6B", "meta-llama/Llama-2-7b-hf", "meta-llama/Meta-Llama-3-8B"]
+model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "meta-llama/Llama-2-7b-hf"]
 # model_list = ["facebook/opt-1.3b"]
 # model_list = ["microsoft/phi-2"]
 
@@ -16,6 +16,8 @@ if __name__ == "__main__":
     
     if is_generation:
         pe_array_dim = [64, 12]
+        # pe_array_dim = [32, 8]
+        # pe_array_dim = [32, 12]
     else:
         pe_array_dim = [32, 24]
     
@@ -65,6 +67,11 @@ if __name__ == "__main__":
         print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
         print(f'  Total Energy:       {total_energy:.2f} mJ')
         
+        print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
+        
+        # Bottleneck analysis
+        acc.print_bottleneck_analysis(show_details=False)
+        
         total_latency_list[idx] = total_cycle[1]
         total_energy_list[idx][0] = round(onchip_energy)
         total_energy_list[idx][1] = round(total_energy)
@@ -74,9 +81,9 @@ if __name__ == "__main__":
     print(f'Latency (cycles): {total_latency_list}')
     print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
     
-    # Print cache statistics
-    cache_stats = get_cache_stats()
-    print("\nRamulator Cache Statistics:")
-    print(f"  Cache Hits:   {cache_stats['hits']}")
-    print(f"  Cache Misses: {cache_stats['misses']}")
-    print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")
+    # # Print cache statistics
+    # cache_stats = get_cache_stats()
+    # print("\nRamulator Cache Statistics:")
+    # print(f"  Cache Hits:   {cache_stats['hits']}")
+    # print(f"  Cache Misses: {cache_stats['misses']}")
+    # print(f"  Hit Rate:     {cache_stats['hit_rate']:.1f}%")

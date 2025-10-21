@@ -22,7 +22,9 @@ echo ""
 mkdir -p ./log
 
 # 测试列表
-tests=("baseline" "olive" "ant" "mixposit" "bitmod")
+# tests=("baseline" "olive" "ant" "mixposit" "bitmod")
+tests=("baseline" "olive" "mixposit" "bitmod")
+
 
 # 运行每个测试
 for test in "${tests[@]}"; do
