@@ -1,6 +1,14 @@
 from mem.cacti_simulation import CactiSimulation
 from typing import Dict
 
+# 16nm工艺节点的手动配置（基于22nm缩放估算）
+# 缩放因子基于工艺缩放理论，你可以根据实际数据修改这些值
+MANUAL_16NM_CONFIG = {
+    'latency_scaling': 0.73,      # 16/22 ≈ 0.73，延迟缩放
+    'energy_scaling': 0.53,       # (16/22)^2 ≈ 0.53，能量缩放  
+    'area_scaling': 0.53,         # (16/22)^2 ≈ 0.53，面积缩放
+}
+
 ## Description missing
 class MemoryInstance:
     ## The class constructor
@@ -29,13 +37,37 @@ class MemoryInstance:
                 mem_config['size'] % 8 == 0
             ), "Memory size must be a multiple of 8 when automatically extracting costs using CACTI."
 
-            cacti_simulation = CactiSimulation(mem_config)
-            mem_config = cacti_simulation.run_cacti()
+            # 特殊处理16nm工艺节点（CACTI原生不支持）
+            if mem_config['technology'] == 0.016:
+                # 使用22nm的CACTI结果并应用缩放因子
+                mem_config_22nm = mem_config.copy()
+                mem_config_22nm['technology'] = 0.022
+                
+                cacti_simulation = CactiSimulation(mem_config_22nm)
+                result_22nm = cacti_simulation.run_cacti()
+                
+                # 应用16nm缩放因子
+                self.r_cost = result_22nm['r_cost'] * MANUAL_16NM_CONFIG['energy_scaling']
+                self.w_cost = result_22nm['w_cost'] * MANUAL_16NM_CONFIG['energy_scaling']
+                self.area = result_22nm['area'] * MANUAL_16NM_CONFIG['area_scaling']
+                self.latency = round(result_22nm['latency'] * MANUAL_16NM_CONFIG['latency_scaling'], 3)
+                
+                # 更新mem_config以保持一致性
+                mem_config.update({
+                    'r_cost': self.r_cost,
+                    'w_cost': self.w_cost,
+                    'area': self.area,
+                    'latency': self.latency
+                })
+            else:
+                # 其他工艺节点正常使用CACTI
+                cacti_simulation = CactiSimulation(mem_config)
+                mem_config = cacti_simulation.run_cacti()
 
-            self.r_cost = mem_config['r_cost']
-            self.w_cost = mem_config['w_cost']
-            self.area = mem_config['area']
-            self.latency = round(mem_config['latency'], 3)
+                self.r_cost = mem_config['r_cost']
+                self.w_cost = mem_config['w_cost']
+                self.area = mem_config['area']
+                self.latency = round(mem_config['latency'], 3)
         else:
             self.r_cost = r_cost
             self.w_cost = w_cost

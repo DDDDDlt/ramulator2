@@ -15,7 +15,7 @@ if __name__ == "__main__":
     is_generation = args.is_generation
     
     if is_generation:
-        pe_array_dim = [64, 12]
+        pe_array_dim = [19, 16]
         # pe_array_dim = [32, 8]
         # pe_array_dim = [32, 12]
     else:
@@ -39,8 +39,8 @@ if __name__ == "__main__":
             w_prec=16,
             is_bit_serial=False,
             pe_dp_size=1,
-            pe_energy=0.77,
-            pe_area=1968.7,
+            pe_energy=0.475,
+            pe_area=942,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,

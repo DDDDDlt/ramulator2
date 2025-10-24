@@ -17,29 +17,29 @@ if __name__ == "__main__":
     is_lossless = args.is_lossless
 
     # 每个模型的精度配置 (MixPosit)
-    # w_prec_list = {
-    #     'gpt2-large': 4.1,
-    #     'gpt2-xl': 4.1,
-    #     'facebook/opt-1.3b': 4.4,
-    #     'facebook/opt-2.7b': 4.8,
-    #     'microsoft/phi-2': 4.4, 
-    #     '01-ai/Yi-6B': 5.0, 
-    #     'meta-llama/Llama-2-7b-hf': 5.0, 
-    #     'meta-llama/Llama-2-13b-hf': 5.0, 
-    #     'meta-llama/Meta-Llama-3-8B': 5.0, 
-    # }
-    
     w_prec_list = {
-        'gpt2-large': 4.5,
-        'gpt2-xl': 4.5,
-        'facebook/opt-1.3b': 4.5,
-        'facebook/opt-2.7b': 4.5,
-        'microsoft/phi-2': 4.5, 
-        '01-ai/Yi-6B': 4.5, 
-        'meta-llama/Llama-2-7b-hf': 4.5, 
-        'meta-llama/Llama-2-13b-hf': 4.5, 
-        'meta-llama/Meta-Llama-3-8B': 4.5, 
+        'gpt2-large': 4.1,
+        'gpt2-xl': 4.1,
+        'facebook/opt-1.3b': 4.4,
+        'facebook/opt-2.7b': 4.8,
+        'microsoft/phi-2': 4.4, 
+        '01-ai/Yi-6B': 5.0, 
+        'meta-llama/Llama-2-7b-hf': 5.0, 
+        'meta-llama/Llama-2-13b-hf': 5.0, 
+        'meta-llama/Meta-Llama-3-8B': 5.0, 
     }
+    
+    # w_prec_list = {
+    #     'gpt2-large': 4.5,
+    #     'gpt2-xl': 4.5,
+    #     'facebook/opt-1.3b': 4.5,
+    #     'facebook/opt-2.7b': 4.5,
+    #     'microsoft/phi-2': 4.5, 
+    #     '01-ai/Yi-6B': 4.5, 
+    #     'meta-llama/Llama-2-7b-hf': 4.5, 
+    #     'meta-llama/Llama-2-13b-hf': 4.5, 
+    #     'meta-llama/Meta-Llama-3-8B': 4.5, 
+    # }
     
     print(f"w_prec_list: {w_prec_list}")
     
@@ -73,8 +73,8 @@ if __name__ == "__main__":
             w_prec=w_prec,
             is_bit_serial=True,
             pe_dp_size=4,
-            pe_energy=0.3027171938,
-            pe_area=1458.048025,
+            pe_energy=0.159,
+            pe_area=278,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,

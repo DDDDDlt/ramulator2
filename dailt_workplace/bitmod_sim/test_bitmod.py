@@ -18,7 +18,7 @@ if __name__ == "__main__":
     is_lossless = args.is_lossless
     
     if is_generation:
-        pe_array_dim = [64, 16]
+        pe_array_dim = [20, 16]
         # pe_array_dim = [32, 9]
         # pe_array_dim = [32, 16]
         # pe_array_dim = [64, 64]
@@ -56,8 +56,8 @@ if __name__ == "__main__":
             w_prec=w_prec,
             is_bit_serial=True,
             pe_dp_size=4,
-            pe_energy=0.56,
-            pe_area=1507.7,
+            pe_energy=0.563,
+            pe_area=911,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
@@ -94,6 +94,11 @@ if __name__ == "__main__":
         total_energy_list[idx][0] = round(onchip_energy)
         total_energy_list[idx][1] = round(total_energy)
         print()
+
+        print(f'  --- Energy Breakdown ---')
+        print(f'  PE Compute Energy:  {compute_energy:.2f} mJ')
+        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} mJ')
+        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} mJ')
     
     print("\nSummary:")
     print(f'Latency (cycles): {total_latency_list}')

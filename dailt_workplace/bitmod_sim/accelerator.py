@@ -56,6 +56,7 @@ class Accelerator(PE_Array):
             cycle_layer_dram    = self._layer_cycle_dram[name]
             total_cycle_compute += cycle_layer_compute
             total_cycle += max(cycle_layer_compute, cycle_layer_dram)
+            # print(f"name: {name}, cycle_layer_compute: {cycle_layer_compute}, cycle_layer_dram: {cycle_layer_dram}")
             # if (cycle_layer_compute>cycle_layer_dram):
             #     print("layer name ", name)
             #     print("cycle_layer_compute")
@@ -156,6 +157,7 @@ class Accelerator(PE_Array):
         for name in self.layer_name_list:
             w_dim = self.weight_dim[name]
             o_dim = self.output_dim[name]
+            # print(f"name: {name}, w_dim: {w_dim}, o_dim: {o_dim}")
             total_tile += self._calc_tile_fc(w_dim, o_dim)
         return total_tile
 
@@ -174,6 +176,10 @@ class Accelerator(PE_Array):
         tile_in_channel  = math.ceil(cin / pe_dp_size)
         tile_cout        = math.ceil(cout / num_pe_row)
         tile_token       = math.ceil(num_token / num_pe_col)
+        
+        # print(f"w_dim: {w_dim}, o_dim: {o_dim}")
+        # print(f"pe_dp_size: {pe_dp_size}, num_pe_row: {num_pe_row}, num_pe_col: {num_pe_col}")
+        # print(f"tile_in_channel: {tile_in_channel}, tile_cout: {tile_cout}, tile_token: {tile_token}")
 
         total_tile = (tile_in_channel * tile_cout * tile_token)
         return total_tile
@@ -264,6 +270,9 @@ class Accelerator(PE_Array):
         if self.cycle_compute is None:
             self.cycle_compute, _ = self.calc_cycle()
         compute_energy = self.pe_energy * self.total_pe_count * self.cycle_compute
+        # print("total_pe_count", self.total_pe_count)
+        # print("cycle_compute", self.cycle_compute) 
+        # print("compute_energy", compute_energy)
         return compute_energy
     
     def calc_sram_rd_energy(self):
@@ -436,7 +445,7 @@ class Accelerator(PE_Array):
             w_bandwidth = self.pe_dp_size * math.ceil(self.w_prec / 4) * 4 * self.pe_array_dim['h']
         w_sram_bank = 8
         w_sram_config = {
-            'technology': 0.028,
+            'technology': 0.022,
             'mem_type': 'ram', 
             'size': 512 * 1024*8,
             # 'size': 32 * 64 * 8,
@@ -458,7 +467,7 @@ class Accelerator(PE_Array):
             i_bandwidth = self.pe_dp_size * self.i_prec * self.pe_array_dim['w']
         i_sram_bank = 8
         i_sram_config = {
-            'technology': 0.028,
+            'technology': 0.022,
             'mem_type': 'ram', 
             'size': 512 * 1024*8,
             # 'size': 128 * 256* 8, 

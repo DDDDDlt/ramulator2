@@ -27,7 +27,7 @@ if __name__ == "__main__":
     }
 
     if is_generation:
-        pe_array_dim = [72, 16]
+        pe_array_dim = [78, 16]
         # pe_array_dim = [32, 23]
         # pe_array_dim = [32, 30]
     else:
@@ -60,9 +60,9 @@ if __name__ == "__main__":
             is_bit_serial=False,
             pe_dp_size=1,
             # pe_energy=0.179497375,
-            pe_energy=0.613,
+            pe_energy=0.379,
             # pe_area=767.41875,
-            pe_area=1318.6,
+            pe_area=228,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,

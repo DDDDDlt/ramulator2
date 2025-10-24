@@ -235,16 +235,16 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     x_base = np.arange(len(models)) * 1.3  # 增加模型之间的间距
     
     fig = plt.figure(figsize=(16, 8))  # 增加figure宽度
-    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 1], hspace=0.45)  # 增加子图间距
+    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 1], hspace=0.55)  # 增加子图间距
     axes = [plt.subplot(gs[i]) for i in range(2)]
     
     # -------------------------------------------------------
-    # (1) Latency 图 - 与硬件图统一配色（无边框）
+    # (1) Latency 图 - 与硬件图统一配色（黑色边框）
     for j, acc in enumerate(accelerators):
         x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing  # 使用bar_spacing增加组内间距
         bars = axes[0].bar(x, norm_cycle[:, j], bar_width, label=acc, 
                            color=acc_colors.get(acc, '#999999'), 
-                           edgecolor='none', linewidth=0,
+                           edgecolor='black', linewidth=0.8,
                            alpha=0.90, zorder=3)
         
         # 添加数值标签（竖向显示避免重叠）
@@ -260,7 +260,12 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     max_latency = norm_cycle.max()
     axes[0].set_ylim(0, max(1.1, max_latency * 1.15))  # 增加y轴范围给图例留空间
     axes[0].set_xticks(x_base)
-    axes[0].set_xticklabels([])  # 不显示上面的x标签
+    axes[0].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+    
+    # 高亮Average标签（与硬件图统一：青绿色强调）
+    labels = axes[0].get_xticklabels()
+    labels[-1].set_color('#4FB0A9')  # 青绿主色强调
+    labels[-1].set_weight('extra bold')
     
     # 添加标题在图下方
     axes[0].set_xlabel("(a) Inference Latency Comparison", fontweight='bold', fontsize=12)
@@ -275,19 +280,19 @@ def plot_metrics(normalized_data, output_prefix='auto_hw_metrics'):
     for j, acc in enumerate(accelerators):
         x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing  # 使用bar_spacing增加组内间距
         
-        # On-chip部分（底部）- 使用加速器颜色 + 黑色斜线图案（无边框）
+        # On-chip部分（底部）- 使用加速器颜色 + 黑色斜线图案（黑色边框）
         bars_on = axes[1].bar(x, norm_energy_on[:, j], bar_width,
                               color=acc_colors.get(acc, '#999999'), 
                               edgecolor='black', 
-                              linewidth=0, alpha=0.75, 
+                              linewidth=0.8, alpha=0.75, 
                               hatch=energy_hatches[0], zorder=3)
         
-        # Off-chip部分（堆叠在上面）- 使用加速器颜色 + 黑色反斜线图案（无边框）
+        # Off-chip部分（堆叠在上面）- 使用加速器颜色 + 黑色反斜线图案（黑色边框）
         bars_off = axes[1].bar(x, norm_energy_off[:, j], bar_width,
                                bottom=norm_energy_on[:, j],
                                color=acc_colors.get(acc, '#999999'), 
                                edgecolor='black', 
-                               linewidth=0, alpha=0.45,
+                               linewidth=0.8, alpha=0.45,
                                hatch=energy_hatches[1], zorder=3)
         
         # 添加标签 - 只在柱子顶部显示total energy
