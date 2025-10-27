@@ -1,0 +1,122 @@
+Accelerator: BitMod (Bit-Serial)
+PE Array Dimension: [9, 16]
+Input Precision: 16-bit, Weight Precision: 4-bit
+PE DP Size: 4, Is Bit-Serial: True
+Context Length: 256, Generation Mode: True
+Use Scale Overhead: True, Group Size: 128
+Models to test: 5
+
+[1/5] Model: gpt2-large
+  Total Cycle:        3,659,756
+  PE Array Area:      0.13 mm²
+  Weight Buffer:      0.46 mm²
+  Input Buffer:       0.52 mm²
+  DRAM Energy:        417.58 mJ
+  On-chip Energy:     568.85 mJ
+  Total Energy:       986.43 mJ
+  Energy Delay Product: 3610098583.71
+  Bottleneck Analysis:
+    Total Layers:         73
+    Memory-bound Layers:  36 (49.3%)
+    Compute-bound Layers: 37 (50.7%)
+  Latency Contribution:
+    Total Latency:        3,659,756 cycles
+    From Compute-bound:   3,588,224 cycles (98.0%)
+    From Memory-bound:    71,532 cycles (2.0%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  441.96 mJ
+  SRAM Read Energy:   91.75 mJ
+  SRAM Write Energy:  35.14 mJ
+[2/5] Model: gpt2-xl
+  Total Cycle:        4,640,512
+  PE Array Area:      0.13 mm²
+  Weight Buffer:      0.46 mm²
+  Input Buffer:       0.52 mm²
+  DRAM Energy:        539.80 mJ
+  On-chip Energy:     714.77 mJ
+  Total Energy:       1254.57 mJ
+  Energy Delay Product: 5821851329.09
+  Bottleneck Analysis:
+    Total Layers:         97
+    Memory-bound Layers:  96 (99.0%)
+    Compute-bound Layers: 1 (1.0%)
+  Latency Contribution:
+    Total Latency:        4,640,512 cycles
+    From Compute-bound:   4,468,000 cycles (96.3%)
+    From Memory-bound:    172,512 cycles (3.7%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  554.93 mJ
+  SRAM Read Energy:   115.20 mJ
+  SRAM Write Energy:  44.64 mJ
+[3/5] Model: microsoft/phi-2
+  Total Cycle:        147,511,904
+  PE Array Area:      0.13 mm²
+  Weight Buffer:      0.46 mm²
+  Input Buffer:       0.52 mm²
+  DRAM Energy:        16322.37 mJ
+  On-chip Energy:     23052.76 mJ
+  Total Energy:       39375.14 mJ
+  Energy Delay Product: 5808301272011.55
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  64 (24.9%)
+    Compute-bound Layers: 193 (75.1%)
+  Latency Contribution:
+    Total Latency:        147,511,904 cycles
+    From Compute-bound:   147,283,200 cycles (99.8%)
+    From Memory-bound:    228,704 cycles (0.2%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  17922.77 mJ
+  SRAM Read Energy:   3720.68 mJ
+  SRAM Write Energy:  1409.31 mJ
+[4/5] Model: facebook/opt-2.7b
+  Total Cycle:        147,380,064
+  PE Array Area:      0.13 mm²
+  Weight Buffer:      0.46 mm²
+  Input Buffer:       0.52 mm²
+  DRAM Energy:        16307.85 mJ
+  On-chip Energy:     23032.14 mJ
+  Total Energy:       39339.99 mJ
+  Energy Delay Product: 5797930031609.13
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  64 (24.9%)
+    Compute-bound Layers: 193 (75.1%)
+  Latency Contribution:
+    Total Latency:        147,380,064 cycles
+    From Compute-bound:   147,151,360 cycles (99.8%)
+    From Memory-bound:    228,704 cycles (0.2%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  17906.74 mJ
+  SRAM Read Energy:   3717.36 mJ
+  SRAM Write Energy:  1408.05 mJ
+[5/5] Model: meta-llama/Llama-2-7b-hf
+  Total Cycle:        367,942,368
+  PE Array Area:      0.13 mm²
+  Weight Buffer:      0.46 mm²
+  Input Buffer:       0.52 mm²
+  DRAM Energy:        40756.81 mJ
+  On-chip Energy:     57513.49 mJ
+  Total Energy:       98270.30 mJ
+  Energy Delay Product: 36157805089192.46
+  Bottleneck Analysis:
+    Total Layers:         289
+    Memory-bound Layers:  64 (22.1%)
+    Compute-bound Layers: 225 (77.9%)
+  Latency Contribution:
+    Total Latency:        367,942,368 cycles
+    From Compute-bound:   367,566,848 cycles (99.9%)
+    From Memory-bound:    375,520 cycles (0.1%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  44717.00 mJ
+  SRAM Read Energy:   9283.04 mJ
+  SRAM Write Energy:  3513.44 mJ
+
+Summary:
+Latency (cycles): [3659756, 4640512, 147511904, 147380064, 367942368]
+Energy [On-chip, Total] (mJ): [[569, 986], [715, 1255], [23053, 39375], [23032, 39340], [57513, 98270]]
