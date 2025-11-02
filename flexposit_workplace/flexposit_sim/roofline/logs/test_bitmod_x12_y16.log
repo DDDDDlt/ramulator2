@@ -1,0 +1,127 @@
+Accelerator: BitMod (Bit-Serial)
+PE Array Dimension: [12, 16]
+Input Precision: 16-bit, Weight Precision: 4-bit
+PE DP Size: 4, Is Bit-Serial: True
+Context Length: 256, Generation Mode: True
+Use Scale Overhead: True, Group Size: 128
+Models to test: 5
+
+[1/5] Model: gpt2-large
+  Total Cycle:        2,764,516
+  PE Array Area:      0.174912 mm²
+  Weight Buffer:      0.472874 mm²
+  Input Buffer:       0.524382 mm²
+  Total Area:         1.172168 mm²
+  DRAM Energy:        417.58 mJ
+  On-chip Energy:     542.69 mJ
+  Total Energy:       960.27 mJ
+  Energy Delay Product: 2654691479.21
+  Bottleneck Analysis:
+    Total Layers:         73
+    Memory-bound Layers:  72 (98.6%)
+    Compute-bound Layers: 1 (1.4%)
+  Latency Contribution:
+    Total Latency:        2,764,516 cycles
+    From Compute-bound:   2,680,960 cycles (97.0%)
+    From Memory-bound:    83,556 cycles (3.0%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  443.67 mJ
+  SRAM Read Energy:   70.34 mJ
+  SRAM Write Energy:  28.69 mJ
+[2/5] Model: gpt2-xl
+  Total Cycle:        3,523,712
+  PE Array Area:      0.174912 mm²
+  Weight Buffer:      0.472874 mm²
+  Input Buffer:       0.524382 mm²
+  Total Area:         1.172168 mm²
+  DRAM Energy:        539.80 mJ
+  On-chip Energy:     683.98 mJ
+  Total Energy:       1223.78 mJ
+  Energy Delay Product: 4312249054.40
+  Bottleneck Analysis:
+    Total Layers:         97
+    Memory-bound Layers:  96 (99.0%)
+    Compute-bound Layers: 1 (1.0%)
+  Latency Contribution:
+    Total Latency:        3,523,712 cycles
+    From Compute-bound:   3,351,200 cycles (95.1%)
+    From Memory-bound:    172,512 cycles (4.9%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  558.82 mJ
+  SRAM Read Energy:   88.60 mJ
+  SRAM Write Energy:  36.56 mJ
+[3/5] Model: microsoft/phi-2
+  Total Cycle:        110,793,824
+  PE Array Area:      0.174912 mm²
+  Weight Buffer:      0.472874 mm²
+  Input Buffer:       0.524382 mm²
+  Total Area:         1.172168 mm²
+  DRAM Energy:        16322.37 mJ
+  On-chip Energy:     21931.93 mJ
+  Total Energy:       38254.30 mJ
+  Energy Delay Product: 4238340499523.24
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  64 (24.9%)
+    Compute-bound Layers: 193 (75.1%)
+  Latency Contribution:
+    Total Latency:        110,793,824 cycles
+    From Compute-bound:   110,565,120 cycles (99.8%)
+    From Memory-bound:    228,704 cycles (0.2%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  17942.75 mJ
+  SRAM Read Energy:   2844.70 mJ
+  SRAM Write Energy:  1144.48 mJ
+[4/5] Model: facebook/opt-2.7b
+  Total Cycle:        110,695,264
+  PE Array Area:      0.174912 mm²
+  Weight Buffer:      0.472874 mm²
+  Input Buffer:       0.524382 mm²
+  Total Area:         1.172168 mm²
+  DRAM Energy:        16307.85 mJ
+  On-chip Energy:     21912.39 mJ
+  Total Energy:       38220.24 mJ
+  Energy Delay Product: 4230799517325.51
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  64 (24.9%)
+    Compute-bound Layers: 193 (75.1%)
+  Latency Contribution:
+    Total Latency:        110,695,264 cycles
+    From Compute-bound:   110,466,560 cycles (99.8%)
+    From Memory-bound:    228,704 cycles (0.2%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  17926.77 mJ
+  SRAM Read Energy:   2842.17 mJ
+  SRAM Write Energy:  1143.46 mJ
+[5/5] Model: meta-llama/Llama-2-7b-hf
+  Total Cycle:        276,050,656
+  PE Array Area:      0.174912 mm²
+  Weight Buffer:      0.472874 mm²
+  Input Buffer:       0.524382 mm²
+  Total Area:         1.172168 mm²
+  DRAM Energy:        40756.81 mJ
+  On-chip Energy:     54665.36 mJ
+  Total Energy:       95422.17 mJ
+  Energy Delay Product: 26341353598935.32
+  Bottleneck Analysis:
+    Total Layers:         289
+    Memory-bound Layers:  64 (22.1%)
+    Compute-bound Layers: 225 (77.9%)
+  Latency Contribution:
+    Total Latency:        276,050,656 cycles
+    From Compute-bound:   275,675,136 cycles (99.9%)
+    From Memory-bound:    375,520 cycles (0.1%)
+
+  --- Energy Breakdown ---
+  PE Compute Energy:  44722.31 mJ
+  SRAM Read Energy:   7090.42 mJ
+  SRAM Write Energy:  2852.63 mJ
+
+Summary:
+Latency (cycles): [2764516, 3523712, 110793824, 110695264, 276050656]
+Energy [On-chip, Total] (mJ): [[543, 960], [684, 1224], [21932, 38254], [21912, 38220], [54665, 95422]]

@@ -1,0 +1,88 @@
+Accelerator: OLIVE (Non-uniform Quantization)
+PE Array Dimension: [102, 16]
+Input Precision: 8-bit, Weight Precision: Variable (per-model)
+Context Length: 256, Generation Mode: True
+Models to test: 5
+pe_energy: 0.179497375
+pe_area: 767.41875
+pe_dp_size: 1
+
+[1/5] Model: gpt2-large (W_prec: 8-bit)
+  Total Cycle:        2,777,338
+  PE Array Area:      0.372096 mm²
+  Weight Buffer:      0.496949 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.336200 mm²
+  DRAM Energy:        800.72 mJ
+  On-chip Energy:     752.20 mJ
+  Total Energy:       1552.92 mJ
+  Energy Delay Product: 4312985535.17
+  --- Energy Breakdown ---
+  PE Compute Energy:  679.53 mJ
+  SRAM Read Energy:   48.27 mJ
+  SRAM Write Energy:  24.40 mJ
+
+[2/5] Model: gpt2-xl (W_prec: 8-bit)
+  Total Cycle:        3,510,287
+  PE Array Area:      0.372096 mm²
+  Weight Buffer:      0.496949 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.336200 mm²
+  DRAM Energy:        1009.24 mJ
+  On-chip Energy:     979.78 mJ
+  Total Energy:       1989.02 mJ
+  Energy Delay Product: 6982045390.82
+  --- Energy Breakdown ---
+  PE Compute Energy:  885.75 mJ
+  SRAM Read Energy:   62.92 mJ
+  SRAM Write Energy:  31.11 mJ
+
+[3/5] Model: microsoft/phi-2 (W_prec: 8-bit)
+  Total Cycle:        110,252,351
+  PE Array Area:      0.372096 mm²
+  Weight Buffer:      0.496949 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.336200 mm²
+  DRAM Energy:        32584.07 mJ
+  On-chip Energy:     27574.82 mJ
+  Total Energy:       60158.88 mJ
+  Energy Delay Product: 6632658439495.19
+  --- Energy Breakdown ---
+  PE Compute Energy:  24837.39 mJ
+  SRAM Read Energy:   1764.47 mJ
+  SRAM Write Energy:  972.96 mJ
+
+[4/5] Model: facebook/opt-2.7b (W_prec: 8-bit)
+  Total Cycle:        110,153,796
+  PE Array Area:      0.372096 mm²
+  Weight Buffer:      0.496949 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.336200 mm²
+  DRAM Energy:        32555.05 mJ
+  On-chip Energy:     27551.05 mJ
+  Total Energy:       60106.11 mJ
+  Energy Delay Product: 6620915884076.80
+  --- Energy Breakdown ---
+  PE Compute Energy:  24816.02 mJ
+  SRAM Read Energy:   1762.95 mJ
+  SRAM Write Energy:  972.09 mJ
+
+[5/5] Model: meta-llama/Llama-2-7b-hf (W_prec: 8-bit)
+  Total Cycle:        274,954,917
+  PE Array Area:      0.372096 mm²
+  Weight Buffer:      0.496949 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.336200 mm²
+  DRAM Energy:        81291.89 mJ
+  On-chip Energy:     67817.02 mJ
+  Total Energy:       149108.91 mJ
+  Energy Delay Product: 40998227044058.39
+  --- Energy Breakdown ---
+  PE Compute Energy:  61054.59 mJ
+  SRAM Read Energy:   4337.36 mJ
+  SRAM Write Energy:  2425.06 mJ
+
+
+Summary:
+Latency (cycles): [2777338, 3510287, 110252351, 110153796, 274954917]
+Energy [On-chip, Total] (mJ): [[752, 1553], [980, 1989], [27575, 60159], [27551, 60106], [67817, 149109]]

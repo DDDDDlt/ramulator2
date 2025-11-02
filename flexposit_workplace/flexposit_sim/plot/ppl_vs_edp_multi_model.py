@@ -82,8 +82,8 @@ def create_ppl_vs_edp_plot(models_data, output_dir='.'):
     if num_models == 1:
         axes = [axes]  # Make it iterable for single subplot
     
-    # Add more spacing between subplots (fine-tuned)
-    plt.subplots_adjust(wspace=0.50, left=0.1, right=0.9)
+    # Add more spacing between subplots and reserve room on the right for legend
+    plt.subplots_adjust(wspace=0.50, left=0.1, right=0.85)
     
     model_names = list(models_data.keys())
     
@@ -145,11 +145,13 @@ def create_ppl_vs_edp_plot(models_data, output_dir='.'):
         ax.set_xlim(min(normalized_edp) - 0.05, max(normalized_edp) + 0.05)
         ax.set_ylim(min(ppl_values) - 0.3, max(ppl_values) + 0.3)
         
-        # Add legend (slightly closer to each subplot)
-        ax.legend(bbox_to_anchor=(1.04, 0.5), loc='center left', fontsize=8, 
-                 ncol=1, frameon=True, fancybox=True, shadow=True,
-                  handletextpad=1.0, columnspacing=2.0, borderpad=1.0,
-                  labelspacing=2.0)
+        # Add legend on the right: larger font, adequate paddings to avoid overlap
+        ax.legend(
+            bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=12,
+            ncol=1, frameon=True, fancybox=True, shadow=False,
+            handletextpad=1.2, columnspacing=2.0, borderpad=1.2,
+            labelspacing=1.0, markerscale=1.1
+        )
         
         # Print data summary for this model
         print(f"\n{model_name} Data Summary:")

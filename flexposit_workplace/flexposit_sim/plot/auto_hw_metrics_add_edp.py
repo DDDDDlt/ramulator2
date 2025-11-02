@@ -150,7 +150,7 @@ def normalize_data(data, baseline_key='Baseline'):
     print("🔄 Start normalizing data (relative to Baseline, per-model)")
     print("="*70)
     
-    model_names = ["GPT2-L", "GPT2-XL", "Phi-2", "OPT-2.7B", "Llama2-7B"]
+    model_names = ["GPT2-L", "GPT2-XL", "Phi-2B", "OPT-2.7B", "Llama2-7B"]
     
     for acc_key, acc_data in data.items():
         acc_on_chip = np.array(acc_data['on_chip_energy'])
@@ -198,7 +198,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     """
     # 模型名称（5个模型）+ 平均值
     models = [
-        "GPT2-L", "GPT2-XL", "Phi-2",
+        "GPT2-L", "GPT2-XL", "Phi-2B",
         "OPT-2.7B", "Llama2-7B", "Average"
     ]
     

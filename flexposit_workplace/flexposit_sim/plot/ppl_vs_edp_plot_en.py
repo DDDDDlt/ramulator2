@@ -42,7 +42,7 @@ def normalize_edp(edp_values):
     max_edp = max(edp_values)
     return [edp / max_edp for edp in edp_values]
 
-def create_ppl_vs_edp_plot(data, output_dir='.'):
+def create_ppl_vs_edp_plot(data, output_dir='.', title=None):
     """
     Create PPL vs normalized EDP scatter plot
     """
@@ -82,7 +82,8 @@ def create_ppl_vs_edp_plot(data, output_dir='.'):
     # Set labels and title
     plt.xlabel('Normalized EDP', fontsize=14, fontweight='bold')
     plt.ylabel('Perplexity (PPL)', fontsize=14, fontweight='bold')
-    plt.title('PPL vs Normalized EDP Scatter Plot (GPT-2 XL)', fontsize=16, fontweight='bold', pad=20)
+    plot_title = title if title is not None else 'PPL vs Normalized EDP Scatter Plot'
+    plt.title(plot_title, fontsize=16, fontweight='bold', pad=20)
     
     # Add grid with better visibility
     plt.grid(True, alpha=0.7, linestyle='-', linewidth=0.8, color='darkgray')
@@ -99,17 +100,19 @@ def create_ppl_vs_edp_plot(data, output_dir='.'):
     fig.set_size_inches(11, 9)  # Balanced aspect ratio
     
     # Add legend outside the plot with maximum spacing
-    legend = plt.legend(bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=9, 
-                        ncol=1, frameon=True, fancybox=True, shadow=True,
-                        handletextpad=1.5, columnspacing=3.0, borderpad=2.0,
-                        labelspacing=2.5)  # Increase labelspacing for more spread
+    legend = plt.legend(
+        bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=12,
+        ncol=1, frameon=True, fancybox=True, shadow=False,
+        handletextpad=1.2, columnspacing=2.0, borderpad=1.2,
+        labelspacing=1.0, markerscale=1.1
+    )
     
     # Add spacing between legend entries
     legend.get_frame().set_facecolor('white')
     legend.get_frame().set_alpha(0.9)
     
-    # Force legend to have more vertical space
-    legend.get_frame().set_height(legend.get_frame().get_height() * 1.5)
+    # Reserve right margin so enlarged legend will not overlap content
+    plt.subplots_adjust(right=0.85)
     
     # Arrow removed as requested
     
@@ -141,8 +144,15 @@ def main():
     """
     Main function
     """
+    import argparse
+    parser = argparse.ArgumentParser(description='PPL vs EDP scatter (single model)')
+    parser.add_argument('--log', default='/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/log/ppl_vs_edp.log', help='log file path')
+    parser.add_argument('--model', default=None, help='model name to plot (if multiple present)')
+    parser.add_argument('--out-dir', default='/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/plot', help='output directory')
+    args = parser.parse_args()
+
     # Log file path
-    log_file = '/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/log/ppl_vs_edp.log'
+    log_file = args.log
     
     # Check if file exists
     if not os.path.exists(log_file):
@@ -151,17 +161,34 @@ def main():
     
     # Parse data
     print("Parsing log file...")
-    data = parse_log_file(log_file)
-    
-    if not data:
+    models_data = parse_log_file(log_file)
+
+    if not models_data:
         print("No valid data found")
         return
     
-    print(f"Found {len(data)} data points")
+    # Choose model data
+    if isinstance(models_data, dict):
+        if args.model is not None and args.model in models_data:
+            model_name = args.model
+            data = models_data[model_name]
+        else:
+            model_name = next(iter(models_data.keys()))
+            data = models_data[model_name]
+    else:
+        model_name = 'Model'
+        data = models_data
+
+    if not data:
+        print("Selected model has no data points")
+        return
+    
+    print(f"Using model: {model_name} ({len(data)} data points)")
     
     # Create plot
-    output_dir = '/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/plot'
-    create_ppl_vs_edp_plot(data, output_dir)
+    output_dir = args.out_dir
+    os.makedirs(output_dir, exist_ok=True)
+    create_ppl_vs_edp_plot(data, output_dir, title=f'PPL vs Normalized EDP ({model_name})')
 
 if __name__ == "__main__":
     main()

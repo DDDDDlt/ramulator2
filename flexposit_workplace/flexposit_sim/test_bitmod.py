@@ -11,12 +11,22 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--is_generation", action="store_true", help="If enabled, then evaluate")
     parser.add_argument("--is_lossless", action="store_true", help="If enabled, then evaluate")
+    parser.add_argument("--pe_x", type=int, default=None, help="PE array dimension X")
+    parser.add_argument("--pe_y", type=int, default=None, help="PE array dimension Y")
     args = parser.parse_args()
     is_generation = args.is_generation
     is_lossless = args.is_lossless
+    pe_x = args.pe_x
+    pe_y = args.pe_y
     
-    if is_generation:
+    if pe_x is not None and pe_y is not None:
+        pe_array_dim = [pe_x, pe_y]
+        w_prec = 4
+    elif is_generation:
         # pe_array_dim = [9, 16]
+        pe_array_dim = [18, 16]
+        w_prec = 4
+    else:
         pe_array_dim = [18, 16]
         w_prec = 4
     
@@ -46,7 +56,7 @@ if __name__ == "__main__":
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
-            use_scale_overhead_lat=True,
+            use_scale_overhead_lat=False,
             scale_bits=8,
             meta_bits=2,
             group_size=128,
@@ -62,15 +72,28 @@ if __name__ == "__main__":
 
         print(f'[{idx+1}/{len(model_list)}] Model: {model_name}')
         print(f'  Total Cycle:        {total_cycle[1]:,}')
-        print(f'  PE Array Area:      {acc.pe_array_area / 1e6:.2f} mm²')
-        print(f'  Weight Buffer:      {acc.w_sram.area:.2f} mm²')
-        print(f'  Input Buffer:       {acc.i_sram.area:.2f} mm²')
+        print(f'  PE Array Area:      {acc.pe_array_area / 1e6:.6f} mm²')
+        print(f'  Weight Buffer:      {acc.w_sram.area:.6f} mm²')
+        print(f'  Input Buffer:       {acc.i_sram.area:.6f} mm²')
+        print(f'  Total Area:         {(acc.pe_array_area / 1e6 + acc.w_sram.area + acc.i_sram.area):.6f} mm²')
         print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
         print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
         print(f'  Total Energy:       {total_energy:.2f} mJ')
 
 
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
+        
+        # Compute total MACs for this model across layers
+        total_macs = 0
+        for lname in acc.layer_name_list:
+            w_dim = acc.weight_dim[lname]
+            o_dim = acc.output_dim[lname]
+            if w_dim is None or o_dim is None:
+                continue
+            cout, cin = w_dim
+            num_token, _ = o_dim
+            total_macs += int(cout) * int(cin) * int(num_token)
+        print(f'  Total MACs:         {total_macs:,}')
         
         # Bottleneck analysis
         acc.print_bottleneck_analysis(show_details=False)

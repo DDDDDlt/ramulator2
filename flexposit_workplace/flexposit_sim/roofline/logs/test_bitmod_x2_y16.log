@@ -1,0 +1,20 @@
+Accelerator: BitMod (Bit-Serial)
+PE Array Dimension: [2, 16]
+Input Precision: 16-bit, Weight Precision: 4-bit
+PE DP Size: 4, Is Bit-Serial: True
+Context Length: 256, Generation Mode: True
+Use Scale Overhead: True, Group Size: 128
+Models to test: 5
+
+Traceback (most recent call last):
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/test_bitmod.py", line 48, in <module>
+    acc = Accelerator(
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/accelerator.py", line 45, in __init__
+    self._init_mem()
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/accelerator.py", line 486, in _init_mem
+    self.w_sram = MemoryInstance(
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/mem_instance.py", line 47, in __init__
+    result_22nm = cacti_simulation.run_cacti()
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/cacti_simulation.py", line 40, in run_cacti
+    with open(self.CACTI_OUTPUT_FILE, 'r') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/self_gen/cache.cfg.out'

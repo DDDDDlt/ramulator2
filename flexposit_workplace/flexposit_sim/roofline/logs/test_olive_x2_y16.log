@@ -1,0 +1,21 @@
+Accelerator: OLIVE (Non-uniform Quantization)
+PE Array Dimension: [2, 16]
+Input Precision: 8-bit, Weight Precision: Variable (per-model)
+Context Length: 256, Generation Mode: True
+Models to test: 5
+pe_energy: 0.179497375
+pe_area: 767.41875
+pe_dp_size: 1
+
+Traceback (most recent call last):
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/test_olive.py", line 59, in <module>
+    acc = Accelerator(
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/accelerator.py", line 45, in __init__
+    self._init_mem()
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/accelerator.py", line 486, in _init_mem
+    self.w_sram = MemoryInstance(
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/mem_instance.py", line 47, in __init__
+    result_22nm = cacti_simulation.run_cacti()
+  File "/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/cacti_simulation.py", line 40, in run_cacti
+    with open(self.CACTI_OUTPUT_FILE, 'r') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/liangtaodai/dailt_workplace/ramulator2/flexposit_workplace/flexposit_sim/mem/self_gen/cache.cfg.out'
