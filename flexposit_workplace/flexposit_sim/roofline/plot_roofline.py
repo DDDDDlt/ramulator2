@@ -66,6 +66,38 @@ def _area_from_dim(acc_key: str, dim: int) -> float:
     # 单位换算：假设上式为 um^2，这里转为 mm^2
     return val / 1e6
 
+def _format_model_name(model: str) -> str:
+    """将模型名称格式化为大写格式，例如：gpt2-xl -> GPT2-XL"""
+    # 处理特殊模型名称
+    model_lower = model.lower()
+    if 'phi-2' in model_lower:
+        # microsoft/phi-2 -> Microsoft/Phi-2B
+        parts = model.split('/')
+        if len(parts) == 2:
+            org, name = parts[0], parts[1]
+            # Microsoft 首字母大写，其余小写
+            org_formatted = org.capitalize()
+            # phi-2 -> Phi-2B
+            if 'phi-2' in name.lower():
+                name_formatted = 'Phi-2B'
+            else:
+                name_formatted = name.upper()
+            return f'{org_formatted}/{name_formatted}'
+        elif 'phi-2' in model_lower:
+            return 'Phi-2B'
+    
+    # Microsoft 处理
+    if 'microsoft' in model_lower:
+        parts = model.split('/')
+        if len(parts) == 2:
+            org, name = parts[0], parts[1]
+            org_formatted = org.capitalize()  # Microsoft
+            name_formatted = name.upper()
+            return f'{org_formatted}/{name_formatted}'
+    
+    # 默认：直接转为大写，保持分隔符不变
+    return model.upper()
+
 def _dense_intersect_xs(a: np.ndarray, y1: np.ndarray, y2: np.ndarray) -> list:
     diff = y1 - y2
     idxs = np.where(np.diff(np.sign(diff)) != 0)[0]
@@ -119,13 +151,7 @@ def plot_per_model(norm, models, acc_keys, out_dir, x_min=None, x_max=None, x_la
     pretty_label = {
         'flexposit': 'FlexPosit',
         'bitmod': 'BitMoD',
-        'olive': 'Olive',
-        'baseline': 'Baseline',
-    }
-    pretty_label = {
-        'flexposit': 'FlexPosit',
-        'bitmod': 'BitMoD',
-        'olive': 'Olive',
+        'olive': 'OliVe',
         'baseline': 'Baseline',
     }
     marker_map = {
@@ -161,11 +187,10 @@ def plot_per_model(norm, models, acc_keys, out_dir, x_min=None, x_max=None, x_la
             line.set_path_effects([patheffects.Stroke(linewidth=4.2, foreground='#FFFFFF'), patheffects.Normal()])
             
 
-        ax.set_xlabel(x_label or 'Normalized Compute Intensity', fontsize=14, fontweight='bold')
+        ax.set_xlabel(x_label or 'Normalized Compute Area', fontsize=14, fontweight='bold')
         ax.set_ylabel('Normalized Throughput', fontsize=14, fontweight='bold')
-        ax.set_title(f'Model: {model}', fontsize=16, fontweight='bold')
         ax.grid(True, linestyle=':', alpha=0.5)
-        ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC')
+        ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC', loc='lower right', fontsize=12)
         # draw dashed intersections: flexposit vs olive; bitmod vs flexposit
         # and shade outside the two vertical lines
         interxs = []
@@ -194,6 +219,8 @@ def plot_per_model(norm, models, acc_keys, out_dir, x_min=None, x_max=None, x_la
                 cur_xmin, cur_xmax = ax.get_xlim()
                 ax.axvspan(cur_xmin, xl, facecolor='#EEEEEE', alpha=0.35, zorder=0)
                 ax.axvspan(xr, cur_xmax, facecolor='#EEEEEE', alpha=0.35, zorder=0)
+                # 在两条虚线之间添加黄色高亮
+                ax.axvspan(xl, xr, facecolor='white', alpha=0.3, zorder=0)
         # 仅在指定时设置 xlim；否则让数据自适应（baseline 归一化的 X 不一定在 [0,1]）
         if x_min is not None or x_max is not None:
             ax.set_xlim(left=x_min if x_min is not None else None, right=x_max if x_max is not None else None)
@@ -219,7 +246,7 @@ def plot_average(norm, models, acc_keys, out_dir, x_min=None, x_max=None, x_labe
     pretty_label = {
         'flexposit': 'FlexPosit',
         'bitmod': 'BitMoD',
-        'olive': 'Olive',
+        'olive': 'OliVe',
         'baseline': 'Baseline',
     }
     marker_map = {
@@ -280,11 +307,10 @@ def plot_average(norm, models, acc_keys, out_dir, x_min=None, x_max=None, x_labe
         line.set_path_effects([patheffects.Stroke(linewidth=4.6, foreground='#FFFFFF'), patheffects.Normal()])
         
 
-    ax.set_xlabel(x_label or 'Normalized Compute Intensity', fontsize=14, fontweight='bold')
+    ax.set_xlabel(x_label or 'Normalized Compute Area', fontsize=14, fontweight='bold')
     ax.set_ylabel('Normalized Throughput', fontsize=14, fontweight='bold')
-    ax.set_title('Average over Models', fontsize=16, fontweight='bold')
     ax.grid(True, linestyle=':', alpha=0.5)
-    ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC')
+    ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC', fontsize=12)
     # baseline 归一化：不强制 [0,1]，除非显式指定
     if x_min is not None or x_max is not None:
         ax.set_xlim(left=x_min if x_min is not None else None, right=x_max if x_max is not None else None)
@@ -340,7 +366,7 @@ def plot_per_model_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y
     pretty_label = {
         'flexposit': 'FlexPosit',
         'bitmod': 'BitMoD',
-        'olive': 'Olive',
+        'olive': 'OliVe',
         'baseline': 'Baseline',
     }
     marker_map = {
@@ -358,11 +384,17 @@ def plot_per_model_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y
             ys = np.array(raw[model][acc_key]['y'])
             if xs.size == 0:
                 continue
-            series[acc_key] = (xs, ys)
+            # 只保留横坐标 <= 0.45 的点
+            mask = xs <= 0.45
+            xs_filtered = xs[mask]
+            ys_filtered = ys[mask]
+            if xs_filtered.size == 0:
+                continue
+            series[acc_key] = (xs_filtered, ys_filtered)
         
-        # 纵坐标归一化：使用所有加速器中的全局最大值
+        # 纵坐标归一化：使用所有加速器中（0-0.45范围内）的全局最大值
         if normalize_y and series:
-            # 找到所有加速器中的最大y值
+            # 找到所有加速器中的最大y值（只考虑0-0.45范围内的点）
             global_max_y = max([np.max(ys) for xs, ys in series.values() if len(ys) > 0])
             if global_max_y > 0:
                 for acc_key in series:
@@ -376,43 +408,34 @@ def plot_per_model_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y
         for acc_key, (xs, ys) in series.items():
             color = color_map.get(acc_key, '#777777')
             if normalize_y and len(xs) > 0:
-                # 归一化模式：左侧连线原点，右侧水平延长
-                # 获取x轴范围
-                x_min_plot = xs.min()
-                # 确定右侧延长的x值
-                if x_max is not None:
-                    x_max_plot = x_max
-                else:
-                    # 使用所有系列的最大x值，或默认1.0
-                    x_max_plot = max([np.max(vx) for vx, vy in series.values() if len(vx) > 0]) if series else 1.0
-                    x_max_plot = max(x_max_plot, 1.0)
+                # 归一化模式：将横坐标从0-0.45映射到0-1（除以0.45）
+                xs_mapped = xs / 0.45
                 
                 # 左侧：在第一个点前添加原点(0, 0)
-                xs_extended = np.concatenate([[0.0], xs])
+                xs_extended = np.concatenate([[0.0], xs_mapped])
                 ys_extended = np.concatenate([[0.0], ys])
                 
-                # 右侧：在最后一个点后添加水平延长的点
+                # 右侧：在最后一个点后添加水平延长的点（延长到1.0）
                 last_y = ys[-1]
-                xs_extended = np.concatenate([xs_extended, [x_max_plot]])
+                xs_extended = np.concatenate([xs_extended, [1.0]])
                 ys_extended = np.concatenate([ys_extended, [last_y]])
                 
-                line, = ax.plot(xs_extended, ys_extended, color=color, linewidth=3.0, label=pretty_label.get(acc_key, acc_key))
+                line, = ax.plot(xs_extended, ys_extended, color=color, linewidth=2.0, label=pretty_label.get(acc_key, acc_key))
             else:
-                # 非归一化模式：直接绘制
-                line, = ax.plot(xs, ys, color=color, linewidth=3.0, label=pretty_label.get(acc_key, acc_key))
+                # 非归一化模式：直接绘制（0-0.45范围）
+                line, = ax.plot(xs, ys, color=color, linewidth=2.0, label=pretty_label.get(acc_key, acc_key))
             line.set_solid_capstyle('round')
             line.set_solid_joinstyle('round')
-            line.set_path_effects([patheffects.Stroke(linewidth=4.2, foreground='#FFFFFF'), patheffects.Normal()])
+            line.set_path_effects([patheffects.Stroke(linewidth=3.0, foreground='#FFFFFF'), patheffects.Normal()])
             
 
-        ax.set_xlabel('Normalized Compute Intensity', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Normalized Compute Area', fontsize=14, fontweight='bold')
         if normalize_y:
             ax.set_ylabel(f'Normalized {y_label}', fontsize=14, fontweight='bold')
         else:
             ax.set_ylabel(y_label, fontsize=14, fontweight='bold')
-        ax.set_title(f'Model: {model}', fontsize=16, fontweight='bold')
         ax.grid(True, linestyle=':', alpha=0.5)
-        ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC')
+        ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC', loc='lower right', fontsize=12)
         # dashed intersections for RAW as well (lighter & shade outside two lines)
         interxs = []
         def collect_inters(k1, k2):
@@ -431,23 +454,81 @@ def plot_per_model_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y
         collect_inters('bitmod', 'flexposit')
         if interxs:
             xs_sorted = sorted(set(interxs))
+            # 归一化模式下，将交点横坐标从0-0.45映射到0-1（除以0.45）
+            if normalize_y:
+                xs_sorted = [xv / 0.45 for xv in xs_sorted]
             for xv in xs_sorted:
                 ax.axvline(xv, linestyle='--', linewidth=1.2, color='#BBBBBB', alpha=0.9, zorder=0)
             if len(xs_sorted) >= 2:
                 xl, xr = xs_sorted[0], xs_sorted[1]
+                # 先设置x和y轴范围，确保后续文本位置计算正确
+                # 横坐标显示范围：归一化模式0到1，非归一化模式0-0.5（可通过参数覆盖）
+                if normalize_y:
+                    # 归一化模式：横坐标显示0到1
+                    if x_min is not None or x_max is not None:
+                        ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 1.0)
+                    else:
+                        ax.set_xlim(0, 1)
+                else:
+                    # 非归一化模式：横坐标显示0-0.45
+                    if x_min is not None or x_max is not None:
+                        ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 0.45)
+                    else:
+                        ax.set_xlim(0, 0.45)
+                # 设置y轴范围
+                if normalize_y:
+                    ax.set_ylim(0, 1.1)
+                # 获取设置后的轴范围
                 cur_xmin, cur_xmax = ax.get_xlim()
+                cur_ymin, cur_ymax = ax.get_ylim()
                 ax.axvspan(cur_xmin, xl, facecolor='#EEEEEE', alpha=0.35, zorder=0)
                 ax.axvspan(xr, cur_xmax, facecolor='#EEEEEE', alpha=0.35, zorder=0)
-        # 归一化图：横坐标固定 0~1 mm²（可通过参数覆盖）
-        if x_min is not None or x_max is not None:
-            ax.set_xlim(left=x_min if x_min is not None else None, right=x_max if x_max is not None else None)
-        else:
-            ax.set_xlim(0, 1)
-        if normalize_y:
-            # 设置上限略大于1，避免y=1的线与上边框重叠
-            ax.set_ylim(0, 1.05)
-        else:
-            ax.set_ylim(bottom=0)
+                # 在两条虚线之间添加黄色高亮
+                ax.axvspan(xl, xr, facecolor='white', alpha=0.3, zorder=0)
+                # 添加三个区域的文本标注
+                # 左侧区域：ultra-low-power
+                left_center_x = (cur_xmin + xl) / 2.0
+                ax.text(left_center_x, cur_ymax * 0.98, 'Ultra-low-power', 
+                       ha='center', va='top', fontsize=12, fontweight='bold',
+                       bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8, edgecolor='none'),
+                       zorder=10)
+                # 中间区域：edge mixed compute/memory
+                mid_center_x = (xl + xr) / 2.0
+                ax.text(mid_center_x, cur_ymax * 0.98, 'Edge-scale', 
+                       ha='center', va='top', fontsize=12, fontweight='bold',
+                       bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8, edgecolor='none'),
+                       zorder=10)
+                # 右侧区域：cloud-scale
+                right_center_x = (xr + cur_xmax) / 2.0
+                # 确保文本不会超出右边界，如果太靠右则稍微向左移动
+                if right_center_x > cur_xmax * 0.95:
+                    right_center_x = cur_xmax * 0.90
+                ax.text(right_center_x, cur_ymax * 0.98, 'Cloud-scale', 
+                       ha='center', va='top', fontsize=12, fontweight='bold',
+                       bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8, edgecolor='none'),
+                       zorder=10)
+        # 横坐标显示范围：归一化模式0到1，非归一化模式0-0.5（可通过参数覆盖）
+        # 如果已经在虚线区域设置过，这里就不重复设置
+        if len(interxs) < 2 or not normalize_y:
+            if normalize_y:
+                # 归一化模式：横坐标显示0到1
+                if x_min is not None or x_max is not None:
+                    ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 1.0)
+                else:
+                    ax.set_xlim(0, 1)
+            else:
+                # 非归一化模式：横坐标显示0-0.45
+                if x_min is not None or x_max is not None:
+                    ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 0.45)
+                else:
+                    ax.set_xlim(0, 0.45)
+        # y轴范围（如果还没设置过）
+        if not (normalize_y and len(interxs) >= 2):
+            if normalize_y:
+                # 设置范围为0到1.1，为区域标注留出空间
+                ax.set_ylim(0, 1.1)
+            else:
+                ax.set_ylim(bottom=0)
         fig.tight_layout()
         suffix = '_raw_normalized' if normalize_y else '_raw'
         out_png = os.path.join(out_dir, f"roofline_model_{model.replace('/', '_')}{suffix}.png")
@@ -468,7 +549,7 @@ def plot_average_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y_l
     pretty_label = {
         'flexposit': 'FlexPosit',
         'bitmod': 'BitMoD',
-        'olive': 'Olive',
+        'olive': 'OliVe',
         'baseline': 'Baseline',
     }
     marker_map = {
@@ -489,8 +570,15 @@ def plot_average_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y_l
             ys = np.array(raw[model][acc_key]['y'])
             if xs.size == 0:
                 continue
-            order = np.argsort(pes)
-            series.append((pes[order], xs[order], ys[order]))
+            # 只保留横坐标 <= 0.45 的点
+            mask = xs <= 0.45
+            pes_filtered = pes[mask]
+            xs_filtered = xs[mask]
+            ys_filtered = ys[mask]
+            if xs_filtered.size == 0:
+                continue
+            order = np.argsort(pes_filtered)
+            series.append((pes_filtered[order], xs_filtered[order], ys_filtered[order]))
         if not series:
             continue
         # find common pe_x across models
@@ -521,9 +609,9 @@ def plot_average_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y_l
         avg_y = np.array(avg_y)[order]
         series_dict[acc_key] = (avg_x, avg_y)
     
-    # 纵坐标归一化：使用所有加速器中的全局最大值
+    # 纵坐标归一化：使用所有加速器中（0-0.45范围内）的全局最大值
     if normalize_y and series_dict:
-        # 找到所有加速器中的最大y值
+        # 找到所有加速器中的最大y值（只考虑0-0.45范围内的点）
         global_max_y = max([np.max(avg_y) for avg_x, avg_y in series_dict.values() if len(avg_y) > 0])
         if global_max_y > 0:
             for acc_key in series_dict:
@@ -544,25 +632,25 @@ def plot_average_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y_l
         color = color_map.get(acc_key, '#777777')
         
         if normalize_y and len(avg_x) > 0:
-            # 归一化模式：左侧连线原点，右侧水平延长
-            x_max_plot = x_max if x_max is not None else all_x_max
+            # 归一化模式：将横坐标从0-0.45映射到0-1（除以0.45）
+            avg_x_mapped = avg_x / 0.45
             
             # 左侧：在第一个点前添加原点(0, 0)
-            xs_extended = np.concatenate([[0.0], avg_x])
+            xs_extended = np.concatenate([[0.0], avg_x_mapped])
             ys_extended = np.concatenate([[0.0], avg_y])
             
-            # 右侧：在最后一个点后添加水平延长的点
+            # 右侧：在最后一个点后添加水平延长的点（延长到1.0）
             last_y = avg_y[-1]
-            xs_extended = np.concatenate([xs_extended, [x_max_plot]])
+            xs_extended = np.concatenate([xs_extended, [1.0]])
             ys_extended = np.concatenate([ys_extended, [last_y]])
             
-            line, = ax.plot(xs_extended, ys_extended, color=color, linewidth=3.2, label=pretty_label.get(acc_key, acc_key))
+            line, = ax.plot(xs_extended, ys_extended, color=color, linewidth=2.2, label=pretty_label.get(acc_key, acc_key))
         else:
-            # 非归一化模式：直接绘制
-            line, = ax.plot(avg_x, avg_y, color=color, linewidth=3.2, label=pretty_label.get(acc_key, acc_key))
+            # 非归一化模式：直接绘制（0-0.4范围）
+            line, = ax.plot(avg_x, avg_y, color=color, linewidth=2.2, label=pretty_label.get(acc_key, acc_key))
         line.set_solid_capstyle('round')
         line.set_solid_joinstyle('round')
-        line.set_path_effects([patheffects.Stroke(linewidth=4.6, foreground='#FFFFFF'), patheffects.Normal()])
+        line.set_path_effects([patheffects.Stroke(linewidth=3.5, foreground='#FFFFFF'), patheffects.Normal()])
         
 
     ax.set_xlabel('PE Array Area (mm²)', fontsize=14, fontweight='bold')
@@ -570,17 +658,23 @@ def plot_average_raw(raw, models, acc_keys, out_dir, x_min=None, x_max=None, y_l
         ax.set_ylabel(f'Normalized {y_label}', fontsize=14, fontweight='bold')
     else:
         ax.set_ylabel(y_label, fontsize=14, fontweight='bold')
-    title_suffix = ' (Normalized)' if normalize_y else ' (Raw)'
-    ax.set_title(f'Average over Models{title_suffix}', fontsize=16, fontweight='bold')
     ax.grid(True, linestyle=':', alpha=0.5)
-    ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC')
-    if x_min is not None or x_max is not None:
-        ax.set_xlim(left=x_min if x_min is not None else None, right=x_max if x_max is not None else None)
-    else:
-        ax.set_xlim(left=0)
+    ax.legend(frameon=True, framealpha=0.9, edgecolor='#CCCCCC', loc='lower right', fontsize=12)
     if normalize_y:
-        # 设置上限略大于1，避免y=1的线与上边框重叠
-        ax.set_ylim(0, 1.05)
+        # 归一化模式：横坐标显示0到1
+        if x_min is not None or x_max is not None:
+            ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 1.0)
+        else:
+            ax.set_xlim(left=0, right=1)
+    else:
+        # 非归一化模式：横坐标显示0-0.45
+        if x_min is not None or x_max is not None:
+            ax.set_xlim(left=x_min if x_min is not None else 0.0, right=x_max if x_max is not None else 0.45)
+        else:
+            ax.set_xlim(left=0, right=0.45)
+    if normalize_y:
+        # 设置范围为0到1.1，为区域标注留出空间
+        ax.set_ylim(0, 1.1)
     else:
         ax.set_ylim(bottom=0)
     fig.tight_layout()

@@ -80,10 +80,13 @@ def create_ppl_vs_edp_plot(data, output_dir='.', title=None):
         plt.plot(flexposit_normalized_edp, flexposit_ppl, '--', color='red', alpha=0.7, linewidth=2, label='FlexPosit Series')
     
     # Set labels and title
-    plt.xlabel('Normalized EDP', fontsize=14, fontweight='bold')
-    plt.ylabel('Perplexity (PPL)', fontsize=14, fontweight='bold')
+    plt.xlabel('Normalized EDP', fontsize=16, fontweight='bold')
+    plt.ylabel('Perplexity', fontsize=16, fontweight='bold')
     plot_title = title if title is not None else 'PPL vs Normalized EDP Scatter Plot'
-    plt.title(plot_title, fontsize=16, fontweight='bold', pad=20)
+    plt.title(plot_title, fontsize=18, fontweight='bold', pad=20)
+    
+    # Set tick label font size
+    plt.tick_params(labelsize=14)
     
     # Add grid with better visibility
     plt.grid(True, alpha=0.7, linestyle='-', linewidth=0.8, color='darkgray')
@@ -101,7 +104,7 @@ def create_ppl_vs_edp_plot(data, output_dir='.', title=None):
     
     # Add legend outside the plot with maximum spacing
     legend = plt.legend(
-        bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=12,
+        bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=14,
         ncol=1, frameon=True, fancybox=True, shadow=False,
         handletextpad=1.2, columnspacing=2.0, borderpad=1.2,
         labelspacing=1.0, markerscale=1.1

@@ -67,9 +67,9 @@ if __name__ == "__main__":
         print(f'  Weight Buffer:      {acc.w_sram.area:.6f} mm²')
         print(f'  Input Buffer:       {acc.i_sram.area:.6f} mm²')
         print(f'  Total Area:         {(acc.pe_array_area / 1e6 + acc.w_sram.area + acc.i_sram.area):.6f} mm²')
-        print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
-        print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
-        print(f'  Total Energy:       {total_energy:.2f} mJ')
+        print(f'  DRAM Energy:        {dram_energy:.2f} uJ')
+        print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
+        print(f'  Total Energy:       {total_energy:.2f} uJ')
 
         # Compute total MACs for this model across layers
         total_macs = 0
@@ -95,5 +95,5 @@ if __name__ == "__main__":
 
     print("\nSummary:")
     print(f'Latency (cycles): {total_latency_list}')
-    print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
+    print(f'Energy [On-chip, Total] (uJ): {total_energy_list}')
     

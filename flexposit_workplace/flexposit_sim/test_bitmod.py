@@ -76,9 +76,9 @@ if __name__ == "__main__":
         print(f'  Weight Buffer:      {acc.w_sram.area:.6f} mm²')
         print(f'  Input Buffer:       {acc.i_sram.area:.6f} mm²')
         print(f'  Total Area:         {(acc.pe_array_area / 1e6 + acc.w_sram.area + acc.i_sram.area):.6f} mm²')
-        print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
-        print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
-        print(f'  Total Energy:       {total_energy:.2f} mJ')
+        print(f'  DRAM Energy:        {dram_energy:.2f} uJ')
+        print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
+        print(f'  Total Energy:       {total_energy:.2f} uJ')
 
 
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
@@ -104,13 +104,13 @@ if __name__ == "__main__":
         print()
 
         print(f'  --- Energy Breakdown ---')
-        print(f'  PE Compute Energy:  {compute_energy:.2f} mJ')
-        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} mJ')
-        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} mJ')
+        print(f'  PE Compute Energy:  {compute_energy:.2f} uJ')
+        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} uJ')
+        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} uJ')
     
     print("\nSummary:")
     print(f'Latency (cycles): {total_latency_list}')
-    print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
+    print(f'Energy [On-chip, Total] (uJ): {total_energy_list}')
     
     # # Print cache statistics
     # cache_stats = get_cache_stats()

@@ -5,6 +5,7 @@ Read data from ppl_vs_edp.log file and generate side-by-side plots for each mode
 """
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator, AutoMinorLocator
 import numpy as np
 import re
 import os
@@ -77,13 +78,14 @@ def create_ppl_vs_edp_plot(models_data, output_dir='.'):
     
     # Create subplots for each model with more spacing
     num_models = len(models_data)
-    fig, axes = plt.subplots(1, num_models, figsize=(10.2 * num_models, 8))
+    # Increase figure height to accommodate legends at the top
+    fig, axes = plt.subplots(1, num_models, figsize=(10.2 * num_models, 9))
     
     if num_models == 1:
         axes = [axes]  # Make it iterable for single subplot
     
-    # Add more spacing between subplots and reserve room on the right for legend
-    plt.subplots_adjust(wspace=0.50, left=0.1, right=0.85)
+    # Add less spacing between subplots and reserve room at the top for legends
+    plt.subplots_adjust(wspace=0.35, left=0.1, right=0.95, top=0.85)
     
     model_names = list(models_data.keys())
     
@@ -116,8 +118,9 @@ def create_ppl_vs_edp_plot(models_data, output_dir='.'):
             ax.scatter(normalized_edp[i], ppl, s=300, alpha=0.8, c=[color_map[name]],
                       marker=marker, edgecolors='black', linewidth=1.0, label=name)
         
-        # Connect flexposit points with lines
+        # Connect flexposit points with lines (but don't add to legend yet)
         flexposit_data = [(name, ppl, edp) for name, ppl, edp in data if 'flexposit' in name.lower()]
+        series_line = None
         if len(flexposit_data) > 1:
             # Sort by version number for proper line connection
             flexposit_data.sort(key=lambda x: float(x[0].split('(')[1].split('b')[0]))
@@ -125,32 +128,97 @@ def create_ppl_vs_edp_plot(models_data, output_dir='.'):
             flexposit_indices = [i for i, (name, ppl, edp) in enumerate(data) if 'flexposit' in name.lower()]
             flexposit_normalized_edp = [normalized_edp[i] for i in flexposit_indices]
             flexposit_ppl = [item[1] for item in flexposit_data]
-            ax.plot(flexposit_normalized_edp, flexposit_ppl, '--', color='red', alpha=0.7, linewidth=2, label='FlexPosit Series')
+            series_line = ax.plot(flexposit_normalized_edp, flexposit_ppl, '--', color='red', alpha=0.7, linewidth=2, label='FlexPosit Series')[0]
         
-        # Set labels
-        ax.set_xlabel('Normalized EDP', fontsize=14, fontweight='bold')
-        ax.set_ylabel('Perplexity (PPL)', fontsize=14, fontweight='bold')
+        # Set labels with larger font
+        ax.set_xlabel('Normalized EDP', fontsize=28, fontweight='bold')
+        ax.set_ylabel('Perplexity', fontsize=28, fontweight='bold')
         
-        # Add title below the plot with (a), (b) labels
-        subplot_label = chr(97 + idx)  # 'a' for first subplot, 'b' for second, etc.
-        ax.text(0.5, -0.15, f'({subplot_label}) {model_name}', 
-                transform=ax.transAxes, ha='center', va='top', 
-                fontsize=16, fontweight='bold')
-        
-        # Add grid with better visibility
-        ax.grid(True, alpha=0.7, linestyle='-', linewidth=0.8, color='darkgray')
-        ax.grid(True, alpha=0.5, linestyle='--', linewidth=0.5, color='gray', which='minor')
+        # Set tick label font size
+        ax.tick_params(labelsize=26)
         
         # Set axis ranges - use normalized EDP values, focus on data range
         ax.set_xlim(min(normalized_edp) - 0.05, max(normalized_edp) + 0.05)
         ax.set_ylim(min(ppl_values) - 0.3, max(ppl_values) + 0.3)
         
-        # Add legend on the right: larger font, adequate paddings to avoid overlap
+        # Set minor tick locators to make grid denser and well-aligned
+        # Use AutoMinorLocator with n=2 to create 2 minor ticks between major ticks
+        ax.xaxis.set_minor_locator(AutoMinorLocator(n=2))
+        ax.yaxis.set_minor_locator(AutoMinorLocator(n=2))
+        
+        # Add grid with better visibility
+        ax.grid(True, alpha=0.7, linestyle='-', linewidth=0.8, color='darkgray')
+        ax.grid(True, alpha=0.4, linestyle='--', linewidth=0.4, color='lightgray', which='minor')
+        
+        # Add title below the plot with (a), (b) labels
+        subplot_label = chr(97 + idx)  # 'a' for first subplot, 'b' for second, etc.
+        ax.text(0.5, -0.15, f'({subplot_label}) {model_name}', 
+                transform=ax.transAxes, ha='center', va='top', 
+                fontsize=30, fontweight='bold')
+        
+        # Get all legend handles and labels, then reorder to put 'FlexPosit Series' at the end
+        handles, labels = ax.get_legend_handles_labels()
+        
+        # Remove any existing legend
+        if ax.get_legend() is not None:
+            ax.get_legend().remove()
+        
+        # Separate FlexPosit Series from other items
+        series_handle = None
+        series_label = None
+        other_handles = []
+        other_labels = []
+        
+        for handle, label in zip(handles, labels):
+            if label == 'FlexPosit Series':
+                series_handle = handle
+                series_label = label
+            else:
+                other_handles.append(handle)
+                other_labels.append(label)
+        
+        # Combine: other items first, then FlexPosit Series at the end
+        if series_handle is not None:
+            ordered_handles = other_handles + [series_handle]
+            ordered_labels = other_labels + [series_label]
+        else:
+            ordered_handles = other_handles
+            ordered_labels = other_labels
+        
+        # Reorder for row-major layout (instead of column-major)
+        # matplotlib legend fills by columns, but we want row-major order
+        ncol = 3
+        n_items = len(ordered_handles)
+        n_rows = (n_items + ncol - 1) // ncol  # Ceiling division
+        
+        # Create a 2D grid in row-major order (row by row, left to right)
+        # This is how we want the legend to appear visually
+        grid_handles = [[None] * ncol for _ in range(n_rows)]
+        grid_labels = [[None] * ncol for _ in range(n_rows)]
+        
+        for idx in range(n_items):
+            row = idx // ncol
+            col = idx % ncol
+            grid_handles[row][col] = ordered_handles[idx]
+            grid_labels[row][col] = ordered_labels[idx]
+        
+        # Convert from row-major grid to column-major list for matplotlib
+        # matplotlib fills by columns, so we need to read column by column
+        column_major_handles = []
+        column_major_labels = []
+        for col in range(ncol):
+            for row in range(n_rows):
+                if grid_handles[row][col] is not None:
+                    column_major_handles.append(grid_handles[row][col])
+                    column_major_labels.append(grid_labels[row][col])
+        
+        # Add legend at the top of each subplot, 3 columns (row-major layout)
         ax.legend(
-            bbox_to_anchor=(1.02, 0.5), loc='center left', fontsize=12,
-            ncol=1, frameon=True, fancybox=True, shadow=False,
-            handletextpad=1.2, columnspacing=2.0, borderpad=1.2,
-            labelspacing=1.0, markerscale=1.1
+            column_major_handles, column_major_labels,
+            bbox_to_anchor=(0.5, 1.05), loc='lower center', fontsize=20,
+            ncol=3, frameon=True, fancybox=True, shadow=False,
+            handletextpad=0.6, columnspacing=1.5, borderpad=0.8,
+            labelspacing=0.6, markerscale=1.2
         )
         
         # Print data summary for this model

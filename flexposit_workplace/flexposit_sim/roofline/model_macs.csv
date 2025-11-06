@@ -1,6 +1,6 @@
 model,total_macs,context_length,is_generation
 gpt2-large,88945786880,256,0
-gpt2-xl,166547046400,256,0
+GPT2-XL,166547046400,256,0
 microsoft/phi-2,866778087424,256,0
 facebook/opt-2.7b,866169913344,256,0
 meta-llama/Llama-2-7b-hf,1983469584384,256,0

@@ -17,22 +17,22 @@ if __name__ == "__main__":
     pe_y = args.pe_y
 
     w_prec_list = {
-        'gpt2-large': 8,
-        'gpt2-xl': 8,
-        'facebook/opt-1.3b': 8,
-        'facebook/opt-2.7b': 8,
-        'microsoft/phi-2': 8, 
-        '01-ai/Yi-6B': 8, 
-        'meta-llama/Llama-2-7b-hf': 8, 
-        'meta-llama/Llama-2-13b-hf': 8, 
-        'meta-llama/Meta-Llama-3-8B': 8, 
+        'gpt2-large': 4,
+        'gpt2-xl': 4,
+        'facebook/opt-1.3b': 4,
+        'facebook/opt-2.7b': 4,
+        'microsoft/phi-2': 4, 
+        '01-ai/Yi-6B': 4, 
+        'meta-llama/Llama-2-7b-hf': 4, 
+        'meta-llama/Llama-2-13b-hf': 4, 
+        'meta-llama/Meta-Llama-3-8B': 4, 
     }
 
     if pe_x is not None and pe_y is not None:
         pe_array_dim = [pe_x, pe_y]
     elif is_generation:
-        # pe_array_dim = [44, 16]
-        pe_array_dim = [87, 16]
+        pe_array_dim = [44, 16]
+        # pe_array_dim = [87, 16]
     else:
         pe_array_dim = [87, 16]
     
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # Print accelerator configuration
     print("Accelerator: OLIVE (Non-uniform Quantization)")
     print(f"PE Array Dimension: {pe_array_dim}")
-    print(f"Input Precision: 8-bit, Weight Precision: Variable (per-model)")
+    print(f"Input Precision: 4-bit, Weight Precision: Variable (per-model)")
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Models to test: {len(model_list)}")
     print(f"pe_energy: {0.179497375}")
@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
         acc = Accelerator(
             model_name=model_name, 
-            i_prec=8,
+            i_prec=4,
             w_prec=w_prec,
             is_bit_serial=False,
             pe_dp_size=1,
@@ -90,17 +90,17 @@ if __name__ == "__main__":
         print(f'  Weight Buffer:      {acc.w_sram.area:.6f} mm²')
         print(f'  Input Buffer:       {acc.i_sram.area:.6f} mm²')
         print(f'  Total Area:         {(acc.pe_array_area / 1e6 + acc.w_sram.area + acc.i_sram.area):.6f} mm²')
-        print(f'  DRAM Energy:        {dram_energy:.2f} mJ')
-        print(f'  On-chip Energy:     {onchip_energy:.2f} mJ')
-        print(f'  Total Energy:       {total_energy:.2f} mJ')
+        print(f'  DRAM Energy:        {dram_energy:.2f} uJ')
+        print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
+        print(f'  Total Energy:       {total_energy:.2f} uJ')
 
 
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
 
         print(f'  --- Energy Breakdown ---')
-        print(f'  PE Compute Energy:  {compute_energy:.2f} mJ')
-        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} mJ')
-        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} mJ')
+        print(f'  PE Compute Energy:  {compute_energy:.2f} uJ')
+        print(f'  SRAM Read Energy:   {sram_rd_energy:.2f} uJ')
+        print(f'  SRAM Write Energy:  {sram_wr_energy:.2f} uJ')
         
         # Compute total MACs for this model across layers
         total_macs = 0
@@ -124,6 +124,6 @@ if __name__ == "__main__":
 
     print("\nSummary:")
     print(f'Latency (cycles): {total_latency_list}')
-    print(f'Energy [On-chip, Total] (mJ): {total_energy_list}')
+    print(f'Energy [On-chip, Total] (uJ): {total_energy_list}')
     
     
