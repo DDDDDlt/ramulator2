@@ -274,7 +274,53 @@ def run_ramulator_simulation(ldst_trace_file: str, total_requests_hint: int | No
     
     Energy is returned in picojoules (pJ). If energy data is not available from Ramulator, returns 0.
     """
+
     
+#     config_content = f"""Frontend:
+#   impl: LoadStoreTrace
+#   path: {ldst_trace_file}
+#   clock_ratio: 1
+
+# Translation:
+#   impl: IdentityTranslation
+#   max_addr: 1000000000
+
+# MemorySystem:
+#   impl: GenericDRAM
+#   clock_ratio: 1
+
+#   DRAM:
+#     impl: DDR5
+#     org:
+#       preset: DDR5_8Gb_x8   
+#       channel: 2
+#       rank: 1
+#     timing:
+#       preset: DDR5_3200C    
+#     drampower_enable: true
+#     voltage:
+#       preset: Default
+#     current:
+#       preset: Default
+#     RFM:                        
+#       BRC: 2 
+
+#   Controller:
+#     impl: Generic
+#     Scheduler:
+#       impl: FRFCFS
+#     RefreshManager:
+#       impl: AllBank
+#     RowPolicy:
+#       impl: OpenRowPolicy
+#       cap: 4
+#     plugins:
+
+#   AddrMapper:
+#     impl: RoBaRaCoCh
+# """
+
+
     config_content = f"""Frontend:
   impl: LoadStoreTrace
   path: {ldst_trace_file}
@@ -295,7 +341,7 @@ MemorySystem:
       channel: 2
       rank: 1
     timing:
-      preset: DDR4_2400R
+      preset: DDR4_3200AC
     drampower_enable: true
     voltage:
       preset: Default

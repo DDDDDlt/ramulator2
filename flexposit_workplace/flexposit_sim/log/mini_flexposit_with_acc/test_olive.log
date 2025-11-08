@@ -1,0 +1,108 @@
+Accelerator: OLIVE (Non-uniform Quantization)
+PE Array Dimension: [35, 16]
+Input Precision: 4-bit, Weight Precision: Variable (per-model)
+Context Length: 256, Generation Mode: True
+Models to test: 5
+pe_energy: 0.36093
+pe_area: 214.6
+pe_dp_size: 1
+
+[1/5] Model: gpt2-large (W_prec: 8-bit)
+  Total Cycle:        2,777,338
+  PE Array Area:      0.120176 mm²
+  Weight Buffer:      0.491726 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.079056 mm²
+  DRAM Energy:        800.72 uJ
+  On-chip Energy:     707.99 uJ
+  Total Energy:       1508.71 uJ
+  Total Ops:          47.12 GOPS
+  Total Power:        543.22 mW
+  Total GOps per Power: 86.74 GOPS/W
+  Energy Delay Product: 4190197516.04
+  --- Energy Breakdown ---
+  PE Compute Energy:  588.01 uJ
+  SRAM Read Energy:   87.41 uJ
+  SRAM Write Energy:  32.58 uJ
+  Total MACs:         65,434,880
+
+[2/5] Model: gpt2-xl (W_prec: 8-bit)
+  Total Cycle:        3,510,287
+  PE Array Area:      0.120176 mm²
+  Weight Buffer:      0.491726 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.079056 mm²
+  DRAM Energy:        1009.24 uJ
+  On-chip Energy:     899.25 uJ
+  Total Energy:       1908.49 uJ
+  Total Ops:          47.08 GOPS
+  Total Power:        543.69 mW
+  Total GOps per Power: 86.60 GOPS/W
+  Energy Delay Product: 6699354120.33
+  --- Energy Breakdown ---
+  PE Compute Energy:  746.88 uJ
+  SRAM Read Energy:   111.03 uJ
+  SRAM Write Energy:  41.34 uJ
+  Total MACs:         82,638,400
+
+[3/5] Model: microsoft/phi-2 (W_prec: 8-bit)
+  Total Cycle:        110,252,351
+  PE Array Area:      0.120176 mm²
+  Weight Buffer:      0.491726 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.079056 mm²
+  DRAM Energy:        32584.07 uJ
+  On-chip Energy:     27920.43 uJ
+  Total Energy:       60504.49 uJ
+  Total Ops:          48.08 GOPS
+  Total Power:        548.78 mW
+  Total GOps per Power: 87.61 GOPS/W
+  Energy Delay Product: 6670762587902.07
+  --- Energy Breakdown ---
+  PE Compute Energy:  23168.05 uJ
+  SRAM Read Energy:   3444.13 uJ
+  SRAM Write Energy:  1308.25 uJ
+  Total MACs:         2,650,537,984
+
+[4/5] Model: facebook/opt-2.7b (W_prec: 8-bit)
+  Total Cycle:        110,153,796
+  PE Array Area:      0.120176 mm²
+  Weight Buffer:      0.491726 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.079056 mm²
+  DRAM Energy:        32555.05 uJ
+  On-chip Energy:     27896.08 uJ
+  Total Energy:       60451.13 uJ
+  Total Ops:          48.08 GOPS
+  Total Power:        548.79 mW
+  Total GOps per Power: 87.61 GOPS/W
+  Energy Delay Product: 6658921473548.25
+  --- Energy Breakdown ---
+  PE Compute Energy:  23147.87 uJ
+  SRAM Read Energy:   3441.13 uJ
+  SRAM Write Energy:  1307.07 uJ
+  Total MACs:         2,648,162,304
+
+[5/5] Model: meta-llama/Llama-2-7b-hf (W_prec: 8-bit)
+  Total Cycle:        274,954,917
+  PE Array Area:      0.120176 mm²
+  Weight Buffer:      0.491726 mm²
+  Input Buffer:       0.467155 mm²
+  Total Area:         1.079056 mm²
+  DRAM Energy:        81291.89 uJ
+  On-chip Energy:     69438.48 uJ
+  Total Energy:       150730.37 uJ
+  Total Ops:          48.09 GOPS
+  Total Power:        548.20 mW
+  Total GOps per Power: 87.73 GOPS/W
+  Energy Delay Product: 41444055583049.87
+  --- Energy Breakdown ---
+  PE Compute Energy:  57612.23 uJ
+  SRAM Read Energy:   8564.56 uJ
+  SRAM Write Energy:  3261.69 uJ
+  Total MACs:         6,611,533,824
+
+
+Summary:
+Latency (cycles): [2777338, 3510287, 110252351, 110153796, 274954917]
+Energy [On-chip, Total] (uJ): [[708, 1509], [899, 1908], [27920, 60504], [27896, 60451], [69438, 150730]]

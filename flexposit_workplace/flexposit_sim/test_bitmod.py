@@ -18,13 +18,21 @@ if __name__ == "__main__":
     is_lossless = args.is_lossless
     pe_x = args.pe_x
     pe_y = args.pe_y
+
+    total_ops_list = {
+        'gpt2-large': 65434880*2,
+        'gpt2-xl': 82638400*2,
+        'microsoft/phi-2': 2650537984*2,
+        'facebook/opt-2.7b': 2648162304*2,
+        'meta-llama/Llama-2-7b-hf': 6611533824*2,
+    }
     
     if pe_x is not None and pe_y is not None:
         pe_array_dim = [pe_x, pe_y]
         w_prec = 4
     elif is_generation:
-        # pe_array_dim = [9, 16]
-        pe_array_dim = [18, 16]
+        pe_array_dim = [8, 16]
+        # pe_array_dim = [18, 16]
         w_prec = 4
     else:
         pe_array_dim = [18, 16]
@@ -42,6 +50,8 @@ if __name__ == "__main__":
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Use Scale Overhead: True, Group Size: 128")
     print(f"Models to test: {len(model_list)}")
+    print(f"pe_energy: {0.39593}")
+    print(f"pe_area: {777}")
     print()
 
     for idx, model_name in enumerate(model_list):
@@ -51,8 +61,8 @@ if __name__ == "__main__":
             w_prec=w_prec,
             is_bit_serial=True,
             pe_dp_size=4,
-            pe_energy=0.563,
-            pe_area=911,
+            pe_energy=0.39593,
+            pe_area=777,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
@@ -80,6 +90,13 @@ if __name__ == "__main__":
         print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
         print(f'  Total Energy:       {total_energy:.2f} uJ')
 
+        op_model = total_ops_list[model_name]
+        total_gops = op_model / total_cycle[1] 
+        total_power = total_energy / total_cycle[1] * 1000000
+        total_gops_per_power = total_gops / total_power * 1000
+        print(f'  Total Ops:          {total_gops:.2f} GOPS')
+        print(f'  Total Power:        {total_power:.2f} mW')
+        print(f'  Total GOps per Power: {total_gops_per_power:.2f} GOPS/W')
 
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
         

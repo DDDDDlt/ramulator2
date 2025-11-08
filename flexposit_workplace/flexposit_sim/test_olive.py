@@ -17,21 +17,29 @@ if __name__ == "__main__":
     pe_y = args.pe_y
 
     w_prec_list = {
-        'gpt2-large': 4,
-        'gpt2-xl': 4,
-        'facebook/opt-1.3b': 4,
-        'facebook/opt-2.7b': 4,
-        'microsoft/phi-2': 4, 
-        '01-ai/Yi-6B': 4, 
-        'meta-llama/Llama-2-7b-hf': 4, 
-        'meta-llama/Llama-2-13b-hf': 4, 
-        'meta-llama/Meta-Llama-3-8B': 4, 
+        'gpt2-large': 8,
+        'gpt2-xl': 8,
+        'facebook/opt-1.3b': 8,
+        'facebook/opt-2.7b': 8,
+        'microsoft/phi-2': 8, 
+        '01-ai/Yi-6B': 8, 
+        'meta-llama/Llama-2-7b-hf': 8, 
+        'meta-llama/Llama-2-13b-hf': 8, 
+        'meta-llama/Meta-Llama-3-8B': 8, 
+    }
+
+    total_ops_list = {
+        'gpt2-large': 65434880*2,
+        'gpt2-xl': 82638400*2,
+        'microsoft/phi-2': 2650537984*2,
+        'facebook/opt-2.7b': 2648162304*2,
+        'meta-llama/Llama-2-7b-hf': 6611533824*2,
     }
 
     if pe_x is not None and pe_y is not None:
         pe_array_dim = [pe_x, pe_y]
     elif is_generation:
-        pe_array_dim = [44, 16]
+        pe_array_dim = [38, 16]
         # pe_array_dim = [87, 16]
     else:
         pe_array_dim = [87, 16]
@@ -45,8 +53,8 @@ if __name__ == "__main__":
     print(f"Input Precision: 4-bit, Weight Precision: Variable (per-model)")
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Models to test: {len(model_list)}")
-    print(f"pe_energy: {0.179497375}")
-    print(f"pe_area: {767.41875}")
+    print(f"pe_energy: {0.33406}")
+    print(f"pe_area: {214.6}")
     print(f"pe_dp_size: 1")
     print()
 
@@ -58,14 +66,14 @@ if __name__ == "__main__":
 
         acc = Accelerator(
             model_name=model_name, 
-            i_prec=4,
+            i_prec=8,
             w_prec=w_prec,
             is_bit_serial=False,
             pe_dp_size=1,
             # pe_energy=0.179497375,
-            pe_energy=0.379,
+            pe_energy=0.33406,
             # pe_area=767.41875,
-            pe_area=228,
+            pe_area=214.6,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
@@ -94,6 +102,13 @@ if __name__ == "__main__":
         print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
         print(f'  Total Energy:       {total_energy:.2f} uJ')
 
+        op_model = total_ops_list[model_name]
+        total_gops = op_model / total_cycle[1] 
+        total_power = total_energy / total_cycle[1] * 1000000
+        total_gops_per_power = total_gops / total_power * 1000
+        print(f'  Total Ops:          {total_gops:.2f} GOPS')
+        print(f'  Total Power:        {total_power:.2f} mW')
+        print(f'  Total GOps per Power: {total_gops_per_power:.2f} GOPS/W')
 
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
 

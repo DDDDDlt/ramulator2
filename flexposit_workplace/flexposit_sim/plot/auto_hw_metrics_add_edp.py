@@ -40,7 +40,7 @@ plt.rcParams['grid.color'] = '#CCCCCC'
 def parse_log_file(log_path):
     """
     Parse one log file and extract latency and energy arrays.
-    Returns: (latency_list, on_chip_energy_list, off_chip_energy_list, accelerator_name)
+    Returns: (latency_list, on_chip_energy_list, off_chip_energy_list, accelerator_name, energy_unit)
     """
     with open(log_path, 'r') as f:
         content = f.read()
@@ -54,45 +54,66 @@ def parse_log_file(log_path):
     latency_match = re.search(r'Latency \(cycles\):\s*\[([^\]]+)\]', content)
     if not latency_match:
         print(f"Warning: Latency not found in {log_path}")
-        return None, None, None, accelerator_name
+        return None, None, None, accelerator_name, None
     
     latency_str = latency_match.group(1)
     latency_list = [float(x.strip()) for x in latency_str.split(',')]
     
     # Extract Energy arrays in Summary
-    # Format: Energy [On-chip, Total] (mJ): [[on1, total1], [on2, total2], ...]
-    energy_match = re.search(r'Energy \[On-chip, Total\] \(mJ\):\s*(\[\[.+?\]\])', content)
+    # Format: Energy [On-chip, Total] (mJ/uJ): [[on1, total1], [on2, total2], ...]
+    energy_match = re.search(r'Energy \[On-chip, Total\] \((mJ|uJ)\):\s*(\[\[.+?\]\])', content)
     if not energy_match:
         print(f"Warning: Energy not found in {log_path}")
-        return latency_list, None, None, accelerator_name
+        return latency_list, None, None, accelerator_name, None
     
-    energy_str = energy_match.group(1)
+    energy_unit = energy_match.group(1)
+    energy_str = energy_match.group(2)
     # Parse nested list [[on1, total1], [on2, total2], ...]
     # Use precise regex to match each [num, num] pair
     energy_pairs = re.findall(r'\[(\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\]', energy_str)
-    on_chip_energy = []
-    off_chip_energy = []
-    total_energy = []
+    on_chip_energy_raw = []
+    off_chip_energy_raw = []
+    total_energy_raw = []
     
     for on_chip_str, total_str in energy_pairs:
         on_chip = float(on_chip_str)
         total = float(total_str)
         off_chip = total - on_chip
-        on_chip_energy.append(on_chip)
-        off_chip_energy.append(off_chip)
-        total_energy.append(total)
+        on_chip_energy_raw.append(on_chip)
+        off_chip_energy_raw.append(off_chip)
+        total_energy_raw.append(total)
+    
+    # Convert all energies to Joules for internal calculations
+    unit_scale = {'mJ': 1e-3, 'uJ': 1e-6}.get(energy_unit)
+    if unit_scale is None:
+        raise ValueError(f"Unsupported energy unit '{energy_unit}' in {log_path}")
+    
+    on_chip_energy = [value * unit_scale for value in on_chip_energy_raw]
+    off_chip_energy = [value * unit_scale for value in off_chip_energy_raw]
+    total_energy = [value * unit_scale for value in total_energy_raw]
     
     # Print parsing result
     print(f"\n{'='*70}")
     print(f"📄 File: {os.path.basename(log_path)}")
     print(f"🏷️  Accelerator: {accelerator_name}")
     print(f"⏱️  Latency (cycles): {latency_list}")
-    print(f"⚡ On-chip Energy (mJ): {on_chip_energy}")
-    print(f"💾 Off-chip Energy (mJ): {off_chip_energy}")
-    print(f"📊 Total Energy (mJ): {total_energy}")
+    print(f"⚡ On-chip Energy ({energy_unit}): {on_chip_energy_raw}")
+    print(f"💾 Off-chip Energy ({energy_unit}): {off_chip_energy_raw}")
+    print(f"📊 Total Energy ({energy_unit}): {total_energy_raw}")
     print(f"{'='*70}")
     
-    return latency_list, on_chip_energy, off_chip_energy, accelerator_name
+    # Extract Total GOps per Power for each model (throughput efficiency)
+    gops_per_power_matches = re.findall(r'Total GOps per Power:\s*([\d\.]+)', content)
+    if not gops_per_power_matches:
+        print(f"Warning: GOps per Power not found in {log_path}")
+        gops_per_power = None
+    else:
+        gops_per_power = [float(value) for value in gops_per_power_matches]
+        if len(gops_per_power) != len(latency_list):
+            print(f"Warning: GOps per Power count mismatch in {log_path} (expected {len(latency_list)}, got {len(gops_per_power)})")
+            gops_per_power = gops_per_power[:len(latency_list)]
+
+    return latency_list, on_chip_energy, off_chip_energy, gops_per_power, accelerator_name, energy_unit
 
 
 def load_all_logs(log_dir):
@@ -112,15 +133,23 @@ def load_all_logs(log_dir):
     for acc_key, log_file in log_files.items():
         log_path = os.path.join(log_dir, log_file)
         if os.path.exists(log_path):
-            latency, on_chip, off_chip, acc_name = parse_log_file(log_path)
-            if latency is not None:
+            latency, on_chip, off_chip, gops_per_power, acc_name, energy_unit = parse_log_file(log_path)
+            if latency is not None and on_chip is not None and off_chip is not None and gops_per_power is not None:
+                if len(gops_per_power) != len(latency):
+                    print(f"⚠️  Skip loading GOps/W for {log_file}: length mismatch")
+                    continue
                 data[acc_key] = {
                     'latency': np.array(latency),
-                    'on_chip_energy': np.array(on_chip) if on_chip else None,
-                    'off_chip_energy': np.array(off_chip) if off_chip else None,
-                    'full_name': acc_name
+                    'on_chip_energy': np.array(on_chip),
+                    'off_chip_energy': np.array(off_chip),
+                    'gops_per_power': np.array(gops_per_power),
+                    'full_name': acc_name,
+                    'energy_unit': energy_unit,
                 }
-                print(f"✅ Loaded: {log_file} ({acc_name})")
+                unit_display = energy_unit if energy_unit is not None else "unknown unit"
+                print(f"✅ Loaded: {log_file} ({acc_name}) – energy parsed as {unit_display}")
+            else:
+                print(f"⚠️  Skip loading energy data for {log_file} (missing entries)")
         else:
             print(f"⚠️  File not found: {log_path}")
     
@@ -140,6 +169,12 @@ def normalize_data(data, baseline_key='Baseline'):
     baseline_on_chip = np.array(data[baseline_key]['on_chip_energy'])
     baseline_off_chip = np.array(data[baseline_key]['off_chip_energy'])
     baseline_total_energy = baseline_on_chip + baseline_off_chip  # 每个模型的baseline总能量
+    baseline_gops_per_power = np.array(data[baseline_key]['gops_per_power'])
+
+    if baseline_gops_per_power.size == 0:
+        raise ValueError(f"Baseline accelerator '{baseline_key}' has no GOps/W data for normalization")
+    if np.any(baseline_gops_per_power == 0):
+        raise ValueError(f"Baseline accelerator '{baseline_key}' contains zero GOps/W value, cannot normalize")
     
     # Compute baseline EDP
     baseline_edp = baseline_latency * baseline_total_energy
@@ -157,6 +192,7 @@ def normalize_data(data, baseline_key='Baseline'):
         acc_off_chip = np.array(acc_data['off_chip_energy'])
         acc_latency = np.array(acc_data['latency'])
         acc_total_energy = acc_on_chip + acc_off_chip
+        acc_gops_per_power = np.array(acc_data['gops_per_power'])
         
         # Latency normalization: per-model
         norm_latency = acc_latency / baseline_latency
@@ -168,12 +204,16 @@ def normalize_data(data, baseline_key='Baseline'):
         # EDP normalization: EDP = Latency × Total_Energy
         acc_edp = acc_latency * acc_total_energy
         norm_edp = acc_edp / baseline_edp
+        if np.any(acc_gops_per_power == 0):
+            print(f"Warning: {acc_key} contains zero GOps/W value, normalization may be skewed")
+        norm_gops_per_power = acc_gops_per_power / baseline_gops_per_power
         
         normalized_data[acc_key] = {
             'norm_latency': norm_latency,
             'norm_on_chip': norm_on_chip,
             'norm_off_chip': norm_off_chip,
             'norm_edp': norm_edp,
+            'norm_gops_per_power': norm_gops_per_power,
             'full_name': acc_data['full_name']
         }
         
@@ -182,7 +222,7 @@ def normalize_data(data, baseline_key='Baseline'):
         for i, model_name in enumerate(model_names):
             total_norm = norm_on_chip[i] + norm_off_chip[i]
             print(f"   {model_name:12s}: Latency={norm_latency[i]:.3f}, "
-                  f"Energy={total_norm:.3f}, EDP={norm_edp[i]:.3f}")
+                  f"Energy={total_norm:.3f}, EDP={norm_edp[i]:.3f}, GOP/W={norm_gops_per_power[i]:.3f}")
     
     print("\n" + "="*70)
     
@@ -194,7 +234,7 @@ def normalize_data(data, baseline_key='Baseline'):
 # ==============================
 def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     """
-    Plot latency, energy and EDP (three subplots)
+    Plot latency, energy, EDP, and normalized GOps/W (four subplots)
     """
     # 模型名称（5个模型）+ 平均值
     models = [
@@ -223,6 +263,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     norm_energy_on = np.zeros((n_models, n_accs))
     norm_energy_off = np.zeros((n_models, n_accs))
     norm_edp = np.zeros((n_models, n_accs))
+    norm_gops_per_power = np.zeros((n_models, n_accs))
     
     for j, acc in enumerate(accelerators):
         # 前n_actual_models行是实际数据
@@ -230,32 +271,40 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
         norm_energy_on[:n_actual_models, j] = normalized_data[acc]['norm_on_chip']
         norm_energy_off[:n_actual_models, j] = normalized_data[acc]['norm_off_chip']
         norm_edp[:n_actual_models, j] = normalized_data[acc]['norm_edp']
+        norm_gops_per_power[:n_actual_models, j] = normalized_data[acc]['norm_gops_per_power']
         
         # 最后一行是平均值
         norm_cycle[n_actual_models, j] = np.mean(normalized_data[acc]['norm_latency'])
         norm_energy_on[n_actual_models, j] = np.mean(normalized_data[acc]['norm_on_chip'])
         norm_energy_off[n_actual_models, j] = np.mean(normalized_data[acc]['norm_off_chip'])
         norm_edp[n_actual_models, j] = np.mean(normalized_data[acc]['norm_edp'])
+        norm_gops_per_power[n_actual_models, j] = np.mean(normalized_data[acc]['norm_gops_per_power'])
     
     # ==============================
     #  Plotting
     # ==============================
-    energy_names = ["On-Chip Energy", "Off-Chip Energy"]
     # Use hatch to distinguish On-chip/Off-chip (instead of color)
-    energy_hatches = ['///', '\\\\\\']  # On-chip用斜线，Off-chip用反斜线
-    bar_width = 0.18  # 柱子宽度（再增加一点）
-    bar_spacing = 1.3  # 组内柱子间距系数（增加组内间距）
-    x_base = np.arange(len(models)) * 1.3  # 增加模型之间的间距
+    energy_hatches = ['///', '\\\\']  # On-Chip用斜线，Off-Chip用反斜线
+    bar_width = 0.34  # 柱子宽度，进一步强化视觉厚度
+    bar_spacing = 1.33  # 控制同组柱子间距，保持紧凑
+    x_base = np.arange(len(models)) * 2.1  # 增大不同模型之间的间距
     
-    # Create 3 subplots
-    fig = plt.figure(figsize=(16, 12))  # 增加figure高度以容纳3个子图
-    gs = gridspec.GridSpec(3, 1, height_ratios=[1, 1, 1], hspace=0.6)  # 3行1列，增大间距确保不重叠
-    axes = [plt.subplot(gs[i]) for i in range(3)]
+    # Create 4 subplots in 2x2 layout
+    fig = plt.figure(figsize=(21, 7.8))
+    gs = gridspec.GridSpec(2, 2, height_ratios=[1, 1], width_ratios=[1, 1], hspace=0.75, wspace=0.25)
+    axes = [
+        plt.subplot(gs[0, 0]),  # (a)
+        plt.subplot(gs[0, 1]),  # (b)
+        plt.subplot(gs[1, 0]),  # (c)
+        plt.subplot(gs[1, 1])   # (d)
+    ]
+
+    offset_center = (len(accelerators) - 1) / 2 if accelerators else 0
     
     # -------------------------------------------------------
     # (1) Latency plot
     for j, acc in enumerate(accelerators):
-        x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing
+        x = x_base + (j - offset_center) * bar_width * bar_spacing
         bars = axes[0].bar(x, norm_cycle[:, j], bar_width, label=acc, 
                            color=acc_colors.get(acc, '#999999'), 
                            edgecolor='black', linewidth=0.8,
@@ -265,7 +314,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
         for i, (bar, val) in enumerate(zip(bars, norm_cycle[:, j])):
             if val > 0.05:  # 只显示足够大的值
                 lbl = f"{val:.2f}" if math.isclose(val, 1.0, rel_tol=1e-9, abs_tol=1e-9) else f"{val:.3f}"
-                axes[0].text(bar.get_x() + bar.get_width()/2, val + 0.02, 
+                axes[0].text(bar.get_x() + bar.get_width()/2, val + 0.05, 
                             lbl, ha='center', va='bottom', 
                             fontsize=8, fontweight='bold', 
                             color=acc_colors.get(acc, '#999999'),
@@ -283,17 +332,17 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_weight('extra bold')
     
     # X label
-    axes[0].set_xlabel("(a) Inference Latency Comparison", fontweight='bold', fontsize=12)
+    axes[0].set_title("(a) Inference Latency Comparison", fontweight='bold', fontsize=12, pad=10)
     
     # Legend: transparent background
-    axes[0].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.15),
+    axes[0].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
                    framealpha=0.9, edgecolor='#CCCCCC')
     
     # -------------------------------------------------------
     # (2) Energy (stacked)
     for j, acc in enumerate(accelerators):
-        x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing
+        x = x_base + (j - offset_center) * bar_width * bar_spacing
         
         # On-chip部分（底部）- 使用加速器颜色 + 黑色斜线图案（黑色边框）
         bars_on = axes[1].bar(x, norm_energy_on[:, j], bar_width,
@@ -319,7 +368,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
             total_energy = val_on + val_off
             lbl_total = f"{total_energy:.2f}" if math.isclose(total_energy, 1.0, rel_tol=1e-9, abs_tol=1e-9) else f"{total_energy:.3f}"
             txt_total = axes[1].text(bar_off.get_x() + bar_off.get_width()/2, 
-                       total_energy + 0.02, 
+                       total_energy + 0.05, 
                        lbl_total, ha='center', va='bottom',
                        fontsize=7.5, fontweight='bold', 
                        color='#000000',
@@ -336,8 +385,8 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_color('#4FB0A9')  # 青绿主色强调
     labels[-1].set_weight('extra bold')
     
-    # X label
-    axes[1].set_xlabel("(b) Energy Consumption Breakdown", fontweight='bold', fontsize=12, labelpad=10)
+    # Title
+    axes[1].set_title("(b) Energy Consumption Breakdown", fontweight='bold', fontsize=12, pad=10)
     
     # Custom legend - show hatch patterns
     legend_elements = [
@@ -346,14 +395,14 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
         Patch(facecolor='gray', edgecolor='black', hatch=energy_hatches[1], 
               alpha=0.45, label='Off-Chip Energy')
     ]
-    axes[1].legend(handles=legend_elements, ncol=2, bbox_to_anchor=(0.5, 1.15),
+    axes[1].legend(handles=legend_elements, ncol=2, bbox_to_anchor=(0.5, 1.32),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
                    framealpha=0.9, edgecolor='#CCCCCC')
     
     # -------------------------------------------------------
     # (3) EDP plot
     for j, acc in enumerate(accelerators):
-        x = x_base + (j - len(accelerators)//2) * bar_width * bar_spacing
+        x = x_base + (j - offset_center) * bar_width * bar_spacing
         bars = axes[2].bar(x, norm_edp[:, j], bar_width, label=acc,
                            color=acc_colors.get(acc, '#999999'), 
                            edgecolor='black', linewidth=0.8,
@@ -363,7 +412,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
         for i, (bar, val) in enumerate(zip(bars, norm_edp[:, j])):
             if val > 0.05:  # 只显示足够大的值
                 lbl = f"{val:.2f}" if math.isclose(val, 1.0, rel_tol=1e-9, abs_tol=1e-9) else f"{val:.3f}"
-                axes[2].text(bar.get_x() + bar.get_width()/2, val + 0.02, 
+                axes[2].text(bar.get_x() + bar.get_width()/2, val + 0.05, 
                             lbl, ha='center', va='bottom', 
                             fontsize=8, fontweight='bold', 
                             color=acc_colors.get(acc, '#999999'),
@@ -381,10 +430,47 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_weight('extra bold')
     
     # X label
-    axes[2].set_xlabel("(c) Energy-Delay Product (EDP) Comparison", fontweight='bold', fontsize=12)
+    axes[2].set_title("(c) Energy-Delay Product (EDP) Comparison", fontweight='bold', fontsize=12, pad=10)
     
     # Legend
-    axes[2].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.15),
+    axes[2].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
+                   loc='upper center', frameon=True, fancybox=False, shadow=False,
+                   framealpha=0.9, edgecolor='#CCCCCC')
+
+    # -------------------------------------------------------
+    # (4) Normalized GOps/W plot
+    for j, acc in enumerate(accelerators):
+        x = x_base + (j - offset_center) * bar_width * bar_spacing
+        bars = axes[3].bar(x, norm_gops_per_power[:, j], bar_width, label=acc,
+                           color=acc_colors.get(acc, '#999999'),
+                           edgecolor='black', linewidth=0.8,
+                           alpha=0.90, zorder=3)
+
+        # Add labels
+        for bar, val in zip(bars, norm_gops_per_power[:, j]):
+            if val > 0.05:
+                lbl = f"{val:.2f}" if math.isclose(val, 1.0, rel_tol=1e-9, abs_tol=1e-9) else f"{val:.3f}"
+                axes[3].text(bar.get_x() + bar.get_width()/2, val + 0.05,
+                             lbl, ha='center', va='bottom',
+                             fontsize=8, fontweight='bold',
+                             color=acc_colors.get(acc, '#999999'),
+                             rotation=90)
+
+    axes[3].set_ylabel("Normalized Energy Efficiency", fontweight='bold')
+    max_gops_per_power = norm_gops_per_power.max()
+    axes[3].set_ylim(0, max(1.1, max_gops_per_power * 1.15))
+    axes[3].set_xticks(x_base)
+    axes[3].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+
+    # Highlight Average tick (teal)
+    labels = axes[3].get_xticklabels()
+    labels[-1].set_color('#4FB0A9')
+    labels[-1].set_weight('extra bold')
+
+    axes[3].set_title("(d) Energy Efficiency Comparison", fontweight='bold', fontsize=12, pad=10)
+
+    # Legend
+    axes[3].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
                    framealpha=0.9, edgecolor='#CCCCCC')
     
@@ -472,7 +558,7 @@ if __name__ == '__main__':
     
     # 绘制图表（包含EDP）
     print("🎨 Generating plots (with EDP)...\n")
-    output_prefix = os.path.join(script_dir, 'auto_hw_metrics_edp')
+    output_prefix = os.path.join(log_dir, 'auto_hw_metrics_edp')
     plot_metrics_with_edp(normalized_data, output_prefix)
     
     print("\n✨ Done!")

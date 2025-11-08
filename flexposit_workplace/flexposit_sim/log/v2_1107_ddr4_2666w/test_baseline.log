@@ -1,0 +1,127 @@
+Accelerator: Baseline (FP16)
+PE Array Dimension: [7, 16]
+Input Precision: 16-bit, Weight Precision: 16-bit
+Context Length: 256, Generation Mode: True
+Models to test: 5
+pe_energy: 0.4752765
+pe_area: 1039.559
+
+[1/5] Model: gpt2-large
+  Total Cycle:        9,310,208
+  PE Array Area:      0.116431 mm²
+  Weight Buffer:      0.512417 mm²
+  Input Buffer:       0.485785 mm²
+  Total Area:         1.114633 mm²
+  DRAM Energy:        1528.75 uJ
+  On-chip Energy:     1245.03 uJ
+  Total Energy:       2773.78 uJ
+  Total Ops:          14.06 GOPS
+  Total Power:        297.93 mW
+  Total GOps per Power: 47.18 GOPS/W
+  Total MACs:         65,434,880
+  Energy Delay Product: 25824514947.94
+  Bottleneck Analysis:
+    Total Layers:         73
+    Memory-bound Layers:  0 (0.0%)
+    Compute-bound Layers: 73 (100.0%)
+  Latency Contribution:
+    Total Latency:        9,310,208 cycles
+    From Compute-bound:   9,310,208 cycles (100.0%)
+    From Memory-bound:    0 cycles (0.0%)
+
+[2/5] Model: gpt2-xl
+  Total Cycle:        11,704,624
+  PE Array Area:      0.116431 mm²
+  Weight Buffer:      0.512417 mm²
+  Input Buffer:       0.485785 mm²
+  Total Area:         1.114633 mm²
+  DRAM Energy:        1927.50 uJ
+  On-chip Energy:     1563.69 uJ
+  Total Energy:       3491.18 uJ
+  Total Ops:          14.12 GOPS
+  Total Power:        298.27 mW
+  Total GOps per Power: 47.34 GOPS/W
+  Total MACs:         82,638,400
+  Energy Delay Product: 40862961228.65
+  Bottleneck Analysis:
+    Total Layers:         97
+    Memory-bound Layers:  48 (49.5%)
+    Compute-bound Layers: 49 (50.5%)
+  Latency Contribution:
+    Total Latency:        11,704,624 cycles
+    From Compute-bound:   11,537,152 cycles (98.6%)
+    From Memory-bound:    167,472 cycles (1.4%)
+
+[3/5] Model: microsoft/phi-2
+  Total Cycle:        378,708,608
+  PE Array Area:      0.116431 mm²
+  Weight Buffer:      0.512417 mm²
+  Input Buffer:       0.485785 mm²
+  Total Area:         1.114633 mm²
+  DRAM Energy:        62043.08 uJ
+  On-chip Energy:     50636.68 uJ
+  Total Energy:       112679.76 uJ
+  Total Ops:          14.00 GOPS
+  Total Power:        297.54 mW
+  Total GOps per Power: 47.05 GOPS/W
+  Total MACs:         2,650,537,984
+  Energy Delay Product: 42672796781679.76
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  32 (12.5%)
+    Compute-bound Layers: 225 (87.5%)
+  Latency Contribution:
+    Total Latency:        378,708,608 cycles
+    From Compute-bound:   378,478,080 cycles (99.9%)
+    From Memory-bound:    230,528 cycles (0.1%)
+
+[4/5] Model: facebook/opt-2.7b
+  Total Cycle:        378,368,128
+  PE Array Area:      0.116431 mm²
+  Weight Buffer:      0.512417 mm²
+  Input Buffer:       0.485785 mm²
+  Total Area:         1.114633 mm²
+  DRAM Energy:        61987.40 uJ
+  On-chip Energy:     50591.16 uJ
+  Total Energy:       112578.56 uJ
+  Total Ops:          14.00 GOPS
+  Total Power:        297.54 mW
+  Total GOps per Power: 47.05 GOPS/W
+  Total MACs:         2,648,162,304
+  Energy Delay Product: 42596138390484.91
+  Bottleneck Analysis:
+    Total Layers:         257
+    Memory-bound Layers:  32 (12.5%)
+    Compute-bound Layers: 225 (87.5%)
+  Latency Contribution:
+    Total Latency:        378,368,128 cycles
+    From Compute-bound:   378,137,600 cycles (99.9%)
+    From Memory-bound:    230,528 cycles (0.1%)
+
+[5/5] Model: meta-llama/Llama-2-7b-hf
+  Total Cycle:        945,164,800
+  PE Array Area:      0.116431 mm²
+  Weight Buffer:      0.512417 mm²
+  Input Buffer:       0.485785 mm²
+  Total Area:         1.114633 mm²
+  DRAM Energy:        154955.91 uJ
+  On-chip Energy:     126375.38 uJ
+  Total Energy:       281331.29 uJ
+  Total Ops:          13.99 GOPS
+  Total Power:        297.65 mW
+  Total GOps per Power: 47.00 GOPS/W
+  Total MACs:         6,611,533,824
+  Energy Delay Product: 265904432869915.59
+  Bottleneck Analysis:
+    Total Layers:         289
+    Memory-bound Layers:  32 (11.1%)
+    Compute-bound Layers: 257 (88.9%)
+  Latency Contribution:
+    Total Latency:        945,164,800 cycles
+    From Compute-bound:   944,775,168 cycles (100.0%)
+    From Memory-bound:    389,632 cycles (0.0%)
+
+
+Summary:
+Latency (cycles): [9310208, 11704624, 378708608, 378368128, 945164800]
+Energy [On-chip, Total] (uJ): [[1245, 2774], [1564, 3491], [50637, 112680], [50591, 112579], [126375, 281331]]

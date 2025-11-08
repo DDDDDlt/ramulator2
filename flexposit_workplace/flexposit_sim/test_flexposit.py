@@ -19,29 +19,36 @@ if __name__ == "__main__":
     pe_y = args.pe_y
 
     # Per-model precision configuration (MixPosit)
-    # w_prec_list = {
-    #     'gpt2-large': 4.1,
-    #     'gpt2-xl': 4.1,
-    #     'facebook/opt-1.3b': 4.4,
-    #     'facebook/opt-2.7b': 4.8,
-    #     'microsoft/phi-2': 4.4, 
-    #     '01-ai/Yi-6B': 5.0, 
-    #     'meta-llama/Llama-2-7b-hf': 5.0, 
-    #     'meta-llama/Llama-2-13b-hf': 5.0, 
-    #     'meta-llama/Meta-Llama-3-8B': 5.0, 
-    # }
-    
     w_prec_list = {
-        'gpt2-large': 5.0,
-        'gpt2-xl': 5.0,
-        'facebook/opt-1.3b': 5.0,
-        'facebook/opt-2.7b': 5.0,
-        'microsoft/phi-2': 5.0, 
+        'gpt2-large': 4.1,
+        'gpt2-xl': 4.1,
+        'facebook/opt-1.3b': 4.4,
+        'facebook/opt-2.7b': 4.8,
+        'microsoft/phi-2': 4.4, 
         '01-ai/Yi-6B': 5.0, 
         'meta-llama/Llama-2-7b-hf': 5.0, 
         'meta-llama/Llama-2-13b-hf': 5.0, 
         'meta-llama/Meta-Llama-3-8B': 5.0, 
     }
+
+    total_ops_list = {
+        'gpt2-large': 65434880*2,
+        'gpt2-xl': 82638400*2,
+        'microsoft/phi-2': 2650537984*2,
+        'facebook/opt-2.7b': 2648162304*2,
+        'meta-llama/Llama-2-7b-hf': 6611533824*2,
+    }
+    # w_prec_list = {
+    #     'gpt2-large': 5.0,
+    #     'gpt2-xl': 5.0,
+    #     'facebook/opt-1.3b': 5.0,
+    #     'facebook/opt-2.7b': 5.0,
+    #     'microsoft/phi-2': 5.0, 
+    #     '01-ai/Yi-6B': 5.0, 
+    #     'meta-llama/Llama-2-7b-hf': 5.0, 
+    #     'meta-llama/Llama-2-13b-hf': 5.0, 
+    #     'meta-llama/Meta-Llama-3-8B': 5.0, 
+    # }
     
     print(f"w_prec_list: {w_prec_list}")
     
@@ -63,8 +70,9 @@ if __name__ == "__main__":
     print(f"PE DP Size: 4, Is MixPosit: True")
     print(f"Context Length: 256, Generation Mode: {is_generation}")
     print(f"Models to test: {len(model_list)}")
-    print(f"pe_energy: {0.3027171938}")
-    print(f"pe_area: {1458.048025}")
+    print(f"pe_energy: {0.125}")
+    # print(f"pe_energy: {0.071}")
+    print(f"pe_area: {243}")
     print(f"pe_dp_size: 4")
     print()
 
@@ -77,8 +85,9 @@ if __name__ == "__main__":
             w_prec=w_prec,
             is_bit_serial=True,
             pe_dp_size=4,
-            pe_energy=0.159,
-            pe_area=278,
+            pe_energy=0.125,
+            # pe_energy=0.071,
+            pe_area=243,
             pe_array_dim=pe_array_dim,
             context_length=256,
             is_generation=is_generation,
@@ -108,7 +117,14 @@ if __name__ == "__main__":
         print(f'  On-chip Energy:     {onchip_energy:.2f} uJ')
         print(f'  Total Energy:       {total_energy:.2f} uJ')
 
-
+        op_model = total_ops_list[model_name]
+        total_gops = op_model / total_cycle[1] 
+        total_power = total_energy / total_cycle[1] * 1000000
+        total_gops_per_power = total_gops / total_power * 1000
+        print(f'  Total Ops:          {total_gops:.2f} GOPS')
+        print(f'  Total Power:        {total_power:.2f} mW')
+        print(f'  Total GOps per Power: {total_gops_per_power:.2f} GOPS/W')
+        
         print(f'  Energy Delay Product: {total_energy * total_cycle[1]:.2f}')
         
         # Compute total MACs for this model across layers
