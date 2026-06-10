@@ -26,14 +26,15 @@ class Accelerator(PE_Array):
         context_length: int=256,
         is_generation: bool=False,
         is_flexposit: bool=False,  # per-group size
+        batch_size: int=1,         # number of sequences decoded in parallel (generation mode)
         # ===== Additional parameters (optional; default values if not provided) =====
         use_scale_overhead_lat: bool = False,  # whether to include extra DRAM latency for per-group scale/meta
         scale_bits: int = 8,                  # scaling factor bit-width (default INT8)
         meta_bits: int = 2,                   # metadata bits (default 2)
         group_size: int = 128,                # group size (default 128)
         worst_case: bool = False,             # whether to consider worst case
-    ): 
-        super().__init__(model_name, i_prec, w_prec, is_bit_serial, pe_dp_size, pe_energy, pe_area, pe_array_dim, context_length, is_generation, is_flexposit)
+    ):
+        super().__init__(model_name, i_prec, w_prec, is_bit_serial, pe_dp_size, pe_energy, pe_area, pe_array_dim, context_length, is_generation, is_flexposit, batch_size)
         
         self.USE_SCALE_OVERHEAD_LAT = use_scale_overhead_lat
         self.SCALE_BITS = scale_bits

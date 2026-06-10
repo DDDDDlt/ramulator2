@@ -40,6 +40,10 @@ model_name_dict = {
     "meta-llama/Llama-2-7b-hf": "llama_2_7", 
     "meta-llama/Llama-2-13b-hf": "llama_2_13", 
     "meta-llama/Meta-Llama-3-8B": "llama_3_8", 
+    "Qwen/Qwen2.5-7B": "qwen2_5_7b",
+    "Qwen/Qwen2.5-14B": "qwen2_5_14b",
+    "mistralai/Mistral-7B-v0.1": "mistral_7b",
+    "deepseek-ai/deepseek-llm-7b-base": "deepseek_llm_7b",
 }
 file_path = f'./model_shape_config/{model_name_dict[model_str]}.pickle'
 os.makedirs(os.path.dirname(file_path), exist_ok=True)

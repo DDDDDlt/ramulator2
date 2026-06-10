@@ -3,7 +3,10 @@ import argparse
 from accelerator import Accelerator
 from ramulator_dram_sim import get_cache_stats 
 
-model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b",  "meta-llama/Llama-2-7b-hf"]
+model_list = [
+    "gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "meta-llama/Llama-2-7b-hf",
+    "Qwen/Qwen2.5-7B", "mistralai/Mistral-7B-v0.1", "deepseek-ai/deepseek-llm-7b-base", "Qwen/Qwen2.5-14B",
+]
 
 
 if __name__ == "__main__":
@@ -17,15 +20,15 @@ if __name__ == "__main__":
     pe_y = args.pe_y
 
     w_prec_list = {
-        'gpt2-large': 8,
-        'gpt2-xl': 8,
-        'facebook/opt-1.3b': 8,
-        'facebook/opt-2.7b': 8,
-        'microsoft/phi-2': 8, 
-        '01-ai/Yi-6B': 8, 
-        'meta-llama/Llama-2-7b-hf': 8, 
-        'meta-llama/Llama-2-13b-hf': 8, 
-        'meta-llama/Meta-Llama-3-8B': 8, 
+        'gpt2-large': 8.0,
+        'gpt2-xl': 8.0,
+        'facebook/opt-2.7b': 8.0,
+        'microsoft/phi-2': 8.0, 
+        'meta-llama/Llama-2-7b-hf': 8.0, 
+        'Qwen/Qwen2.5-7B': 8.0,
+        'mistralai/Mistral-7B-v0.1': 8.0,
+        'deepseek-ai/deepseek-llm-7b-base': 8.0,
+        'Qwen/Qwen2.5-14B': 8.0,
     }
 
     total_ops_list = {
@@ -34,6 +37,10 @@ if __name__ == "__main__":
         'microsoft/phi-2': 2650537984*2,
         'facebook/opt-2.7b': 2648162304*2,
         'meta-llama/Llama-2-7b-hf': 6611533824*2,
+        'Qwen/Qwen2.5-7B': 6611533824*2,
+        'mistralai/Mistral-7B-v0.1': 6611533824*2,
+        'deepseek-ai/deepseek-llm-7b-base': 6611533824*2,
+        'Qwen/Qwen2.5-14B': 13223067648*2,
     }
 
     if pe_x is not None and pe_y is not None:
@@ -62,7 +69,7 @@ if __name__ == "__main__":
         if is_generation:
             w_prec = w_prec_list[model_name]
         else:
-            w_prec = 4.5
+            w_prec = 8.0
 
         acc = Accelerator(
             model_name=model_name, 

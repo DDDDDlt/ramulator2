@@ -27,6 +27,7 @@ class PE_Array:
         context_length: int=256,
         is_generation: bool=False,
         is_flexposit: bool=False,
+        batch_size: int=1,
     ):
         assert pe_energy != 0, "ERROR! You must provide the energy cost of a PE."
         assert len(pe_array_dim) == 2, f"ERROR! The dimension of PE array must be 2. But you gave {len(pe_array_dim)}."
@@ -57,9 +58,9 @@ class PE_Array:
         # print(f"pe_array_area: {self.pe_array_area}")
         self.pe_array_dim   = {'h': pe_array_dim[0], 'w': pe_array_dim[1]}
         
-        self._init_model_profiler(model_name, context_length, is_generation)
-    
-    def _init_model_profiler(self, model_name, context_length: int=256, is_generation: bool=False):
+        self._init_model_profiler(model_name, context_length, is_generation, batch_size)
+
+    def _init_model_profiler(self, model_name, context_length: int=256, is_generation: bool=False, batch_size: int=1):
         model_name_dict = {
             "gpt2-large": "gpt2_large",
             "gpt2-xl": "gpt2_xl", 
@@ -71,6 +72,10 @@ class PE_Array:
             "meta-llama/Llama-2-7b-hf": "llama_2_7", 
             "meta-llama/Llama-2-13b-hf": "llama_2_13", 
             "meta-llama/Meta-Llama-3-8B": "llama_3_8", 
+            "Qwen/Qwen2.5-7B": "qwen2_5_7b",
+            "Qwen/Qwen2.5-14B": "qwen2_5_14b",
+            "mistralai/Mistral-7B-v0.1": "mistral_7b",
+            "deepseek-ai/deepseek-llm-7b-base": "deepseek_llm_7b",
         }
         file_path = f'./model_shape_config/{model_name_dict[model_name]}.pickle'
         with open(file_path, 'rb') as f:
@@ -83,8 +88,8 @@ class PE_Array:
         for name, shape in layer_config.items():
             weight_dim[name] = shape
             if is_generation: # generation
-                input_dim[name]  = [1, shape[1]]
-                output_dim[name] = [1, shape[0]]
+                input_dim[name]  = [batch_size, shape[1]]
+                output_dim[name] = [batch_size, shape[0]]
             else:
                 input_dim[name]  = [context_length, shape[1]]
                 output_dim[name] = [context_length, shape[0]]
@@ -122,9 +127,9 @@ class PE_Array:
         for l_idx in range(num_hidden_layers):
             op_name = f'model.layers.{l_idx}.self_attn.attn_qk'
             if is_generation: # generation
-                weight_dim[op_name] = [1, hidden_size] # query dimension
+                weight_dim[op_name] = [batch_size, hidden_size] # query dimension
                 input_dim[op_name]  = [context_length, hidden_size / num_attention_heads * num_key_value_heads] # key dimension
-                output_dim[op_name] = [num_attention_heads * 1, context_length] # score dimension
+                output_dim[op_name] = [num_attention_heads * batch_size, context_length] # score dimension
             else:
                 weight_dim[op_name] = [context_length, hidden_size] # query dimension
                 input_dim[op_name]  = [context_length, hidden_size / num_attention_heads * num_key_value_heads] # key dimension
@@ -132,9 +137,9 @@ class PE_Array:
             
             op_name = f'model.layers.{l_idx}.self_attn.attn_v'
             if is_generation: # generation
-                weight_dim[op_name] = [num_attention_heads * 1, context_length] # score dimension
+                weight_dim[op_name] = [num_attention_heads * batch_size, context_length] # score dimension
                 input_dim[op_name]  = [context_length, hidden_size / num_attention_heads * num_key_value_heads] # value dimension
-                output_dim[op_name] = [1, hidden_size] # output dimension
+                output_dim[op_name] = [batch_size, hidden_size] # output dimension
             else:
                 weight_dim[op_name] = [num_attention_heads * context_length, context_length] # score dimension
                 input_dim[op_name]  = [context_length, hidden_size / num_attention_heads * num_key_value_heads] # value dimension

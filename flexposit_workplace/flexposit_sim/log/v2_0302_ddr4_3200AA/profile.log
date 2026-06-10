@@ -1,0 +1,5640 @@
+model = gpt2-large
+Module name:  lm_head
+Module shape: torch.Size([50257, 1280])
+
+
+
+
+model = gpt2-xl
+Module name:  lm_head
+Module shape: torch.Size([50257, 1600])
+
+
+
+
+model = microsoft/phi-2
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 52.28it/s]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.0.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.0.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.0.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.1.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.1.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.1.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.2.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.2.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.2.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.3.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.3.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.3.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.4.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.4.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.4.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.5.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.5.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.5.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.6.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.6.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.6.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.7.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.7.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.7.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.8.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.8.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.8.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.9.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.9.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.9.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.10.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.10.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.10.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.11.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.11.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.11.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.12.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.12.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.12.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.13.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.13.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.13.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.14.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.14.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.14.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.15.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.15.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.15.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.16.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.16.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.16.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.17.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.17.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.17.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.18.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.18.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.18.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.19.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.19.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.19.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.20.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.20.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.20.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.21.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.21.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.21.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.22.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.22.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.22.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.23.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.23.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.23.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.24.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.24.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.24.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.25.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.25.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.25.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.26.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.26.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.26.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.27.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.27.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.27.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.28.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.28.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.28.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.29.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.29.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.29.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.30.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.30.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.30.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.30.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.30.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.30.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.layers.31.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.31.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.31.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.31.self_attn.dense
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.layers.31.mlp.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.layers.31.mlp.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  lm_head
+Module shape: torch.Size([51200, 2560])
+
+
+
+
+model = facebook/opt-2.7b
+Module name:  model.decoder.layers.0.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.0.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.0.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.0.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.0.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.0.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.1.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.1.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.1.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.1.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.1.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.1.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.2.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.2.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.2.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.2.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.2.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.2.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.3.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.3.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.3.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.3.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.3.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.3.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.4.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.4.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.4.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.4.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.4.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.4.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.5.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.5.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.5.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.5.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.5.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.5.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.6.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.6.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.6.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.6.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.6.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.6.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.7.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.7.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.7.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.7.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.7.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.7.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.8.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.8.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.8.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.8.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.8.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.8.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.9.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.9.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.9.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.9.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.9.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.9.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.10.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.10.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.10.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.10.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.10.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.10.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.11.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.11.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.11.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.11.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.11.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.11.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.12.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.12.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.12.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.12.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.12.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.12.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.13.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.13.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.13.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.13.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.13.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.13.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.14.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.14.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.14.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.14.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.14.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.14.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.15.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.15.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.15.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.15.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.15.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.15.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.16.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.16.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.16.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.16.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.16.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.16.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.17.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.17.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.17.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.17.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.17.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.17.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.18.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.18.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.18.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.18.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.18.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.18.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.19.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.19.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.19.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.19.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.19.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.19.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.20.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.20.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.20.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.20.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.20.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.20.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.21.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.21.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.21.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.21.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.21.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.21.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.22.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.22.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.22.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.22.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.22.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.22.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.23.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.23.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.23.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.23.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.23.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.23.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.24.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.24.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.24.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.24.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.24.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.24.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.25.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.25.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.25.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.25.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.25.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.25.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.26.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.26.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.26.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.26.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.26.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.26.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.27.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.27.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.27.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.27.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.27.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.27.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.28.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.28.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.28.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.28.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.28.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.28.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.29.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.29.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.29.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.29.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.29.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.29.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.30.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.30.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.30.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.30.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.30.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.30.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  model.decoder.layers.31.self_attn.k_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.31.self_attn.v_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.31.self_attn.q_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.31.self_attn.out_proj
+Module shape: torch.Size([2560, 2560])
+
+Module name:  model.decoder.layers.31.fc1
+Module shape: torch.Size([10240, 2560])
+
+Module name:  model.decoder.layers.31.fc2
+Module shape: torch.Size([2560, 10240])
+
+Module name:  lm_head
+Module shape: torch.Size([50272, 2560])
+
+
+
+
+model = meta-llama/Llama-2-7b-hf
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.84it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.38it/s]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.28.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.28.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.29.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.29.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.30.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.30.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.30.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.31.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.31.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.31.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  lm_head
+Module shape: torch.Size([32000, 4096])
+
+
+
+
+model = Qwen/Qwen2.5-7B
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.31it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.38it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.42it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.61it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.53it/s]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([512, 3584])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([3584, 3584])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([18944, 3584])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([3584, 18944])
+
+Module name:  lm_head
+Module shape: torch.Size([152064, 3584])
+
+
+
+
+model = mistralai/Mistral-7B-v0.1
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:12<00:12, 12.34s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 17.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 16.81s/it]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.28.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.28.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.28.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.29.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.29.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.29.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.30.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.30.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.30.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.30.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.30.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.30.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  model.layers.31.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.self_attn.k_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.31.self_attn.v_proj
+Module shape: torch.Size([1024, 4096])
+
+Module name:  model.layers.31.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.31.mlp.gate_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.31.mlp.up_proj
+Module shape: torch.Size([14336, 4096])
+
+Module name:  model.layers.31.mlp.down_proj
+Module shape: torch.Size([4096, 14336])
+
+Module name:  lm_head
+Module shape: torch.Size([32000, 4096])
+
+
+
+
+model = deepseek-ai/deepseek-llm-7b-base
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1628.22it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:00<01:00, 60.71s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:22<00:00, 37.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:22<00:00, 41.31s/it]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.28.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.28.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.28.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.self_attn.o_proj
+Module shape: torch.Size([4096, 4096])
+
+Module name:  model.layers.29.mlp.gate_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.29.mlp.up_proj
+Module shape: torch.Size([11008, 4096])
+
+Module name:  model.layers.29.mlp.down_proj
+Module shape: torch.Size([4096, 11008])
+
+Module name:  lm_head
+Module shape: torch.Size([102400, 4096])
+
+
+
+
+model = meta-llama/Llama-2-13b-hf
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.06s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.02s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.22it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.14it/s]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.28.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.28.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.29.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.29.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.30.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.30.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.30.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.31.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.31.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.31.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.32.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.32.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.32.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.33.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.33.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.33.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.34.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.34.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.34.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.35.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.35.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.35.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.36.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.36.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.36.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.37.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.37.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.37.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.38.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.38.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.38.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.39.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.self_attn.k_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.self_attn.v_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.39.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.39.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  lm_head
+Module shape: torch.Size([32000, 5120])
+
+
+
+
+model = Qwen/Qwen2.5-14B
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:19<02:17, 19.66s/it]Loading checkpoint shards:  25%|██▌       | 2/8 [00:41<02:06, 21.15s/it]Loading checkpoint shards:  38%|███▊      | 3/8 [01:03<01:46, 21.23s/it]Loading checkpoint shards:  50%|█████     | 4/8 [01:25<01:27, 21.76s/it]Loading checkpoint shards:  62%|██████▎   | 5/8 [01:48<01:06, 22.08s/it]Loading checkpoint shards:  75%|███████▌  | 6/8 [02:12<00:45, 22.75s/it]Loading checkpoint shards:  88%|████████▊ | 7/8 [02:34<00:22, 22.40s/it]Loading checkpoint shards: 100%|██████████| 8/8 [02:41<00:00, 17.74s/it]Loading checkpoint shards: 100%|██████████| 8/8 [02:41<00:00, 20.24s/it]
+Module name:  model.layers.0.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.0.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.0.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.0.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.0.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.0.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.1.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.1.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.1.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.1.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.1.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.1.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.2.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.2.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.2.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.2.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.2.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.2.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.3.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.3.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.3.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.3.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.3.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.3.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.4.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.4.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.4.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.4.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.4.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.4.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.5.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.5.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.5.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.5.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.5.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.5.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.6.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.6.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.6.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.6.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.6.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.6.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.7.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.7.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.7.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.7.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.7.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.7.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.8.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.8.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.8.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.8.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.8.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.8.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.9.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.9.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.9.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.9.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.9.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.9.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.10.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.10.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.10.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.10.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.10.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.10.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.11.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.11.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.11.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.11.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.11.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.11.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.12.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.12.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.12.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.12.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.12.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.12.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.13.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.13.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.13.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.13.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.13.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.13.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.14.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.14.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.14.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.14.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.14.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.14.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.15.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.15.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.15.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.15.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.15.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.15.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.16.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.16.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.16.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.16.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.16.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.16.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.17.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.17.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.17.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.17.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.17.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.17.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.18.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.18.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.18.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.18.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.18.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.18.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.19.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.19.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.19.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.19.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.19.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.19.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.20.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.20.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.20.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.20.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.20.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.20.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.21.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.21.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.21.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.21.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.21.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.21.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.22.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.22.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.22.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.22.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.22.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.22.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.23.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.23.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.23.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.23.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.23.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.23.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.24.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.24.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.24.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.24.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.24.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.24.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.25.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.25.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.25.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.25.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.25.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.25.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.26.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.26.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.26.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.26.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.26.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.26.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.27.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.27.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.27.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.27.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.27.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.27.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.28.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.28.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.28.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.28.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.28.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.28.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.29.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.29.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.29.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.29.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.29.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.29.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.30.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.30.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.30.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.30.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.30.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.30.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.31.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.31.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.31.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.31.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.31.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.31.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.32.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.32.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.32.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.32.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.32.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.32.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.33.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.33.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.33.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.33.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.33.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.33.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.34.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.34.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.34.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.34.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.34.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.34.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.35.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.35.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.35.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.35.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.35.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.35.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.36.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.36.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.36.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.36.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.36.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.36.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.37.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.37.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.37.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.37.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.37.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.37.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.38.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.38.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.38.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.38.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.38.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.38.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.39.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.39.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.39.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.39.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.39.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.39.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.40.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.40.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.40.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.40.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.40.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.40.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.40.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.41.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.41.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.41.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.41.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.41.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.41.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.41.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.42.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.42.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.42.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.42.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.42.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.42.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.42.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.43.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.43.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.43.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.43.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.43.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.43.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.43.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.44.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.44.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.44.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.44.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.44.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.44.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.44.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.45.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.45.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.45.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.45.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.45.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.45.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.45.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.46.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.46.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.46.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.46.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.46.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.46.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.46.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  model.layers.47.self_attn.q_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.47.self_attn.k_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.47.self_attn.v_proj
+Module shape: torch.Size([1024, 5120])
+
+Module name:  model.layers.47.self_attn.o_proj
+Module shape: torch.Size([5120, 5120])
+
+Module name:  model.layers.47.mlp.gate_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.47.mlp.up_proj
+Module shape: torch.Size([13824, 5120])
+
+Module name:  model.layers.47.mlp.down_proj
+Module shape: torch.Size([5120, 13824])
+
+Module name:  lm_head
+Module shape: torch.Size([152064, 5120])
+
+
+
+

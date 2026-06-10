@@ -24,7 +24,7 @@ plt.rcParams['xtick.labelsize'] = 10
 plt.rcParams['ytick.labelsize'] = 10
 plt.rcParams['axes.linewidth'] = 1.2
 plt.rcParams['axes.edgecolor'] = '#444444'
-plt.rcParams['axes.facecolor'] = '#FAFAFA'  # light gray background
+plt.rcParams['axes.facecolor'] = 'white'  # clean white background for subplots
 plt.rcParams['axes.labelcolor'] = '#444444'  # dark gray axis labels
 plt.rcParams['xtick.color'] = '#444444'
 plt.rcParams['ytick.color'] = '#444444'
@@ -185,7 +185,10 @@ def normalize_data(data, baseline_key='Baseline'):
     print("🔄 Start normalizing data (relative to Baseline, per-model)")
     print("="*70)
     
-    model_names = ["GPT2-L", "GPT2-XL", "Phi-2B", "OPT-2.7B", "Llama2-7B"]
+    model_names = [
+        "GPT2-L", "GPT2-XL", "Phi-2", "OPT-2.7B", "Llama2-7B",
+        "Qwen2.5-7B", "Mistral-7B", "DeepSeek-7B", "Qwen2.5-14B"
+    ]
     
     for acc_key, acc_data in data.items():
         acc_on_chip = np.array(acc_data['on_chip_energy'])
@@ -236,10 +239,11 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     """
     Plot latency, energy, EDP, and normalized GOps/W (four subplots)
     """
-    # 模型名称（5个模型）+ 平均值
+    # 模型名称（9个模型）+ 平均值
     models = [
-        "GPT2-L", "GPT2-XL", "Phi-2B",
-        "OPT-2.7B", "Llama2-7B", "Average"
+        "GPT2-L", "GPT2-XL", "Phi-2",
+        "OPT-2.7B", "Llama2-7B", "Qwen2.5-7B",
+        "Mistral-7B", "DeepSeek-7B", "Qwen2.5-14B", "Average"
     ]
     
     # Accelerator order (can be adjusted)
@@ -248,10 +252,12 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     
     # Color scheme consistent with hardware figures (teal, orange, gray)
     acc_colors = {
-        'FlexPosit': '#4FB0A9',   # 青绿主色（与硬件图核心模块一致）
-        'BitMod': '#F4A261',     # 暖橙色（与Bit-serial路径呼应）
-        'Olive': '#457B9D',      # 深青蓝（稳重对比）
-        'Baseline': '#BDBDBD'    # 浅灰（代表参考基线）
+        # FlexPosit：颜色与 ppl_vs_edp 图例中的圆圈完全一致
+        # ppl_vs_edp 中使用的是 RGB ≈ (0.45, 0.72, 0.45)，对应十六进制约为 #73B873
+        'FlexPosit': '#73B873',
+        'BitMod': '#F4A261',      # 暖橙色（与Bit-serial路径呼应）
+        'Olive': '#457B9D',       # 深青蓝（稳重对比）
+        'Baseline': '#BDBDBD'     # 浅灰（代表参考基线）
     }
     
     # Prepare matrices (including averages)
@@ -290,13 +296,20 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     x_base = np.arange(len(models)) * 2.1  # 增大不同模型之间的间距
     
     # Create 4 subplots in 2x2 layout
-    fig = plt.figure(figsize=(21, 7.8))
-    gs = gridspec.GridSpec(2, 2, height_ratios=[1, 1], width_ratios=[1, 1], hspace=0.75, wspace=0.25)
+    fig = plt.figure(figsize=(24, 7.0))  # 增加宽度以适应9个模型
+    gs = gridspec.GridSpec(2, 2, height_ratios=[1, 1], width_ratios=[1, 1], hspace=0.48, wspace=0.18)
     axes = [
         plt.subplot(gs[0, 0]),  # (a)
         plt.subplot(gs[0, 1]),  # (b)
         plt.subplot(gs[1, 0]),  # (c)
         plt.subplot(gs[1, 1])   # (d)
+    ]
+
+    subplot_titles = [
+        "(a) Normalized Latency",
+        "(b) Normalized Energy",
+        "(c) Normalized EDP",
+        "(d) Normalized Energy Efficiency"
     ]
 
     offset_center = (len(accelerators) - 1) / 2 if accelerators else 0
@@ -324,7 +337,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     max_latency = norm_cycle.max()
     axes[0].set_ylim(0, max(1.1, max_latency * 1.15))
     axes[0].set_xticks(x_base)
-    axes[0].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+    axes[0].set_xticklabels(models, rotation=25, ha='center', fontweight='bold')
     
     # Highlight Average tick (teal)
     labels = axes[0].get_xticklabels()
@@ -332,12 +345,12 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_weight('extra bold')
     
     # X label
-    axes[0].set_title("(a) Inference Latency Comparison", fontweight='bold', fontsize=12, pad=10)
     
     # Legend: transparent background
-    axes[0].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
+    axes[0].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.24),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
-                   framealpha=0.9, edgecolor='#CCCCCC')
+                   framealpha=0.9, edgecolor='#CCCCCC',
+                   handletextpad=0.25, columnspacing=0.65)
     
     # -------------------------------------------------------
     # (2) Energy (stacked)
@@ -378,7 +391,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     max_energy = (norm_energy_on + norm_energy_off).max()
     axes[1].set_ylim(0, max(1.15, max_energy * 1.15))
     axes[1].set_xticks(x_base)
-    axes[1].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+    axes[1].set_xticklabels(models, rotation=25, ha='center', fontweight='bold')
     
     # Highlight Average tick (teal)
     labels = axes[1].get_xticklabels()
@@ -386,7 +399,6 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_weight('extra bold')
     
     # Title
-    axes[1].set_title("(b) Energy Consumption Breakdown", fontweight='bold', fontsize=12, pad=10)
     
     # Custom legend - show hatch patterns
     legend_elements = [
@@ -395,9 +407,10 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
         Patch(facecolor='gray', edgecolor='black', hatch=energy_hatches[1], 
               alpha=0.45, label='Off-Chip Energy')
     ]
-    axes[1].legend(handles=legend_elements, ncol=2, bbox_to_anchor=(0.5, 1.32),
+    axes[1].legend(handles=legend_elements, ncol=2, bbox_to_anchor=(0.5, 1.24),
                    loc='upper center', frameon=True, fancybox=False, shadow=False,
-                   framealpha=0.9, edgecolor='#CCCCCC')
+                   framealpha=0.9, edgecolor='#CCCCCC',
+                   handletextpad=0.25, columnspacing=0.65)
     
     # -------------------------------------------------------
     # (3) EDP plot
@@ -422,7 +435,7 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     max_edp = norm_edp.max()
     axes[2].set_ylim(0, max(1.1, max_edp * 1.15))
     axes[2].set_xticks(x_base)
-    axes[2].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+    axes[2].set_xticklabels(models, rotation=25, ha='center', fontweight='bold')
     
     # Highlight Average tick (teal)
     labels = axes[2].get_xticklabels()
@@ -430,12 +443,12 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     labels[-1].set_weight('extra bold')
     
     # X label
-    axes[2].set_title("(c) Energy-Delay Product (EDP) Comparison", fontweight='bold', fontsize=12, pad=10)
     
-    # Legend
-    axes[2].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
-                   loc='upper center', frameon=True, fancybox=False, shadow=False,
-                   framealpha=0.9, edgecolor='#CCCCCC')
+    # Legend - removed for subplot (c)
+    # axes[2].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.24),
+    #                loc='upper center', frameon=True, fancybox=False, shadow=False,
+    #                framealpha=0.9, edgecolor='#CCCCCC',
+    #                handletextpad=0.25, columnspacing=0.65)
 
     # -------------------------------------------------------
     # (4) Normalized GOps/W plot
@@ -460,28 +473,33 @@ def plot_metrics_with_edp(normalized_data, output_prefix='auto_hw_metrics_edp'):
     max_gops_per_power = norm_gops_per_power.max()
     axes[3].set_ylim(0, max(1.1, max_gops_per_power * 1.15))
     axes[3].set_xticks(x_base)
-    axes[3].set_xticklabels(models, rotation=25, ha='right', fontweight='bold')
+    axes[3].set_xticklabels(models, rotation=25, ha='center', fontweight='bold')
 
     # Highlight Average tick (teal)
     labels = axes[3].get_xticklabels()
     labels[-1].set_color('#4FB0A9')
     labels[-1].set_weight('extra bold')
 
-    axes[3].set_title("(d) Energy Efficiency Comparison", fontweight='bold', fontsize=12, pad=10)
 
-    # Legend
-    axes[3].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.32),
-                   loc='upper center', frameon=True, fancybox=False, shadow=False,
-                   framealpha=0.9, edgecolor='#CCCCCC')
+    # Legend - removed for subplot (d)
+    # axes[3].legend(accelerators, ncol=len(accelerators), bbox_to_anchor=(0.5, 1.24),
+    #                loc='upper center', frameon=True, fancybox=False, shadow=False,
+    #                framealpha=0.9, edgecolor='#CCCCCC',
+    #                handletextpad=0.25, columnspacing=0.65)
     
     # -------------------------------------------------------
     # Styling
-    for ax in axes:
+    for idx, ax in enumerate(axes):
+        # Add subplot title below the plot (keep horizontally centered)
+        ax.text(0.5, -0.32, subplot_titles[idx], 
+                transform=ax.transAxes, ha='center', va='top', 
+                fontsize=13, fontweight='bold', rotation=0)
+        
         # Add background span for Average section
         avg_pos = x_base[-1]  # Average的位置
         half_group_width = (len(accelerators) * bar_width * bar_spacing) / 2
         ax.axvspan(avg_pos - half_group_width - 0.1, avg_pos + half_group_width + 0.1, 
-                   color='#E8E8E8', alpha=0.4, zorder=0)
+                   color='#E8E8E8', alpha=0.32, zorder=0)
         
         # Grid
         ax.grid(axis='y', linestyle=':', linewidth=0.8, alpha=0.6, zorder=0, color='#CCCCCC')

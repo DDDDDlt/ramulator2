@@ -1,9 +1,12 @@
-# python test_flexposit.py --is_generation > ./log/test_flexposit.log
+# python test_flexposit.py --is_generation > ./log/v2_sweep_1108_ddr4_3200ac/test_flexposit.log
 import argparse
 from accelerator import Accelerator
 from ramulator_dram_sim import get_cache_stats 
 
-model_list = ["gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "meta-llama/Llama-2-7b-hf"]
+model_list = [
+    "gpt2-large", "gpt2-xl", "microsoft/phi-2", "facebook/opt-2.7b", "meta-llama/Llama-2-7b-hf",
+    "Qwen/Qwen2.5-7B", "mistralai/Mistral-7B-v0.1", "deepseek-ai/deepseek-llm-7b-base", "Qwen/Qwen2.5-14B",
+]
 
 
 if __name__ == "__main__":
@@ -20,15 +23,19 @@ if __name__ == "__main__":
 
     # Per-model precision configuration (MixPosit)
     w_prec_list = {
-        'gpt2-large': 4.1,
+        'gpt2-large': 4.2,
         'gpt2-xl': 4.1,
-        'facebook/opt-1.3b': 4.4,
-        'facebook/opt-2.7b': 4.8,
-        'microsoft/phi-2': 4.4, 
-        '01-ai/Yi-6B': 5.0, 
-        'meta-llama/Llama-2-7b-hf': 5.0, 
-        'meta-llama/Llama-2-13b-hf': 5.0, 
-        'meta-llama/Meta-Llama-3-8B': 5.0, 
+        # 'facebook/opt-1.3b': 4.4,
+        'facebook/opt-2.7b': 4.1,
+        'microsoft/phi-2': 4.5,
+        '01-ai/Yi-6B': 5.0,
+        'meta-llama/Llama-2-7b-hf': 4.6,
+        # 'meta-llama/Llama-2-13b-hf': 5.0,
+        # 'meta-llama/Meta-Llama-3-8B': 5.0,
+        'Qwen/Qwen2.5-7B': 4.4,
+        'deepseek-ai/deepseek-llm-7b-base': 4.3,
+        'mistralai/Mistral-7B-v0.1': 4.6,
+        'Qwen/Qwen2.5-14B': 5.0,
     }
 
     total_ops_list = {
@@ -37,7 +44,13 @@ if __name__ == "__main__":
         'microsoft/phi-2': 2650537984*2,
         'facebook/opt-2.7b': 2648162304*2,
         'meta-llama/Llama-2-7b-hf': 6611533824*2,
+        # 7B models: ~6.6e9 MACs * 2; 13B: ~1.3e10 * 2 (run roofline/compute_model_macs.py for exact)
+        'Qwen/Qwen2.5-7B': 6611533824*2,
+        'mistralai/Mistral-7B-v0.1': 6611533824*2,
+        'deepseek-ai/deepseek-llm-7b-base': 6611533824*2,
+        'Qwen/Qwen2.5-14B': 13223067648*2,
     }
+
     # w_prec_list = {
     #     'gpt2-large': 5.0,
     #     'gpt2-xl': 5.0,
@@ -48,6 +61,9 @@ if __name__ == "__main__":
     #     'meta-llama/Llama-2-7b-hf': 5.0, 
     #     'meta-llama/Llama-2-13b-hf': 5.0, 
     #     'meta-llama/Meta-Llama-3-8B': 5.0, 
+    #     'Qwen/Qwen2.5-7B': 5.0,
+    #     'mistralai/Mistral-7B-v0.1': 5.0,
+    #     'deepseek-ai/deepseek-llm-7b-base': 5.0,
     # }
     
     print(f"w_prec_list: {w_prec_list}")

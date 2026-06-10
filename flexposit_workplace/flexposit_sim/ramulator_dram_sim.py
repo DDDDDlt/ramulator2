@@ -273,6 +273,8 @@ def run_ramulator_simulation(ldst_trace_file: str, total_requests_hint: int | No
       3) 1 (hard fallback)
     
     Energy is returned in picojoules (pJ). If energy data is not available from Ramulator, returns 0.
+    
+    DRAM timing preset is fixed to DDR4_3200AC.
     """
 
     
